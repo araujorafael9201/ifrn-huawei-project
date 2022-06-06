@@ -1,0 +1,285 @@
+@charset "UTF-8";
+
+:root {
+    --cor4: #009213;
+    --cor8: #2c7c37;
+}
+
+main {
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+main h1 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 2%;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.abstract, .goals, .general-characteristics, .security-politics, .pictures {
+    margin-bottom: 4%;
+}
+
+.main-content h2 {
+    font-size: 1.6em;
+}
+
+.main-content p {
+    text-indent: 5%;
+}
+
+/* GOALS */
+.goals-parameters {
+    padding-left: 5%;
+}
+
+.goals-parameters h3 {
+    font-size: 1.4em;
+}
+
+.goals-lists, .general-characteristics-list {
+    list-style: disc;
+    list-style-position: inside;
+    line-height: 2.5em;
+}
+
+/* GENERAL CHARACTERISTICS */
+.general-characteristics-list {
+    padding-left: 8.5%;
+    line-height: 1.5em;
+}
+
+.general-characteristics-list li {
+    margin-bottom: 2%;
+}
+
+/* SECURITY POLITICS */
+.security-politics-list {
+    padding-left: 10.5%;
+    list-style: circle;
+}
+
+.security-politics-list li {
+    margin-bottom: 2%;
+}
+
+/* PICTURES */
+.horizontal {
+    margin-bottom: 2%;
+}
+
+.horizontal .picture {
+    margin: auto;
+    width: 100%;
+}
+
+.horizontal p {
+    text-align: center;
+    text-indent: 0;
+}
+
+.vertical p {
+    text-indent: 0;
+}
+
+.flex-pictures {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.flex-pictures > div {
+    flex: 1 1 300px;
+    margin: 0 16.67px;
+}
+
+.projects-researchs h3 {
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 1%;
+}
+
+.main-content h4 {
+    text-align: justify;
+    font-size: 1.2em;
+    background: linear-gradient(to right, rgba(175, 255, 200, 0.774), rgba(255, 255, 255, 0));
+    padding: .5%;
+    color: #00630d;
+}
+
+.projects-content  {
+    padding-left: 5%;
+}
+
+.projects-researchs a {
+    color: var(--cor4);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.projects-researchs a:hover {
+    color: var(--cor8);
+    text-decoration: none;
+}
+
+.projects-content {
+    position: relative;
+}
+
+.project-links {
+    display: flex;
+}
+
+.doi {
+    margin-right: 5%;
+}
+
+.magazine p {
+    text-indent: 0;
+    text-align: justify;
+}
+
+.magazine-content {
+    margin-bottom: 5%;
+}
+
+.event-poster {
+    width: 50%;
+    margin: auto;
+}
+
+.mostratec-content {
+    padding-left: 5%;
+}
+
+.mostratec-content h4 {
+    background: none;
+    color: #000;
+}
+
+.mostratec-content p {
+    text-indent: 5%;
+}
+
+.mostratec-content ol {
+    list-style-type: lower-alpha;
+    padding-left: 5%;
+}
+
+.mostratec-content li {
+    margin-bottom: 2%;
+}
+
+.mostratec-picture {
+    margin: 2% auto 1% auto;
+    width: 40%;
+}
+
+.mostratec a {
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* ** SCREEN MAX-WIDTH 1000PX ** */
+@media screen and (max-width: 1000px) {
+    .main-content {
+        width: 95%;
+    }
+
+    .flex-pictures {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .flex-pictures {
+        margin: 0;
+    }
+
+    .flex-pictures > div {
+        margin: 0;
+    }
+
+    .margin-right {
+        margin: auto 0 auto 0;
+    }
+
+    .margin-left {
+        margin: auto 0 auto 0%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 950PX ** */
+@media screen and (max-width: 950px) {
+    .flex-pictures > div {
+        margin: 0 6%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 830PX ** */
+@media screen and (max-width: 830px) {
+    .flex-pictures > div {
+        margin: 0 4%;
+    }
+
+    .mostratec-picture {
+        width: 50%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 750PX ** */
+@media screen and (max-width: 750px) {
+    .flex-pictures > div {
+        margin: 0 2%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 690PX ** */
+@media screen and (max-width: 690px) {
+    .flex-pictures > div {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 610PX ** */
+@media screen and (max-width: 610px) {
+    .flex-pictures {
+        display: block;
+    }
+
+    .flexed-pictures {
+        width: 50%;
+        margin: auto;
+    }
+
+    .vertical p {
+        text-align: center;
+    }
+
+    .event-poster {
+        width: 80%;
+    }
+
+    .mostratec-picture {
+        width: 70%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 400PX ** */
+@media screen and (max-width: 400px) {
+    .event-poster {
+        width: 90%;
+    }
+
+    .mostratec-picture {
+        width: 90%;
+    }
+}

@@ -1,0 +1,2 @@
+screenWidth = screen.width
+

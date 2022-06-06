@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+:root {
+    --cor6: #575757;
+}
+
+.main-picture {
+    margin: auto auto 2% auto;
+    width: 1000px;
+}
+
+.extra-event-info {
+    color: var(--cor6);
+}
+
+/* ** SCREEN MAX-WIDTH 1000PX ** */
+@media screen and (max-width: 1000px) {
+    .main-picture {
+        width: 90%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 800PX ** */
+@media screen and (max-width: 800px) {
+    .main-picture {
+        width: 95%;
+    }
+}
+
+/* ** SCREEN MAX-WIDTH 400PX ** */
+@media screen and (max-width: 400px) {
+    .main-picture {
+        margin-top: 6%;
+    }
+}

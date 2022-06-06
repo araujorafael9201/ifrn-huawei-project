@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.access-button {
+    width: 40%!important;
+    border-radius: 50px!important;
+    border: 5px solid #0000001f!important;
+}
