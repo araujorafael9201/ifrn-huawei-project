@@ -1,342 +1,89 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <!-- BASIC META -->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% extends 'base.html' %}
+{% block 'titulo' %}Huawei - IFRN{% endblock 'titulo' %}
 
-        <!-- RESPOSIVE META -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block 'conteudo' %}
+    <main>
+        <!-- INTRO -->
+        <section class="intro-section">
+        <div class="intro-video">
+        <video id="background-video" autoplay="true" loop="true" muted="true">
+        <source src="videos/background-home-video.mp4" type="video/mp4">
+        <source src="videos/background-home-video.ogv" type="video/ogg">
+        <source src="videos/background-home-video.webm" type="video/webm">
+        <source src="videos/background-home-video.m4v" type="video/mp4">
+        </video>
 
-        <!-- WEBSITE INFO -->
-        <meta name="keywords" content="Huawei Academy, Instituto Federal, Cursos de capacitação">
-        <meta name="robots" content="index, follow">
-        <meta name="author" content="Eduardo Aquino da Silva, Lívia de Castro Bezerra">
-
-        <!-- THEME COLOR -->
-        <meta name="theme-color" content="#212529">
- 
-        <!-- PAGE TITLE -->
-        <title>Huawei - IFRN</title>
-
-        <!-- WEBSITE ICON -->
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
-        <!-- CSS STYLESSHEETS -->
-        <link rel="stylesheet" href="css/style2.css">
-        <link rel="stylesheet" href="css/home3.css">
-        <link rel="stylesheet" href="css/vlibras.css">
-
-        <!-- BOOTSTRAP CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-        <!-- LINK SWIPER'S CSS -->
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-
-        <!-- FONT AWESOME -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEAxSUDe5+u61mV8zzqJVFOH7TnULE2/PP/l5vKWpUNnF4VGVkXh3MjgLsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <style>
-            /* ** SCREEN MAX-WIDTH 650PX ** */
-            @media screen and (max-width: 650px) {
-                .content {
-                    margin-top: 0%;
-                    position: absolute;
-                    top: 0px;
-                    padding: 30px;
-                    padding-top: 10px;
-                    color: #fff;
-                    text-shadow: #000 2px 2px 2px;
-                }
-            }
-
-            /* ** SCREEN MAX-WIDTH 450PX ** */
-            @media screen and (max-width: 450px) {
-                .content {
-                    margin-top: 0%;
-                    position: absolute;
-                    top: 0px;
-                    padding: 30px;
-                    padding-top: 0px;
-                    color: #fff;
-                    text-shadow: #000 2px 2px 2px;
-                }
-
-                .intro-section p {
-                    font-size: 1.3em;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-        <!-- VLIBRAS -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
+        <div class="content">
+        <div class="intro-picture">
+        <img src="images/huawei-ict-logo-2.png" alt="Logo da Huawei Academy">
         </div>
 
-        <!-- HEADER -->
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.html">
-                        <picture>
-                            <source srcset="images/logo-ifrn-branco-3.png" media="(max-width: 530px)">
-                            <img src="images/logo-ifrn-grande-2.png" alt="Logo Branco do IFRN">
-                        </picture>
-                        
-                        <picture>
-                            <source srcset="images/logo-huawei-pq-3.png" media="(max-width: 530px)">
-                            <img src="images/logo-huawei-2.png" alt="Logo Branco da Huawei">
-                        </picture>
-                    </a>
-                    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                  
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Início</a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Sobre
-                                </a>
-                                
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="sobre-ict-academy.html">ICT Academy</a></li>
-                                    <li><a class="dropdown-item" href="sobre-huawei.html">Huawei</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Cursos
-                                </a>
-                                
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="cloud-service.html">Cloud Service</a></li>
-                                    <li><a class="dropdown-item" href="inteligencia-artificial.html">Inteligência Artificial</a></li>
-                                    <li><a class="dropdown-item" href="datacom.html">Datacom</a></li>
-                                    <li><a class="dropdown-item" href="5g.html">5G</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Eventos
-                                </a>
-                                
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="ict-job-fair-brasil.html">ICT Job Fair Brasil</a></li>
-                                    <li><a class="dropdown-item" href="ict-competition-brasil.html">ICT Competition Brasil</a></li>
-                                    <li><a class="dropdown-item" href="seeds-for-the-future.html">Seeds for the Future</a></li>
-                                </ul>
-                            </li>
-                            
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="laboratorios.html">Laboratórios</a>
-                            </li>
-                        
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="instrutores.html">Instrutores</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="certificacao.html">Certificação</a>
-                            </li>
-                        </ul>
-                        <li class="nav-item">
-                            <a class="" aria-current="page" href="login.html">
-                                <button class="button-login">Login</button>
-                            </a>
-                        </li>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <main>
-            <!-- INTRO -->
-            <section class="intro-section">
-                <div class="intro-video">
-                    <video id="background-video" autoplay="true" loop="true" muted="true">
-                        <source src="videos/background-home-video.mp4" type="video/mp4">
-                        <source src="videos/background-home-video.ogv" type="video/ogg">
-                        <source src="videos/background-home-video.webm" type="video/webm">
-                        <source src="videos/background-home-video.m4v" type="video/mp4">
-                    </video>
-                    
-                    <div class="content">
-                        <div class="intro-picture">
-                            <img src="images/huawei-ict-logo-2.png" alt="Logo da Huawei Academy">
-                        </div>
-                        
-                        <p>O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Huawei, multinacional chinesa de tecnologia, oferece cursos de certificação para o setor de Tecnologia da Informação e da Comunicação (TIC).</p>
-                        <button><a href="https://huawei.ifrn.edu.br/sobre-ict-academy" rel="external" target="_blank">Saiba Mais</a></button>
-                        <div class="span">
-                            <p><i class="fas fa-chevron-down"></i> Explore <i class="fas fa-chevron-down"></i></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ABOUT THE PROJECT -->
-            <section class="project">
-                <div class="project-picture">
-                    <img src="images/huawei-ict-logo-red-2.png" alt="Logo Huawei ICT Academy">
-                </div>
-
-                <div align="justify" class="project-text">
-                    <h1>O Projeto</h1>
-                    <p>O IFRN tornou-se ICT Academy desde 2020 em parceria com a Huawei. O objetivo da parceria é solucionar um dos principais desafios do setor: o déficit de mão de obra qualificada. A parceria visa a capacitação dos alunos do IFRN e público externo.</p>
-                    <p>O exame de certificação da Huawei é um meio importante para testar as conquistas de aprendizado dos alunos, além de muito importante para melhorar a qualidade do desenvolvimento de talentos através da Huawei ICT Academy.</p>
-                    <p>Sendo assim, nosso principal objetivo com o projeto é oferecer treinamento on-line e presencial em tecnologias como Redes <strong>5G, IA, Cloud Service e Routing & Switching.</strong> </p>
-                    <a href="sobre-ict-academy">Saiba mais...</a>
-					
-					<hr class="invis">
-					      <div class="goals-lists">
-                             
-                                    <h2><strong>O que ofertamos:</strong></h2>
-                         
-                                        <li>Aulas Gratuitas</li>
-                                        <li>Instrutores Certificados</li>
-                                        <li>Material Oficial Huawei</li>
-                                        <li>Aulas Remotas</li>
-                                        <li>Voucher para prova final</li>
-                                        <li>Simulados de prova</li>
-                                    </ul><!-- end check -->
-                                </div><!-- end col-lg-4 -->
-								<hr class="invis">
-								                            <!-- BUTTOM -->
-
-
-                        </div><!-- end module -->
-                    </div><!-- end col -->
-                </div><!-- end row -->
-            </div><!-- end container -->
+        <p>O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Huawei, multinacional chinesa de tecnologia, oferece cursos de certificação para o setor de Tecnologia da Informação e da Comunicação (TIC).</p>
+        <button><a href="https://huawei.ifrn.edu.br/sobre-ict-academy" rel="external" target="_blank">Saiba Mais</a></button>
+        <div class="span">
+        <p><i class="fas fa-chevron-down"></i> Explore <i class="fas fa-chevron-down"></i></p>
+        </div>
+        </div>
+        </div>
         </section>
 
-                         
-                </div>
-            </section>
-                       
+        <!-- ABOUT THE PROJECT -->
+        <section class="project">
+        <div class="project-picture">
+        <img src="images/huawei-ict-logo-red-2.png" alt="Logo Huawei ICT Academy">
+        </div>
 
-                      
-                          
-            <!-- COURSES SECTION -->
-            <section class="courses-section">
-                <h1>Cursos e Inscrições</h1>
-                <p id="courses-outside-p">Conheça mais dos cursos oferecidos, professores ministrantes, bolsistas e o cronograma das aulas e datas de inscrições.</p>
-                
-                <div class="outside-container">
-                    <div class="swiper mySwiper courses-container">
-                        <div class="swiper-wrapper container-content">
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <a href="cloud-service"><img id="cs-img" src="images/cloud-service-card.png" alt="Cloud Service"></a>
-                                    </div>
-                                    <div class="text">
-                                        <a href="cloud-service" style="color: #000; text-decoration: none;">
-                                            <h6>Cloud Service</h6>
-                                        </a>
-                                        <p>As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. Nesse sentido, a computação...</p>
-                                    </div>
-                                    <div class="extra-content">
-                                        <div class="icons">
-                                            <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                        </div>
-                                        <a href="cloud-service"><button>Saiba Mais</button></a>
-                                    </div>
-                                </div>
-                            </div>
+        <div align="justify" class="project-text">
+        <h1>O Projeto</h1>
+        <p>O IFRN tornou-se ICT Academy desde 2020 em parceria com a Huawei. O objetivo da parceria é solucionar um dos principais desafios do setor: o déficit de mão de obra qualificada. A parceria visa a capacitação dos alunos do IFRN e público externo.</p>
+        <p>O exame de certificação da Huawei é um meio importante para testar as conquistas de aprendizado dos alunos, além de muito importante para melhorar a qualidade do desenvolvimento de talentos através da Huawei ICT Academy.</p>
+        <p>Sendo assim, nosso principal objetivo com o projeto é oferecer treinamento on-line e presencial em tecnologias como Redes <strong>5G, IA, Cloud Service e Routing & Switching.</strong> </p>
+        <a href="sobre-ict-academy">Saiba mais...</a>
 
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <a href="inteligencia-artificial"><img src="images/ai-card.png" alt="Inteligência Artificial" id="ai-img"></a>
-                                    </div>
-                                    <div class="text">
-                                        <a href="inteligencia-artificial" style="color: #000; text-decoration: none;">
-                                            <h6>Inteligência Artificial</h6>
-                                        </a>
-                                        <p>A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar...</p>
-                                    </div>
-                                    <div class="extra-content">
-                                        <div class="icons">
-                                            <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                        </div>
-                                        <a href="inteligencia-artificial"><button>Saiba Mais</button></a>
-                                    </div>
-                                </div>
-                            </div>
+        <hr class="invis">
+        <div class="goals-lists">
 
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <a href="datacom"><img src="images/datacom-card.png" alt="Datacom" id="datacom-img"></a>
-                                    </div>
-                                    <div class="text">
-                                        <a href="datacom" style="color: #000; text-decoration: none;">
-                                            <h6>Datacom</h6>
-                                        </a>
-                                        <p>Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco...</p>
-                                    </div>
-                                    <div class="extra-content">
-                                        <div class="icons">
-                                            <i class="fa-regular fa-clock"></i> <span>70H</span>
-                                            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                        </div>
-                                        <a href="datacom"><button>Saiba Mais</button></a>
-                                    </div>
-                                </div>
-                            </div>
+        <h2><strong>O que ofertamos:</strong></h2>
 
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <a href="5g"><img src="images/5g-card.png" alt="5G" id="5g-img"></a>
-                                    </div>
-                                    <div class="text">
-                                        <a href="5g" style="color: #000; text-decoration: none;">
-                                            <h6>5G</h6>
-                                        </a>
-                                        <p>A 5G, que hoje está em vias de ser implantada no Brasil, é a culminação de um longo...</p>
-                                    </div>
-                                    <div class="extra-content">
-                                        <div class="icons">
-                                            <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                        </div>
-                                        <a href="5g"><button>Saiba Mais</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <li>Aulas Gratuitas</li>
+        <li>Instrutores Certificados</li>
+        <li>Material Oficial Huawei</li>
+        <li>Aulas Remotas</li>
+        <li>Voucher para prova final</li>
+        <li>Simulados de prova</li>
+        </ul><!-- end check -->
+        </div><!-- end col-lg-4 -->
+        <hr class="invis">
+                <!-- BUTTOM -->
 
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
 
-                <div class="alternate-cards">
-                    <div class="two-cards-up">
-                        <div class="card one">
+        </div><!-- end module -->
+        </div><!-- end col -->
+        </div><!-- end row -->
+        </div><!-- end container -->
+        </section>
+
+
+        </div>
+        </section>
+
+
+
+
+        <!-- COURSES SECTION -->
+        <section class="courses-section">
+            <h1>Cursos e Inscrições</h1>
+            <p id="courses-outside-p">Conheça mais dos cursos oferecidos, professores ministrantes, bolsistas e o cronograma das aulas e datas de inscrições.</p>
+
+            <div class="outside-container">
+                <div class="swiper mySwiper courses-container">
+                    <div class="swiper-wrapper container-content">
+                        <div class="swiper-slide card">
                             <div class="card-content">
                                 <div class="image">
-                                    <a href="cloud-service"><img id="cs-img" src="images/cloud-service-card.png" alt="Cloud Service"></a>
+                                    <a href="cloud-service">
+                                        <img id="cs-img" src="images/cloud-service-card.png" alt="Cloud Service">
+                                    </a>
                                 </div>
                                 <div class="text">
                                     <a href="cloud-service" style="color: #000; text-decoration: none;">
@@ -346,18 +93,22 @@
                                 </div>
                                 <div class="extra-content">
                                     <div class="icons">
-                                        <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                        <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>40H</span>
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <span>Em breve</span>
                                     </div>
                                     <a href="cloud-service"><button>Saiba Mais</button></a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card two">
+                        <div class="swiper-slide card">
                             <div class="card-content">
                                 <div class="image">
-                                    <a href="inteligencia-artificial"><img src="images/ai-card.png" alt="Inteligência Artificial" id="ai-img"></a>
+                                    <a href="inteligencia-artificial">
+                                        <img src="images/ai-card.png" alt="Inteligência Artificial" id="ai-img">
+                                    </a>
                                 </div>
                                 <div class="text">
                                     <a href="inteligencia-artificial" style="color: #000; text-decoration: none;">
@@ -374,13 +125,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="two-cards-down">
-                        <div class="card three">
+                        <div class="swiper-slide card">
                             <div class="card-content">
                                 <div class="image">
-                                    <a href="datacom"><img src="images/datacom-card.png" alt="Datacom" id="datacom-img"></a>
+                                    <a href="datacom">
+                                        <img src="images/datacom-card.png" alt="Datacom" id="datacom-img">
+                                    </a>
                                 </div>
                                 <div class="text">
                                     <a href="datacom" style="color: #000; text-decoration: none;">
@@ -390,18 +141,22 @@
                                 </div>
                                 <div class="extra-content">
                                     <div class="icons">
-                                        <i class="fa-regular fa-clock"></i> <span>70H</span>
-                                        <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>70H</span>
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <span>Em breve</span>
                                     </div>
                                     <a href="datacom"><button>Saiba Mais</button></a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card four">
+                        <div class="swiper-slide card">
                             <div class="card-content">
                                 <div class="image">
-                                    <a href="5g"><img src="images/5g-card.png" alt="5G" id="5g-img"></a>
+                                    <a href="5g">
+                                        <img src="images/5g-card.png" alt="5G" id="5g-img">
+                                    </a>
                                 </div>
                                 <div class="text">
                                     <a href="5g" style="color: #000; text-decoration: none;">
@@ -411,82 +166,150 @@
                                 </div>
                                 <div class="extra-content">
                                     <div class="icons">
-                                        <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                        <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>40H</span>
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <span>Em breve</span>
                                     </div>
-                                    <a href="5g"><button>Saiba Mais</button></a>
+                                    <a href="5g">
+                                        <button>Saiba Mais</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            <!-- COORDENATION SECTION -->
-            <section class="coordenation-section">
-                <h1>Coordenação</h1>
 
-                <div class="quadrado">
-                    <div class="coordinators-div">
-                        <div class="coordinators-div-img"><img src="images/rodrigo-4.jpg" alt="Foto do coordenador"></div>
-                        <h2>Coordenador Geral</h2>
-                        <h3>Rodrigo Tertulino</h3>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="alternate-cards">
+            <div class="two-cards-up">
+            <div class="card one">
+            <div class="card-content">
+            <div class="image">
+            <a href="cloud-service"><img id="cs-img" src="images/cloud-service-card.png" alt="Cloud Service"></a>
+            </div>
+            <div class="text">
+            <a href="cloud-service" style="color: #000; text-decoration: none;">
+            <h6>Cloud Service</h6>
+            </a>
+            <p>As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. Nesse sentido, a computação...</p>
+            </div>
+            <div class="extra-content">
+            <div class="icons">
+            <i class="fa-regular fa-clock"></i> <span>40H</span>
+            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+            </div>
+            <a href="cloud-service"><button>Saiba Mais</button></a>
+            </div>
+            </div>
+            </div>
+
+            <div class="card two">
+            <div class="card-content">
+            <div class="image">
+            <a href="inteligencia-artificial"><img src="images/ai-card.png" alt="Inteligência Artificial" id="ai-img"></a>
+            </div>
+            <div class="text">
+            <a href="inteligencia-artificial" style="color: #000; text-decoration: none;">
+            <h6>Inteligência Artificial</h6>
+            </a>
+            <p>A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar...</p>
+            </div>
+            <div class="extra-content">
+            <div class="icons">
+            <i class="fa-regular fa-clock"></i> <span>40H</span>
+            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+            </div>
+            <a href="inteligencia-artificial"><button>Saiba Mais</button></a>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <div class="two-cards-down">
+            <div class="card three">
+            <div class="card-content">
+            <div class="image">
+            <a href="datacom"><img src="images/datacom-card.png" alt="Datacom" id="datacom-img"></a>
+            </div>
+            <div class="text">
+            <a href="datacom" style="color: #000; text-decoration: none;">
+            <h6>Datacom</h6>
+            </a>
+            <p>Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco...</p>
+            </div>
+            <div class="extra-content">
+            <div class="icons">
+            <i class="fa-regular fa-clock"></i> <span>70H</span>
+            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+            </div>
+            <a href="datacom"><button>Saiba Mais</button></a>
+            </div>
+            </div>
+            </div>
+
+            <div class="card four">
+            <div class="card-content">
+            <div class="image">
+            <a href="5g"><img src="images/5g-card.png" alt="5G" id="5g-img"></a>
+            </div>
+            <div class="text">
+            <a href="5g" style="color: #000; text-decoration: none;">
+            <h6>5G</h6>
+            </a>
+            <p>A 5G, que hoje está em vias de ser implantada no Brasil, é a culminação de um longo...</p>
+            </div>
+            <div class="extra-content">
+            <div class="icons">
+            <i class="fa-regular fa-clock"></i> <span>40H</span>
+            <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
+            </div>
+            <a href="5g"><button>Saiba Mais</button></a>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- COORDENATION SECTION -->
+        <section class="coordenation-section">
+            <h1>Coordenação</h1>
+
+            <div class="quadrado">
+                <div class="coordinators-div">
+                    <div class="coordinators-div-img">
+                        <img src="images/rodrigo-4.jpg" alt="Foto do coordenador">
                     </div>
-                    <div class="coordinators-div">
-                        <div class="coordinators-div-img"><img src="images/jefferson.jpg" alt="Foto do vice-coordenador"></div>
-                        <h2>Vice-coordenador</h2>
-                        <h3>Jefferson Silva</h3>
+                    <h2>Coordenador Geral</h2>
+                    <h3>Rodrigo Tertulino</h3>
+                </div>
+                <div class="coordinators-div">
+                    <div class="coordinators-div-img">
+                        <img src="images/jefferson.jpg" alt="Foto do vice-coordenador">
                     </div>
+                    <h2>Vice-coordenador</h2>
+                    <h3>Jefferson Silva</h3>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
 
-        <!-- FOOTER -->
-        <footer>
-            <section class="footer-part-one">
-                <div class="footer-part-one-picture">
-                    <img src="images/23anos-2.png" alt="Comeração de 23 anos da Huawei no Brasil">
-                </div>
-            </section>
-            
-            <section class="footer-part-two">
-                <img src="images/logo-ifrn-branco-3.png" alt="Logo do IFRN">
-                <img src="images/logo-huawei-2.png" alt="Logo da Huawei">
-            </section>
-        </footer>
+    <!-- FOOTER -->
+    <footer>
+        <section class="footer-part-one">
+            <div class="footer-part-one-picture">
+                <img src="images/23anos-2.png" alt="Comeração de 23 anos da Huawei no Brasil">
+            </div>
+        </section>
 
-        <!-- BOOTSTRAP JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-        <!-- SWIPER JS -->
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-        <!-- INITIALIZE SWIPER -->
-        <script>
-            var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 3,
-                spaceBetween: 30,
-                slidesPerGroup: 3,
-                loop: true,
-                loopFillGroupWithBlank: true,
-                pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                },
-                navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-                },
-            });
-        </script>
-
-        <!-- VLIBRAS -->
-        <script src="javascript/libras.js"></script>
-        
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-        </script>
-
-        <!-- JS SCRIPTS -->
-    </body>
-</html>
+        <section class="footer-part-two">
+            <img src="images/logo-ifrn-branco-3.png" alt="Logo do IFRN">
+            <img src="images/logo-huawei-2.png" alt="Logo da Huawei">
+        </section>
+    </footer>
+{% endblock 'conteudo' %}
