@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'estilos' %}<link rel="stylesheet" href="{% static 'css/contact.css' %}">{% endblock 'estilos' %}
+{% block 'titulo' %}Contato - IFRN Huawei{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+<main>
+    <section class="page-title">
+        <h1>Contato</h1>
+    </section>
+
+    <div class="main-content">
+        <ul class="contacts">
+            <li class="with-margin">
+                <i class="fa-solid fa-map-location"></i>
+                <h3>Endereço</h3>
+                <h4 class="address"><address>Rua Raimundo Firmino de Oliveira, 400 - Conj. Ulrick Graff - Mossoró-RN CEP: 59.628-330 - (84) 3422-2696 (R2696)</address></h4>
+            </li>
+            <li class="with-margin">
+                <i class="fa-solid fa-at"></i>
+                <h3>E-mail</h3>
+                <h4 class="email">haina@ifrn.edu.br</h4>
+            </li>
+            <li class="with-margin">
+                <i class="fa-brands fa-telegram"></i>
+                <h3>Telegram</h3>
+                <h4><a href="https://t.me/ictifrn" class="telegram">t.me/ictifrn</a></h4>
+            </li>
+            <li>
+                <i class="fa-brands fa-instagram"></i>
+                <h3>Instagram</h3>
+                <h4><a href="https://www.instagram.com/haina.ifrn/" class="instagram">/haina.ifrn</a></h4>
+            </li>
+        </ul>              
+    </div>
+
+    <div class="complement">
+        <div class="complement-picture"><img src="{% static 'images/ifrn-fisico-2.jpg' %}" alt="Foto do exterior interno do IFRN"></div>
+        
+        <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15893.280513763259!2d-37.3207779!3d-5.2122953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3a84b79a6922ff79!2sInstituto%20Federal%20do%20Rio%20Grande%20do%20Norte!5e0!3m2!1spt-BR!2sbr!4v1643599951951!5m2!1spt-BR!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <section class="footer-part-one">
+        <div class="footer-part-one-picture">
+            <img src="{% static 'images/23anos-2.png'%}" alt="Comeração de 23 anos da Huawei no Brasil">
+        </div>
+    </section>
+
+    <section class="footer-part-two">
+        <img src="{% static 'images/logo-ifrn-branco-3.png' %}" alt="Logo do IFRN">
+        <img src="{% static 'images/logo-huawei-2.png' %}" alt="Logo da Huawei">
+    </section>
+</footer>
+{% endblock 'conteudo' %}

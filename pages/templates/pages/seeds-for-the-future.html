@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'estilos' %}
+    <link rel="stylesheet" href="{% static 'css/about-huawei.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about-ict-academy.css' %}">
+{% endblock 'estilos' %}
+{% block 'titulo' %}Seeds For The Future - IFRN Huawei{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+<main>
+    <section class="page-title">
+        <h1>Seeds For The Future</h1>
+    </section>
+
+    <div class="main-content">
+        <div class="main-picture">
+            <img src="{% static 'images/seeds-for-the-future-2.png' %}" alt="Banner do Evento">
+        </div>
+
+        <div class="main-text">
+            <p>Lançado em 2008, o Seeds for the Future faz parte de uma plataforma ainda mais abrangente da Huawei, chamada Tech4All, que pretende ajudar mais de 500 milhões de pessoas a se beneficiarem da tecnologia digital nos próximos cinco anos. O programa já capacitou mais de 30 mil estudantes, de 126 países. No Brasil, cerca de 150 alunos já participaram do programa desde que foi lançado em 2015, em cooperação com o MCTIC e Ministério da Educação.</p>
+            <p>“O Brasil, hoje, enfrenta um gap de mão de obra qualificada no setor de TICs. Estamos em uma corrida pela transformação digital e, para não ficarmos para trás, precisamos investir em capacitação de pessoas para atuar neste setor”, afirma Bruno Zitnick, diretor de Relações Públicas e Governamentais da Huawei.</p>
+            <p>Uma das principais iniciativas da empresa é o Seeds for The Future, um programa de intercâmbio de estudantes, que tem como objetivo inspirar jovens do mundo todo a construir um futuro por meio da tecnologia. A fim de inspirar jovens talentos a ingressarem no mercado de Tecnologia da Informação e Comunicação (TIC), junto com as universidades e institutos parceiros, começa a selecionar estudantes para participar de mais uma edição do Seeds for the Future, programa global de intercâmbio cultural e profissional da empresa.</p>
+        </div>
+        
+        <h2>Fonte: Huawei</h2>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>            
+    <section class="footer-part-two">
+        <img src="{% static 'images/logo-ifrn-branco-3.png' %}" alt="Logo do IFRN">
+        <img src="{% static 'images/logo-huawei-2.png' %}" alt="Logo da Huawei">
+    </section>
+</footer>
+{% endblock 'conteudo' %}
