@@ -1,0 +1,78 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <picture>
+                    <source srcset="{% static 'images/logo-ifrn-branco-3.png'%}" media="(max-width: 530px)">
+                    <img src="{% static 'images/logo-ifrn-grande-2.png'%}" alt="Logo Branco do IFRN">
+                </picture>
+                
+                <picture>
+                    <source srcset="{% static 'images/logo-huawei-pq-3.png'%}" media="(max-width: 530px)">
+                    <img src="{% static 'images/logo-huawei-2.png'%}" alt="Logo Branco da Huawei">
+                </picture>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sobre
+                        </a>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="sobre-ict-academy.html">ICT Academy</a></li>
+                            <li><a class="dropdown-item" href="sobre-huawei.html">Huawei</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cursos
+                        </a>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="cloud-service.html">Cloud Service</a></li>
+                            <li><a class="dropdown-item" href="inteligencia-artificial.html">Inteligência Artificial</a></li>
+                            <li><a class="dropdown-item" href="datacom.html">Datacom</a></li>
+                            <li><a class="dropdown-item" href="5g.html">5G</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Eventos
+                        </a>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="ict-job-fair-brasil.html">ICT Job Fair Brasil</a></li>
+                            <li><a class="dropdown-item" href="ict-competition-brasil.html">ICT Competition Brasil</a></li>
+                            <li><a class="dropdown-item" href="seeds-for-the-future.html">Seeds for the Future</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="laboratorios.html">Laboratórios</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="instrutores.html">Instrutores</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="certificacao.html">Certificação</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
