@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Sobre - ICT Academy{% endblock 'titulo' %}
+{% block 'estilos' %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about-ict-academy.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vlibras.css' %}">
+{% endblock 'estilos' %}
+{% block 'conteudo' %}
+
+<main>
+    <section class="page-title">
+        <h1>Sobre ICT Academy IFRN</h1>
+    </section>
+    
+    <div class="main-content">
+        <div class="main-picture">
+            <img src="{% static 'images/sobre-mapa-rn-2.jpg' %}" alt="Mapa do Rio Grande do Norte identificando os campi presentes no estado">
+        </div>
+
+        <div class="main-text">
+            <p>O mercado da tecnologia exige que os profissionais se mantenham sempre atualizados. Mas existe outro fator decisivo na hora de definir qual profissional, estará mais apto no momento de concorrer a uma vaga, ou promoção na empresa onde trabalha: as certificações. O IFRN tornou-se ICT Academy desde 2020 em parceria com a Huawei. O objetivo da parceria é solucionar um dos principais desafios do setor: o déficit de mão de obra qualificada. A parceria visa a capacitação dos alunos do IFRN e público externo.</p>
+            <p>O exame de certificação da Huawei é um meio importante para testar as conquistas de aprendizado dos alunos, além de muito importante para melhorar a qualidade do desenvolvimento de talentos através da Huawei ICT Academy. A maioria dos alunos são aprovados nos exames de certificação da Huawei depois de concluir os cursos relacionados, provando que estão qualificados para cargos básicos no setor. Para os alunos, a certificação da Huawei pode melhorar a sua competitividade no emprego. Para universidades e demais instituições, a certificação da Huawei pode melhorar a taxa de emprego das escolas. Para empresas, a certificação da Huawei pode reduzir os custos de treinamento das empresas. Cada vez mais vem se tornado uma tendência que esses cursos passem a fazer parte da grade curricular das instituições.</p>
+            <p>Sendo assim, nosso principal objetivo com o projeto é oferecer treinamento on-line e presencial em tecnologias como Redes 5G, IA, Cloud Service e Routing & Switching. Os treinamentos on-line serão através da plataforma Talent da Huawei e a transmissão das aulas serão por meio do Microsoft Teams, já as aulas presenciais acontecerão nos laboratórios espalhados nos campi do IFRN.</p>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer>            
+    <section class="footer-part-two">
+        <img src="{% static 'images/logo-ifrn-branco-3.png' %}" alt="Logo do IFRN">
+        <img src="{% static 'images/logo-huawei-2.png' %}" alt="Logo da Huawei">
+    </section>
+</footer>
+
+
+{% endblock 'conteudo' %}
