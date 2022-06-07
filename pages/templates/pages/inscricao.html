@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Inscrição{% endblock 'titulo' %}
+{% block 'estilos' %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+{% endblock 'estilos' %}
+{% block 'conteudo' %}
+  <div class="container-fluid d-flex flex-column justify-content-center w-75">
+      <div class="col flex-column">
+
+        <h1 class="page-header mt-2">Inscrições</h1>
+        <div class="card mb-4">
+          <div class="card-header">
+            Dados Pessoais
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col">
+                  <label for="cpf" class="form-label">CPF*</label>
+                  <input type="text" class="form-control" aria-label="CPF" id="cpf">
+                </div>
+                <div class="form-group col-8">
+                  <label for="nomeAluno" class="form-label">Nome*</label>
+                  <input type="text" class="form-control" aria-label="Nome" id="nomeAluno">
+                </div>
+                <div class="form-group col align-items-center">
+                  <label for="genero" class="form-label">Gênero*</label>
+                  <select class="form-control genero" aria-label="Gênero" id="genero">
+                    <option value="1" selected>Masculino</option>
+                    <option value="2">Feminino</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row flex-dl align-items-end">
+                <div class="form-group col align-items-center">
+                  <label for="formacao" class="form-label">Formação*</label>
+                  <select class="form-control genero" aria-label="Formação" id="formacao">
+                    <option value="1" selected>Ensino Fundamental I (1º a 5º) - Incompleto</option>
+                    <option value="2">Ensino Fundamental I (1º a 5º) – Completo</option>
+                    <option value="3">Ensino Fundamental II (6º a 9º) – Incompleto</option>
+                    <option value="4">Ensino Fundamental II (6º a 9º) – Completo</option>
+                    <option value="5">Ensino Médio – Incompleto</option>
+                    <option value="6">Ensino Médio – Completo</option>
+                    <option value="7">Ensino Superior – Incompleto</option>
+                    <option value="8">Ensino Superior – Completo</option>
+                    <option value="9">Pós-graduação</option>
+                  </select>
+                </div>
+                <div class="form-group col-3">
+                  <label for="data-nascimento" class="form-label">Data de Nascimento*</label>
+                  <input type="date" class="form-control" aria-label="Data de Nascimento" id="data-nascimento">
+                </div>
+                <div class="form-group col-2 align-items-center">
+                  <label for="aluno-ifrn" class="form-label">É aluno do IFRN?*</label>
+                  <select class="form-control genero" aria-label="É aluno do IFRN?" id="aluno-ifrn">
+                    <option value="1" selected>Não</option>
+                    <option value="2">Sim</option>
+                  </select>
+                </div>
+                <div class="form-group col-2 align-items-center">
+                  <label for="servidor-ifrn" class="form-label">É servidor do IFRN?*</label>
+                  <select class="form-control genero" aria-label="É servidor do IFRN?" id="servidor-ifrn">
+                    <option value="1" selected>Não</option>
+                    <option value="2">Sim</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header">
+            Dados do Contato
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-9">
+                  <label for="email" class="form-label">Email*</label>
+                  <input type="email" class="form-control" aria-label="Email" id="email">
+                </div>
+                <div class="form-group col-3">
+                  <label for="celular" class="form-label">Celular*</label>
+                  <input type="tel" class="form-control" aria-label="Celular" id="celular">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header">
+            Documentação
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-lg-6">
+                  <label for="arquivo_frente">Comprovação de conhecimento(s)*</label>
+                  <span class="ds-label">Anexe aqui um documento que comprove seu conhecimento na área.</span>
+                  <input type="file" name="arquivo_frente" id="arquivo_frente" accept="image/*">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="mb">
+          <button type="submit" class="btn btn-primary">Inscrever-se</button>
+          <button type="back" class="btn btn-primary">Voltar</button>
+        </div>
+
+      </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+{% endblock 'conteudo' %}
