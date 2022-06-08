@@ -9,17 +9,18 @@ class Aluno(models.Model):
     genero = models.CharField(max_length=9)
     formacao = models.CharField(max_length=255)
     nascimento = models.DateField()
-    aluno_do_ifrn = models.BooleanField()
-    servidor_do_ifrn = models.BooleanField()
+    aluno_ifrn = models.BooleanField()
+    servidor_ifrn = models.BooleanField()
+    instituicao_de_ensino = models.CharField(max_length=255, default=' ')
 
-    email = models.EmailField()
+    email = models.EmailField(default='desconhecido@email.com')
     celular = models.CharField(max_length=11)
 
     # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
 
-    turmas = models.ForeignKey(Turma, on_delete=models.DO_NOTHING)
-    comprovacao_conhecimento = models.FileField(upload_to=f'pdfs/user_{0}'.format(cpf))
+    # turmas = models.ForeignKey(Turma, on_delete=models.DO_NOTHING)
+    # comprovacao_conhecimento = models.FileField(upload_to=f'pdfs/user_{0}'.format(cpf))
 
 class Professor(models.Model):
     nome = models.CharField(max_length=255)
