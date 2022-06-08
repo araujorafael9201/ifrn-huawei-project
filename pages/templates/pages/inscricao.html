@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
 {% endblock 'estilos' %}
 {% block 'conteudo' %}
   <div class="container-fluid d-flex flex-column justify-content-center w-75">
@@ -35,7 +37,7 @@
                 </div>
               </div>
 
-              <div class="form-row flex-dl align-items-end">
+              <div class="form-row">
                 <div class="form-group col align-items-center">
                   <label for="formacao" class="form-label">Formação*</label>
                   <select class="form-control genero" aria-label="Formação" id="formacao">
@@ -56,19 +58,34 @@
                 </div>
                 <div class="form-group col-2 align-items-center">
                   <label for="aluno-ifrn" class="form-label">É aluno do IFRN?*</label>
-                  <select class="form-control genero" aria-label="É aluno do IFRN?" id="aluno-ifrn">
-                    <option value="1" selected>Não</option>
-                    <option value="2">Sim</option>
-                  </select>
+                    <select class="form-control genero" aria-label="É aluno do IFRN?" id="aluno-ifrn">
+                      <option value="1" selected>Não</option>
+                      <option value="2" onclick="">Sim</option>
+                    </select>
                 </div>
-                <div class="form-group col-2 align-items-center">
+                <div class="form-group col-2">
                   <label for="servidor-ifrn" class="form-label">É servidor do IFRN?*</label>
-                  <select class="form-control genero" aria-label="É servidor do IFRN?" id="servidor-ifrn">
-                    <option value="1" selected>Não</option>
-                    <option value="2">Sim</option>
-                  </select>
+                    <select class="form-control genero" aria-label="É servidor do IFRN?" id="servidor-ifrn">
+                      <option value="1" selected>Não</option>
+                      <option value="2">Sim</option>
+                    </select>
                 </div>
               </div>
+
+
+              <div class="form-row align-items-center" id='instituicao'>
+                <div class="form-group col-7">
+                  <label for="instituicaoAluno" class="form-label">Instituição de ensino*</label>
+                  <input type="text" class="form-control" aria-label="Instituição de Ensino" id="instituicaoAluno">
+                </div>
+                <div class="form-group col-3">
+                  <input class="form-label" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Concluído
+                  </label>
+                </div>
+              </div>
+              
             </form>
           </div>
         </div>
@@ -124,4 +141,26 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+
+  <script>
+    $('#aluno-ifrn').change(function(event){
+      var valor = event.currentTarget.value;
+      $servidor = document.getElementById('servidor-ifrn')
+      if(valor=="1" && $servidor.value=="1"){
+        document.getElementById('instituicao').style.display = 'flex';
+      }else{
+        document.getElementById('instituicao').style.display = 'none';
+      }
+    });
+
+    $('#servidor-ifrn').change(function(event){
+      var valor = event.currentTarget.value;
+      $aluno = document.getElementById('aluno-ifrn')
+      if(valor=="1" && $aluno.value=="1"){
+        document.getElementById('instituicao').style.display = 'flex';
+      }else{
+        document.getElementById('instituicao').style.display = 'none';
+      }
+    });
+  </script>
 {% endblock 'conteudo' %}
