@@ -47,3 +47,9 @@ def laboratorios(request):
 
 def inscricao(request):
     return render(request, 'pages/inscricao.html')
+
+def cadastro(request):
+    return render(request, 'pages/cadastro.html')
+
+def login(request):
+    return render(request, 'pages/login.html')
