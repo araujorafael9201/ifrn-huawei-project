@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Aluno
+from .models import Aluno, Inscricao
 
 # EVENTOS
 def ict_job_fair_brasil(request):
@@ -49,6 +49,18 @@ def laboratorios(request):
 
 def inscricao(request):
     return render(request, 'pages/inscricao.html')
+
+def inscrever(request):
+    if request.method == 'POST':
+        curso = request.POST['curso']
+        documento = request.POST['comprovante-conhecimento']
+
+        # Pegar aluno da session
+        # inscricao = Inscricao(turma=turma, documento=documento, aluno=aluno)
+        # inscricao.save()
+
+        print(curso, documento)
+        return render(request, 'pages/index.html')
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')

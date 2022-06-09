@@ -1,7 +1,7 @@
 from django.db import models
 
 class Turma(models.Model):
-    curso = models.CharField(max_length=30)
+    nome_do_curso = models.CharField(max_length=255, default='Curso')
 
 class Aluno(models.Model):
     cpf = models.CharField(max_length=11)
@@ -19,12 +19,21 @@ class Aluno(models.Model):
     # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
 
-    # turmas = models.ForeignKey(Turma, on_delete=models.DO_NOTHING)
-    # comprovacao_conhecimento = models.FileField(upload_to=f'pdfs/user_{0}'.format(cpf))
-
 class Professor(models.Model):
     nome = models.CharField(max_length=255)
     email = models.EmailField()
+    turma = models.ForeignKey(Turma, on_delete=models.SET_NULL, null=True)
+
     # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
-    turma = models.OneToOneField(Turma, on_delete=models.SET_DEFAULT, default='Sem Professor')
+
+
+class Inscricao(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+    documento = models.FileField(upload_to='uploads')
+
+class Matricula(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+
