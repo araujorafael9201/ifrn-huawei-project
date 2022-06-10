@@ -31,9 +31,6 @@ class Professor(models.Model):
 class Inscricao(models.Model):
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
-    documento = models.FileField(upload_to='uploads')
-
-class Matricula(models.Model):
-    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+    aprovada = models.BooleanField(default=False)
+    documento = models.FileField(upload_to='./uploads')
 

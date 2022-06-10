@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 
-from .models import Aluno, Inscricao
+from .models import Aluno, Inscricao, Turma
 
 # EVENTOS
 def ict_job_fair_brasil(request):
@@ -50,22 +50,25 @@ def laboratorios(request):
 
 def inscricao(request):
     try:
-        print(request.session['aluno_id'])
-        return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id']})
+        cursos = Turma.objects.all()
+
+        return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id'], 'cursos': cursos})
     except KeyError:
         return render(request, 'pages/login.html', {'message': 'Faça seu Login para se Inscrever'})
 
 def inscrever(request):
     if request.method == 'POST':
-        curso = request.POST['curso']
+        curso = Turma.objects.all().filter(pk=request.POST['curso'])[0]
         documento = request.POST['comprovante-conhecimento']
 
-        # Pegar aluno da session
-        # inscricao = Inscricao(turma=turma, documento=documento, aluno=aluno)
-        # inscricao.save()
+        aluno = Aluno.objects.all().filter(pk=request.session['aluno_id'])[0]
 
-        print(curso, documento)
-        return render(request, 'pages/index.html')
+        # Documento ainda não funciona (salva só o nome)
+
+        inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
+        inscricao.save()
+
+        return render(request, 'pages/index.html', {'message': 'Inscrição Realizada com Sucesso!'})
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')

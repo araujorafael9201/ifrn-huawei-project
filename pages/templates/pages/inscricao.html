@@ -11,7 +11,7 @@
 {% block 'conteudo' %}
     <div class="container">
         <h1 class="page-header">Inscrição</h1>
-        <form action="/inscrever/" method="post">
+        <form action="/inscrever/" method="post" enctype='multipart/form-data'>
           {% csrf_token %}
           <div class="card mb-4">
             <div class="card-header">
@@ -22,7 +22,9 @@
                   <div class="form-group col d-flex flex-column justify-content-center align-items-between">
                     <label for="curso">Curso</label>
                     <select class='form-control col align-items-center' name="curso" id="curso">
-                      <option value="curso1">Curso 1</option>
+                      {% for curso in cursos %}
+                        <option value="{{curso.id}}">{{curso.nome_do_curso}}</option>
+                      {% endfor %}
                     </select>
                   </div>
                   <div class="form-group">
