@@ -67,5 +67,10 @@
                 },
             });
         </script>
+        {% if message %}
+            <script>
+                alert('{{ message }}');
+            </script>
+        {% endif %}
     </body>
 </html>

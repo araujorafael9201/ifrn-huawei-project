@@ -12,14 +12,15 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
     <div class="flex-column d-flex justify-content-center align-items-center">
       <img src="{% static '/images/huawei-ict-logo-red.png' %}" class="img-fluid mb-2" width="250" height="250" alt="">
 
-      <form action="" class=>
+      <form action="/logar/" method='POST' class=>
+        {% csrf_token %}
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="">
-              <img src="{% static '/images/person.svg' %}" alt="">
+              @
             </span>
           </div>
-          <input type="text" class="form-control" id="user" placeholder="Usuário">
+          <input type="text" class="form-control" id="email" name='email' placeholder="E-mail">
         </div>
         
         <div class="input-group mb-2">
@@ -28,7 +29,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
               <img src="{% static '/images/key.svg' %}" alt="">
             </span>
           </div>
-          <input type="password" class="form-control" id="pwd" placeholder="Senha">
+          <input type="password" class="form-control" id="pwd" name='pwd' placeholder="Senha">
         </div>
 
         <a href="/cadastro">Não possuo Cadastro</a>

@@ -20,5 +20,7 @@ urlpatterns = [
     path('inscrever/', views.inscrever, name='inscrever'),
     path('cadastro/', views.cadastro, name='cadastro'),
     path('cadastrar/', views.cadastrar, name='cadastrar'),
-    path('login/', views.login, name='login')
+    path('login/', views.login, name='login'),
+    path('logar/', views.logar, name='logar'),
+    path('deslogar/', views.deslogar, name='deslogar')
 ]

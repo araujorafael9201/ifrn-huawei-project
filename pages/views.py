@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 
 from .models import Aluno, Inscricao
 
@@ -48,7 +49,11 @@ def laboratorios(request):
     return render(request, 'pages/laboratorios.html')
 
 def inscricao(request):
-    return render(request, 'pages/inscricao.html')
+    try:
+        print(request.session['aluno_id'])
+        return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id']})
+    except KeyError:
+        return render(request, 'pages/login.html', {'message': 'Faça seu Login para se Inscrever'})
 
 def inscrever(request):
     if request.method == 'POST':
@@ -79,7 +84,6 @@ def cadastrar(request):
         email = request.POST['email']
         celular = request.POST['celular']
         senha = request.POST['senha']
-        comprovante_conhecimento = request.POST['comprovante-conhecimento']
 
         if int(genero) == 1:
             genero = 'M'
@@ -105,5 +109,26 @@ def cadastrar(request):
 
         return render(request, 'pages/index.html')
 def login(request):
-    return render(request, 'pages/login.html')
+    if 'aluno_id' in request.session:
+        return render(request, 'pages/index.html', {'message': 'Você já Fez Login!'})
+    else:
+        return render(request, 'pages/login.html')
 
+def logar(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        senha = request.POST['pwd']
+
+        try:
+            aluno = Aluno.objects.all().filter(email=email, senha=senha)[0]
+            request.session['aluno_id'] = aluno.id
+            return redirect('/')
+        except:
+            return render(request, 'pages/login.html',  {'message':'Email e/ou Senha Inválido(s)!'})
+
+def deslogar(request):
+    try:
+        del request.session['aluno_id']
+        return redirect('/')
+    except:
+        return render(request, 'pages/index.html', {'message': 'Você não está logado!'})

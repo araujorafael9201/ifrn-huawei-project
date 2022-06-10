@@ -78,8 +78,12 @@
                 </ul>
 
             </div>
-            <a href='/login' class="btn btn-lg btn-outline-success">Entrar</a>
-
+            {% if 'aluno_id' in request.session.keys %}
+                <a href="/aluno" class="btn btn-lg btn-outline-success">Área do Aluno</a>
+                <a href="/deslogar" class="btn btn-lg btn-outline-danger">Sair</a>
+            {% else %}
+                <a href='/login' class="btn btn-lg btn-outline-success">Entrar</a>
+            {% endif %}
         </div>
     </nav>
 </header>
