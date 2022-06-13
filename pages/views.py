@@ -99,7 +99,7 @@ def cadastrar(request):
         else:
             genero = 'F'
         
-        formacoes = ['Fundamental I Imcompleto', 'Fundamental I Completo', 'Fundamental II Inconpleto', 'Fundamental II Completo', 'Ensino Médio Imcompleto', 'Ensino Médio Completo', 'Ensino Superior Imcompleto', 'Ensino Superior Completo', 'Pós-Graduação']
+        formacoes = ['Fundamental I Incompleto', 'Fundamental I Completo', 'Fundamental II Incompleto', 'Fundamental II Completo', 'Ensino Médio Incompleto', 'Ensino Médio Completo', 'Ensino Superior Incompleto', 'Ensino Superior Completo', 'Pós-Graduação']
         formacao = formacoes[int(formacao) - 1]
 
         if int(aluno_ifrn) == 1:
@@ -112,6 +112,10 @@ def cadastrar(request):
         else:
             servidor_ifrn = True
 
+        
+        #
+        # EXEÇÕES: CAMPOS NÃO PREENCHIDOS
+        #
         if not nome or not nascimento or not email or not celular or not senha:
             messages.error(request, 'Você deve preencher todos os campos.')
             return render(request, 'pages/cadastro.html')
@@ -127,18 +131,31 @@ def cadastrar(request):
             messages.error(request, 'E-mail inválido.')
             return render(request, 'pages/cadastro.html')
 
-        
+        #
+        # EXEÇÕES: JÁ CADASTRADO NO SISTEMA
+        #
         if User.objects.filter(email=email).exists():
             messages.error(request, 'E-mail já cadastrado.')
             return render(request, 'pages/cadastro.html')
-
+        
+        
+        #
+        # EXEÇÕES: TAMANHO DAS ENTRADAS
+        #
         if len(senha) < 8:
             messages.error(request, 'A senha deve conter pelo menos 8 caracteres.')
             return render(request, 'pages/cadastro.html')
         
+        if len(celular) > 11:
+            messages.error(request, 'Telefone inválido.')
+            return render(request, 'pages/cadastro.html')
+
+
+
         messages.success(request, 'Cadastrado com sucesso!')
 
         aluno = Aluno(cpf=cpf, nome=nome, genero=genero, formacao=formacao, nascimento=nascimento, aluno_ifrn=aluno_ifrn, servidor_ifrn=servidor_ifrn, instituicao_de_ensino=instituicao_de_ensino, email=email, celular=celular, senha=senha)
+        print(aluno)
         aluno.save()
 
         return redirect('login')
