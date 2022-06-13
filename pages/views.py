@@ -65,7 +65,7 @@ def inscricao(request):
 def inscrever(request):
     if request.method == 'POST':
         curso = Turma.objects.all().filter(pk=request.POST['curso'])[0]
-        documento = request.POST['comprovante-conhecimento']
+        documento = request.FILES['comprovante-conhecimento']
 
         aluno = Aluno.objects.all().filter(pk=request.session['aluno_id'])[0]
 
@@ -74,7 +74,7 @@ def inscrever(request):
         inscricao.save()
 
         messages.success(request, 'Inscrição realizada com sucesso!')
-        return redirect('login')
+        return redirect('index')
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')

@@ -1,10 +1,11 @@
 from django.db import models
+import os
 
 class Turma(models.Model):
     nome_do_curso = models.CharField(max_length=255, default='Curso')
 
 class Aluno(models.Model):
-    cpf = models.CharField(max_length=11)
+    cpf = models.CharField(max_length=14)
     nome = models.CharField(max_length=255)
     genero = models.CharField(max_length=9)
     formacao = models.CharField(max_length=255)
@@ -28,9 +29,12 @@ class Professor(models.Model):
     senha = models.CharField(max_length=255)
 
 
+def caminho_documento(instance, filename):
+    nome, extensao = os.path.splitext(filename)
+    return f'./uploads/{instance.aluno.cpf}-{instance.turma.nome_do_curso}{extensao}'
+
 class Inscricao(models.Model):
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     aprovada = models.BooleanField(default=False)
-    documento = models.FileField(upload_to='./uploads')
-
+    documento = models.FileField(upload_to=caminho_documento)
