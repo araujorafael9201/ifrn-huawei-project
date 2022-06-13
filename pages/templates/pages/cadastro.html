@@ -23,11 +23,12 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
               <div class="form-row">
                 <div class="form-group col">
                   <label for="cpf" class="form-label">CPF*</label>
-                  <input type="text" class="form-control" name='cpf' aria-label="CPF" id="cpf">
+                  <input type="text" class="form-control" name='cpf' aria-label="CPF" id="cpf" value="{{ request.POST.cpf }}">
                 </div>
                 <div class="form-group col-8">
                   <label for="nomeAluno" class="form-label">Nome*</label>
-                  <input type="text" class="form-control" name='nome' aria-label="Nome" id="nomeAluno">
+                  <input type="text" class="form-control" name='nome' aria-label="Nome" id="nomeAluno" 
+                  value="{{ request.POST.nome }}">
                 </div>
                 <div class="form-group col align-items-center">
                   <label for="genero" class="form-label">Gênero*</label>
@@ -55,18 +56,18 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
                 </div>
                 <div class="form-group col-3">
                   <label for="data-nascimento" class="form-label">Data de Nascimento*</label>
-                  <input type="date" class="form-control" name='nascimento' aria-label="Data de Nascimento" id="data-nascimento">
+                  <input type="date" class="form-control" name='nascimento' aria-label="Data de Nascimento" id="data-nascimento"  value="{{ request.POST.nascimento }}">
                 </div>
                 <div class="form-group col-2 align-items-center">
                   <label for="aluno-ifrn" class="form-label">É aluno do IFRN?*</label>
-                    <select class="form-control genero" name='aluno-ifrn' aria-label="É aluno do IFRN?" id="aluno-ifrn">
+                    <select class="form-control genero" name='aluno-ifrn' aria-label="É aluno do IFRN?" id="aluno-ifrn"  value="{{ request.POST.aluno_ifrn }}">
                       <option value="1" selected>Não</option>
                       <option value="2" onclick="">Sim</option>
                     </select>
                 </div>
                 <div class="form-group col-2">
                   <label for="servidor-ifrn" class="form-label">É servidor do IFRN?*</label>
-                    <select class="form-control genero" name='servidor-ifrn' aria-label="É servidor do IFRN?" id="servidor-ifrn">
+                    <select class="form-control genero" name='servidor-ifrn' aria-label="É servidor do IFRN?" id="servidor-ifrn" value="{{ request.POST.servidor_ifrn }}">
                       <option value="1" selected>Não</option>
                       <option value="2">Sim</option>
                     </select>
@@ -79,10 +80,8 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
                   <label for="instituicaoAluno" class="form-label">Instituição de ensino*</label>
                   <input type="text" class="form-control" name='instituicao-de-ensino' aria-label="Instituição de Ensino" id="instituicaoAluno">
                 </div>
-                <div class="form-group col-3">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Concluído
-                  </label>
+                <div class="form-group col-3" style="margin-top: 1.8rem;">
+                  <label class="form-check-label" for="flexCheckDefault">Concluído</label>
                   <input class="form-label" name='concluido' type="checkbox" value="" id="flexCheckDefault">
                 </div>
               </div>
@@ -97,11 +96,11 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
                     <div class="form-row">
                       <div class="form-group col-9">
                         <label for="email" class="form-label">Email*</label>
-                        <input type="email" class="form-control" name='email' aria-label="Email" id="email">
+                        <input type="email" class="form-control" name='email' aria-label="Email" id="email" value="{{ request.POST.email }}">
                       </div>
                 <div class="form-group col-3">
                   <label for="celular" class="form-label">Celular*</label>
-                  <input type="tel" class="form-control" name='celular' aria-label="Celular" id="celular">
+                  <input type="tel" class="form-control" name='celular' aria-label="Celular" id="celular" value="{{ request.POST.celular }}">
                 </div>
               </div>
                 </div>

@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.core.validators import validate_email
 
 
 from .models import Aluno, Inscricao, Turma
@@ -48,13 +51,16 @@ def contato(request):
 def laboratorios(request):
     return render(request, 'pages/laboratorios.html')
 
+
+##
 def inscricao(request):
     try:
         cursos = Turma.objects.all()
 
         return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id'], 'cursos': cursos})
     except KeyError:
-        return render(request, 'pages/login.html', {'message': 'Faça seu login para se inscrever'})
+        messages.error(request, 'Para se inscrever, você deve está logado.')
+        return render(request, 'pages/login.html')
 
 def inscrever(request):
     if request.method == 'POST':
@@ -64,11 +70,11 @@ def inscrever(request):
         aluno = Aluno.objects.all().filter(pk=request.session['aluno_id'])[0]
 
         # Documento ainda não funciona (salva só o nome)
-
         inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
         inscricao.save()
 
-        return render(request, 'pages/index.html', {'message': 'Inscrição realizada com sucesso!'})
+        messages.success(request, 'Inscrição realizada com sucesso!')
+        return redirect('login')
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')
@@ -106,14 +112,42 @@ def cadastrar(request):
         else:
             servidor_ifrn = True
 
-        aluno = Aluno(cpf=cpf, nome=nome, genero=genero, formacao=formacao, nascimento=nascimento, aluno_ifrn=aluno_ifrn, servidor_ifrn=servidor_ifrn, instituicao_de_ensino=instituicao_de_ensino, email=email, celular=celular, senha=senha)
+        if not nome or not nascimento or not email or not celular or not senha:
+            messages.error(request, 'Você deve preencher todos os campos.')
+            return render(request, 'pages/cadastro.html')
         
+        if aluno_ifrn == False and servidor_ifrn == False:
+            if not instituicao_de_ensino:
+                messages.error(request, 'Você deve preencher todos os campos.')
+                return render(request, 'pages/cadastro.html')
+        
+        try:
+            validate_email(email)
+        except:
+            messages.error(request, 'E-mail inválido.')
+            return render(request, 'pages/cadastro.html')
+
+        
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'E-mail já cadastrado.')
+            return render(request, 'pages/cadastro.html')
+
+        if len(senha) < 8:
+            messages.error(request, 'A senha deve conter pelo menos 8 caracteres.')
+            return render(request, 'pages/cadastro.html')
+        
+        messages.success(request, 'Cadastrado com sucesso!')
+
+        aluno = Aluno(cpf=cpf, nome=nome, genero=genero, formacao=formacao, nascimento=nascimento, aluno_ifrn=aluno_ifrn, servidor_ifrn=servidor_ifrn, instituicao_de_ensino=instituicao_de_ensino, email=email, celular=celular, senha=senha)
         aluno.save()
 
-        return render(request, 'pages/index.html')
+        return redirect('login')
+
+
 def login(request):
     if 'aluno_id' in request.session:
-        return render(request, 'pages/index.html', {'message': 'Você já está logado!'})
+        messages.warning(request, 'Você já está logado!')
+        return render(request, 'pages/index.html')
     else:
         return render(request, 'pages/login.html')
 
@@ -127,11 +161,13 @@ def logar(request):
             request.session['aluno_id'] = aluno.id
             return redirect('/')
         except:
-            return render(request, 'pages/login.html',  {'message':'Email e/ou senha inválido(s)!'})
+            messages.error(request, 'Email ou senha inválidos.')
+            return render(request, 'pages/login.html')
 
 def deslogar(request):
     try:
         del request.session['aluno_id']
         return redirect('/')
     except:
-        return render(request, 'pages/index.html', {'message': 'Você não está logado!'})
+        messages.error(request, 'Você não está logado.')
+        return render(request, 'pages/index.html')
