@@ -54,7 +54,7 @@ def inscricao(request):
 
         return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id'], 'cursos': cursos})
     except KeyError:
-        return render(request, 'pages/login.html', {'message': 'Faça seu Login para se Inscrever'})
+        return render(request, 'pages/login.html', {'message': 'Faça seu login para se inscrever'})
 
 def inscrever(request):
     if request.method == 'POST':
@@ -68,13 +68,13 @@ def inscrever(request):
         inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
         inscricao.save()
 
-        return render(request, 'pages/index.html', {'message': 'Inscrição Realizada com Sucesso!'})
+        return render(request, 'pages/index.html', {'message': 'Inscrição realizada com sucesso!'})
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')
 
 def cadastrar(request):
-    if request.method == 'POST':    
+    if request.method == 'POST':
         nome = request.POST['nome']
         cpf = request.POST['cpf']
         email = request.POST['email']
@@ -113,7 +113,7 @@ def cadastrar(request):
         return render(request, 'pages/index.html')
 def login(request):
     if 'aluno_id' in request.session:
-        return render(request, 'pages/index.html', {'message': 'Você já Fez Login!'})
+        return render(request, 'pages/index.html', {'message': 'Você já está logado!'})
     else:
         return render(request, 'pages/login.html')
 
@@ -127,7 +127,7 @@ def logar(request):
             request.session['aluno_id'] = aluno.id
             return redirect('/')
         except:
-            return render(request, 'pages/login.html',  {'message':'Email e/ou Senha Inválido(s)!'})
+            return render(request, 'pages/login.html',  {'message':'Email e/ou senha inválido(s)!'})
 
 def deslogar(request):
     try:
