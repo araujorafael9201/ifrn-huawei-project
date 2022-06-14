@@ -22,5 +22,9 @@ urlpatterns = [
     path('cadastrar/', views.cadastrar, name='cadastrar'),
     path('login/', views.login, name='login'),
     path('logar/', views.logar, name='logar'),
-    path('deslogar/', views.deslogar, name='deslogar')
+    path('deslogar/', views.deslogar, name='deslogar'),
+    path('professor/', views.professor, name='professor'),
+    path('proflogin/', views.professor_login, name='proflogin'),
+    path('proflogar/', views.professor_logar, name='proflogar'),
+    path('aluno/', views.aluno, name='aluno')
 ]

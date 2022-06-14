@@ -4,7 +4,7 @@ from django.core.validators import validate_email
 from .validador.valida_cpf import validar_cpf
 
 
-from .models import Aluno, Inscricao, Turma
+from .models import Aluno, Inscricao, Turma, Professor
 
 # EVENTOS
 
@@ -73,7 +73,7 @@ def inscricao(request):
         return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id'], 'cursos': cursos})
     except KeyError:
         messages.error(request, 'Para se inscrever, você deve está logado.')
-        return render(request, 'pages/login.html')
+        return redirect('/login')
 
 
 def inscrever(request):
@@ -196,9 +196,13 @@ def cadastrar(request):
         return redirect('login')
 
 def login(request):
-    if 'aluno_id' in request.session:
+    if 'prof_id' in request.session:
+        messages.warning(request, 'Você não pode fazer login como Aluno e Professor Simultaneamente!')
+        return redirect('/')
+
+    elif 'aluno_id' in request.session:
         messages.warning(request, 'Você já está logado!')
-        return render(request, 'pages/index.html')
+        return redirect('/')
     else:
         return render(request, 'pages/login.html')
 
@@ -214,7 +218,7 @@ def logar(request):
             return redirect('/')
         except:
             messages.error(request, 'Email ou senha inválidos.')
-            return render(request, 'pages/login.html')
+            return redirect('/login')
 
 
 def deslogar(request):
@@ -224,3 +228,41 @@ def deslogar(request):
     except:
         messages.error(request, 'Você não está logado.')
         return render(request, 'pages/index.html')
+
+def professor_login(request):
+    if 'aluno_id' in request.session:
+        messages.warning(request, 'Você não pode fazer login como Aluno e Professor Simultaneamente!')
+        return redirect('/')
+    elif 'prof_id' in request.session:
+        messages.warning(request, 'Você já está logado!')
+        return redirect('/professor')
+    else:
+        return render(request, 'pages/loginprof.html')
+
+def professor_logar(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        senha = request.POST['pwd']
+
+        try:
+            professor = Professor.objects.all().filter(email=email, senha=senha)[0]
+            request.session['prof_id'] = professor.id
+            return redirect('/professor')
+        except:
+            messages.error(request, 'Email ou senha inválidos.')
+            return redirect('/proflogin')
+
+def professor(request):
+    try:
+        return render(request, 'pages/professor.html', {'prof_id': request.session['prof_id']})
+    except KeyError:
+        messages.error(request, 'Por favor, Faça Login!')
+        return redirect('/proflogin')
+
+def aluno(request):
+    try:
+        return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id']})
+    except KeyError:
+        messages.error(request, 'Por favor, Faça Login!')
+        return redirect('/login')
+
