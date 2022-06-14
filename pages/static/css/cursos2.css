@@ -48,7 +48,7 @@
     margin-left: 1%;
 }
 
-.course-desc h3  {
+.course-desc h3 {
     font-weight: 700;
     font-size: 1.5em;
     margin-bottom: 1%;
@@ -101,12 +101,11 @@
 
 .disabled-link button:hover {
     background-color: var(--cor47);
-    border-radius: 0;
     cursor: not-allowed;
 }
 
 /* EXTRA INFOS */
-.course-extra-info  {
+.course-extra-info {
     margin-top: 4%;
     margin-bottom: 4%;
     outline: 2px solid var(--cormgkeagnhbrea);
@@ -151,7 +150,9 @@
 @keyframes animacao {
     from {
         width: 0;
-    } to {
+    }
+
+    to {
         width: 100%;
     }
 }
@@ -193,13 +194,15 @@
     margin-bottom: 2%;
 }
 
-.section-02 a, .section-03 a {
+.section-02 a,
+.section-03 a {
     color: var(--cor4);
     text-decoration: none;
     font-weight: 400;
 }
 
-.section-02 a:hover, .section-03 a:hover {
+.section-02 a:hover,
+.section-03 a:hover {
     color: var(--cor8);
 }
 
@@ -218,7 +221,8 @@
     color: var(--cordelta);
 }
 
-.section-03, .section-04 {
+.section-03,
+.section-04 {
     display: none;
 }
 
@@ -233,7 +237,8 @@
     color: #000;
 }
 
-.table th, td {
+.table th,
+td {
     padding: 1%;
     border-bottom: 1px solid #ddd;
 }
@@ -253,7 +258,6 @@
 
 .results button:hover {
     background-color: #db5b5b;
-    border-radius: 0;
     cursor: not-allowed;
 }
 
@@ -294,7 +298,10 @@
         margin: 3% auto;
     }
 
-    .section-01, .section-02, .section-03, .section-04 {
+    .section-01,
+    .section-02,
+    .section-03,
+    .section-04 {
         text-align: justify;
     }
 
@@ -346,7 +353,7 @@
 
 /* ** SCREEN MAX-WIDTH 400PX ** */
 @media screen and (max-width: 400px) {
-    .course-desc h3  {
+    .course-desc h3 {
         font-size: 1.2em;
     }
 

@@ -79,10 +79,11 @@
 
             </div>
             {% if 'aluno_id' in request.session.keys %}
-                <a href="/aluno" class="btn btn-lg btn-outline-success">Área do Aluno</a>
+                <a href="/aluno" class="btn btn-lg btn-outline-success" style="margin-right: 0.5rem;">Área do Aluno</a>
                 <a href="/deslogar" class="btn btn-lg btn-outline-danger">Sair</a>
             {% else %}
-                <a href='/login' class="btn btn-lg btn-outline-success">Entrar</a>
+                <a href='/login' class="btn btn-lg btn-outline-success" style="width: 6rem; margin-right: 0.5rem;">Entrar</a>
+                <a href='/cadastro' class="btn btn-lg btn-outline-success" style="width: 9rem;">Cadastre-se</a>
             {% endif %}
         </div>
     </nav>
