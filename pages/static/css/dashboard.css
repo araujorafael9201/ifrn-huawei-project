@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+}
+
+.sidebar {
+    position: absolute;
+    width: 15%;
+    height: 70%;
+    top: 15%;
+    left: -15%;
+    background-color: aqua;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+.content {   
+    height: 100vh;
+    background-color: blue;
+}

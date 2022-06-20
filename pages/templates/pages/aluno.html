@@ -1,9 +1,63 @@
-{% extends 'base.html' %}
+{% extends 'dashboard.html' %}
 {% load static %}
 {% block 'titulo' %}Página do Aluno - IFRN Huawei{% endblock 'titulo' %}
+{% block 'estilos' %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock 'estilos' %}
 
 {% block 'conteudo' %}
-<div class="container">
-    <h1>Página do Aluno</h1>
+<div class="content">
+
 </div>
+
+<div class="sidebar">
+    <div class="header">
+        <h4>Área do Aluno</h4>
+    </div>
+    <ul>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+        <li>
+            <a href="#">Teste</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const sidebar = document.querySelector('.sidebar')
+
+    window.addEventListener('mousemove', () => {
+        console.log(event.pageX)
+        if (event.pageX < 200) {
+            abrir()
+        }
+        else {
+            fechar()
+        }
+    })
+
+    function abrir() {
+        sidebar.style.left = '0';
+    }
+    function fechar() {
+        sidebar.style.left = '-15%';
+    }
+</script>
+
 {% endblock 'conteudo' %}
