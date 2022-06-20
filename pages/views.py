@@ -64,6 +64,9 @@ def contato(request):
 def laboratorios(request):
     return render(request, 'pages/laboratorios.html')
 
+def hands_on(request):
+    return render(request, 'pages/hands-on.html')
+
 
 ##
 def inscricao(request):
