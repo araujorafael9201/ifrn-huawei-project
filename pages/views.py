@@ -226,8 +226,12 @@ def deslogar(request):
         del request.session['aluno_id']
         return redirect('/')
     except:
-        messages.error(request, 'Você não está logado.')
-        return render(request, 'pages/index.html')
+        try:
+            del request.session['prof_id']
+            return redirect('/')
+        except:
+            messages.error(request, 'Você não está logado.')
+            return redirect('/')
 
 def professor_login(request):
     if 'aluno_id' in request.session:
