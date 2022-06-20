@@ -399,3 +399,18 @@ td {
         margin-left: -13%;
     }
 }
+
+.img-hands {
+    width: 300px;
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.btn-hands {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.text-hands {
+    text-align: justify;
+}
