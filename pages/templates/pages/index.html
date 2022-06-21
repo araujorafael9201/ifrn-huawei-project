@@ -294,4 +294,27 @@
             <img src="{% static 'images/logo-huawei-2.png' %}" alt="Logo da Huawei">
         </div>
     </footer>
+
+
+      <!-- SWIPER JS -->
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+      <!-- INITIALIZE SWIPER -->
+      <script>
+          var swiper = new Swiper(".mySwiper", {
+              slidesPerView: 3,
+              spaceBetween: 30,
+              slidesPerGroup: 3,
+              loop: true,
+              loopFillGroupWithBlank: true,
+              pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+              },
+              navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+              },
+          });
+      </script>
 {% endblock 'conteudo' %}

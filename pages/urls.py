@@ -19,6 +19,7 @@ urlpatterns = [
     path('contato/', views.contato, name='contato'),
     path('inscricao/', views.inscricao, name='inscricao'),
     path('inscrever/', views.inscrever, name='inscrever'),
+    path('desinscrever/', views.desinscrever, name='desinscrever'),
     path('cadastro/', views.cadastro, name='cadastro'),
     path('cadastrar/', views.cadastrar, name='cadastrar'),
     path('login/', views.login, name='login'),
@@ -27,5 +28,8 @@ urlpatterns = [
     path('professor/', views.professor, name='professor'),
     path('proflogin/', views.professor_login, name='proflogin'),
     path('proflogar/', views.professor_logar, name='proflogar'),
-    path('aluno/', views.aluno, name='aluno')
+    path('aluno/', views.aluno, name='alunoinfo'),
+    path('aluno/info/<int:id>', views.alunoinfo, name='alunoinfo'),
+    path('aluno/notas/<int:id>', views.alunonotas, name='alunonotas')
+    
 ]

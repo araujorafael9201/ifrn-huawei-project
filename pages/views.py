@@ -1,3 +1,4 @@
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.validators import validate_email
@@ -92,6 +93,18 @@ def inscrever(request):
         messages.success(request, 'Inscrição realizada com sucesso!')
         return redirect('index')
 
+def desinscrever(request):
+    if request.method == 'POST':
+        id_inscricao = request.POST['inscricao']
+
+        inscricao = Inscricao.objects.all().filter(pk=id_inscricao)[0]
+
+        if request.session['aluno_id'] == inscricao.aluno.id:
+            inscricao.delete()
+            messages.success(request, 'Inscrição Cancelada com Sucesso!')
+            return redirect('/aluno')
+        else:
+            return redirect('/aluno')
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')
@@ -267,9 +280,46 @@ def professor(request):
         return redirect('/proflogin')
 
 def aluno(request):
+    inscricoes = Inscricao.objects.all().filter(aluno=request.session['aluno_id'])
+
     try:
-        return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id']})
+        return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id'], 'inscricoes': inscricoes})
     except KeyError:
         messages.error(request, 'Por favor, Faça Login!')
         return redirect('/login')
+
+def alunoinfo(request, id):
+    inscricao = Inscricao.objects.select_related('turma').get(pk=id)
+
+    try:
+        if request.session['aluno_id'] == inscricao.aluno.id:
+            # Pegar alunos da Turma
+            alunos = []
+            for i in Inscricao.objects.select_related('aluno').filter(turma = inscricao.turma.id):
+                if i.aprovada:
+                    alunos.append(i.aluno)
+            
+            # Pegar Informações da Turma
+            turma = inscricao.turma
+            
+            # Pegar Informações do Professor
+            professor = Professor.objects.get(turma=turma.id)
+
+            return render(request, 'pages/alunoinfo.html', {'turma': turma, 'alunos': alunos, 'professor': professor})
+        else:
+            messages.error(request, 'Você não tem permissão para acessar essa página!')
+            return redirect('/')
+
+    except KeyError:
+        messages.error(request, 'Você precisa estar logado!')
+        return redirect('/')
+
+def alunonotas(request, id):
+    inscricao = Inscricao.objects.all().filter(pk=id)[0]
+
+    if request.session['aluno_id'] == inscricao.aluno.id:
+        return render(request, 'pages/alunonotas.html', {'id_turma': inscricao.turma})
+    else:
+        messages.error(request, 'Você não tem permissão para acessar essa página!')
+        return redirect('/')
 

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Huawei - IFRN{% endblock 'titulo' %}
+{% block 'estilos' %}
+{% endblock 'estilos' %}
+
+{% block 'conteudo' %}
+    <div class="container">
+        <h1 class="mt-2">Turma Virtual - {{turma.nome_do_curso}}</h1>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Professor</h5>
+            </div>
+            <div class="card-body">
+                <p class="mb-0">
+                    Nome: {{professor.nome}}
+                </p>
+                <p class="mb-0">
+                    Email para contato: {{professor.email}}
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Alunos</h5>
+            </div>
+            <div class="card-body">
+                    {% for aluno in alunos %}
+                        <p class="mb-0">
+                            {{aluno.nome}}
+                        </p>
+                    {% endfor %}
+            </div>
+        </div>
+
+        <a class="btn btn-primary mt-2" href="/aluno">Voltar</a>
+
+        <!-- <ul>
+            {% for aluno in alunos %}
+                <li>
+                    {{aluno.nome}}
+                </li>
+            {% endfor %}
+        </ul> -->
+    </div>
+
+
+
+    <footer>
+        <section class="footer-part-one">
+            <div class="footer-part-one-picture">
+                <img src="{% static 'images/23anos-2.png' %}" alt="Comeração de 23 anos da Huawei no Brasil">
+            </div>
+        </section>
+
+        <section class="footer-part-two">
+            <img src="{% static 'images/logo-ifrn-branco-3.png' %}" alt="Logo do IFRN">
+            <img src="{% static 'images/logo-huawei-2.png' %}" alt="Logo da Huawei">
+        </section>
+    </footer>
+{% endblock 'conteudo' %}
