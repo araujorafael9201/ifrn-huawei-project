@@ -198,7 +198,8 @@
     align-items: center;
 }
 
-.fa-clock, .fa-calendar-days {
+.fa-clock,
+.fa-calendar-days {
     color: var(--cor4);
 }
 
@@ -224,13 +225,15 @@
     background: var(--cor4);
 }
 
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
     opacity: .5;
     color: var(--cor4);
     transition: all .5s ease;
 }
 
-.swiper-button-next:hover, .swiper-button-prev:hover {
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
     opacity: 1;
     color: var(--cor4);
 }
@@ -245,6 +248,7 @@
     margin: auto;
     margin-bottom: 5%;
 }
+
 .coordenation-section h1 {
     margin-top: 3%;
     text-align: center;
@@ -483,7 +487,8 @@
         display: block;
     }
 
-    .two-cards-up, .two-cards-down {
+    .two-cards-up,
+    .two-cards-down {
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -493,7 +498,8 @@
         margin-bottom: 3%;
     }
 
-    .one, .three {
+    .one,
+    .three {
         margin-right: 2%;
     }
 
@@ -509,7 +515,9 @@
 
 /* ** SCREEN MAX-WIDTH 600PX ** */
 @media screen and (max-width: 600px) {
-    .two-cards-up, .two-cards-down {
+
+    .two-cards-up,
+    .two-cards-down {
         display: block;
     }
 
@@ -517,7 +525,10 @@
         margin-bottom: 0;
     }
 
-    .one, .two, .three, .four {
+    .one,
+    .two,
+    .three,
+    .four {
         margin: auto auto 3% auto;
     }
 
@@ -588,7 +599,7 @@
         font-size: 1.3em;
         text-align: center;
     }
-    
+
     .coordinators-div h3 {
         font-size: 1.2em;
         text-align: center;
