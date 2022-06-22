@@ -3,6 +3,9 @@ import os
 
 class Turma(models.Model):
     nome_do_curso = models.CharField(max_length=255, default='Curso')
+    
+    def __str__(self):
+        return self.nome_do_curso
 
 class Aluno(models.Model):
     cpf = models.CharField(max_length=14)
@@ -20,6 +23,9 @@ class Aluno(models.Model):
     # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.nome
+
 class Professor(models.Model):
     nome = models.CharField(max_length=255)
     email = models.EmailField()
@@ -27,6 +33,9 @@ class Professor(models.Model):
 
     # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.nome
 
 
 def caminho_documento(instance, filename):
