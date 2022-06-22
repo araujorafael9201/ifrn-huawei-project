@@ -4,6 +4,66 @@
 
 {% block 'conteudo' %}
 <div class="container">
-    <h1>Página do Professor</h1>
+    <h1 class="mt-2">{{professor.nome}} - {{turma.nome_do_curso}}</h1>
+    <div class="row mt-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Inscrições Pendentes
+                </div>
+                <div class="card-body">
+                    <form action="/matricula/" method="POST">
+                        {% csrf_token %}
+                        <table class="table">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Comprovante de Conhecimento</th>
+                                <th>Aprovado</th>
+                            </tr>
+                            {% for insc in pendentes %}
+                                <tr>
+                                    <td>{{insc.aluno.nome}}</td>
+                                    <td>
+                                        <a href="/docs/{{insc.documento}}" download target="_blank">Clique Aqui</a>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="{{insc.id}}">
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        
+                        <input type="hidden" name="turma_id" value="{{turma.id}}">
+                        <input class="btn btn-success" type="submit" value="Confirmar">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Alunos
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Notas</th>
+                            <th>Faltas</th>
+                        </tr>
+                        {% for insc in aprovados %}
+                            <tr>
+                                <td>{{insc.aluno.nome}}</td>
+                                <td>
+                                    <a href="/notas/{{insc.id}}">Ver Notas</a>
+                                </td>
+                                <td>qtd. de faltas</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock 'conteudo' %}

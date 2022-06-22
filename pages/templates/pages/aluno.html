@@ -24,8 +24,8 @@
                         <div class="card-body">
                         <h5 class="card-title">{{ inscricao.turma.nome_do_curso }}</h5>
                         {% if inscricao.aprovada %}
-                            <a class="btn btn-primary" href="/aluno/info/{{inscricao.id}}">Informações</a>
-                            <a class="btn btn-primary" href="/aluno/notas/{{inscricao.id}}">Notas</a>
+                            <a class="btn btn-primary" href="/turmainfo/{{inscricao.turma.id}}">Informações</a>
+                            <a class="btn btn-primary" href="/notas/{{inscricao.id}}">Notas</a>
                         {% else %}
                             <h6 class="card-subtitle mb-2 text-muted">Inscrição em Análise...</h6>
                             <form action="/desinscrever/" method="post">

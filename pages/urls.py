@@ -29,7 +29,9 @@ urlpatterns = [
     path('proflogin/', views.professor_login, name='proflogin'),
     path('proflogar/', views.professor_logar, name='proflogar'),
     path('aluno/', views.aluno, name='alunoinfo'),
-    path('aluno/info/<int:id>', views.alunoinfo, name='alunoinfo'),
-    path('aluno/notas/<int:id>', views.alunonotas, name='alunonotas')
+    path('turmainfo/<int:id>', views.turmainfo, name='turmainfo'),
+    path('notas/<int:id>', views.notas, name='notas'),
+    path('matricula/', views.matricula, name='matricula'),
+    path('docs/uploads/<docname>', views.docs, name='docs')
     
 ]

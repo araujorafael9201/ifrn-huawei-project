@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.validators import validate_email
 from .validador.valida_cpf import validar_cpf
+from django.conf import settings
 
 
 from .models import Aluno, Inscricao, Turma, Professor
@@ -82,10 +83,10 @@ def inscricao(request):
 
 def inscrever(request):
     if request.method == 'POST':
-        curso = Turma.objects.all().filter(pk=request.POST['curso'])[0]
+        curso = Turma.objects.get(pk=request.POST['curso'])
         documento = request.FILES['comprovante-conhecimento']
 
-        aluno = Aluno.objects.all().filter(pk=request.session['aluno_id'])[0]
+        aluno = Aluno.objects.get(pk=request.session['aluno_id'])
 
         inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
         inscricao.save()
@@ -95,16 +96,11 @@ def inscrever(request):
 
 def desinscrever(request):
     if request.method == 'POST':
-        id_inscricao = request.POST['inscricao']
+        inscricao = Inscricao.objects.get(pk=request.POST['inscricao'])
 
-        inscricao = Inscricao.objects.all().filter(pk=id_inscricao)[0]
-
-        if request.session['aluno_id'] == inscricao.aluno.id:
-            inscricao.delete()
-            messages.success(request, 'Inscrição Cancelada com Sucesso!')
-            return redirect('/aluno')
-        else:
-            return redirect('/aluno')
+        inscricao.delete()
+        messages.success(request, 'Inscrição Cancelada com Sucesso!')
+        return redirect('/aluno')
 
 def cadastro(request):
     return render(request, 'pages/cadastro.html')
@@ -274,7 +270,20 @@ def professor_logar(request):
 
 def professor(request):
     try:
-        return render(request, 'pages/professor.html', {'prof_id': request.session['prof_id']})
+        prof = Professor.objects.select_related('turma').get(pk=request.session['prof_id'])
+        turma = prof.turma
+
+        inscricoes = Inscricao.objects.select_related('aluno').all().filter(turma=turma)
+
+        aprovados, pendentes = [], []
+
+        for i in inscricoes:
+            if i.aprovada:
+                aprovados.append(i)
+            else:
+                pendentes.append(i)
+
+        return render(request, 'pages/professor.html', {'aprovados': aprovados, 'pendentes': pendentes, 'turma': turma, 'professor': prof})
     except KeyError:
         messages.error(request, 'Por favor, Faça Login!')
         return redirect('/proflogin')
@@ -288,33 +297,22 @@ def aluno(request):
         messages.error(request, 'Por favor, Faça Login!')
         return redirect('/login')
 
-def alunoinfo(request, id):
-    inscricao = Inscricao.objects.select_related('turma').get(pk=id)
+def turmainfo(request, id):
+    turma = Turma.objects.get(pk=id)
 
-    try:
-        if request.session['aluno_id'] == inscricao.aluno.id:
-            # Pegar alunos da Turma
-            alunos = []
-            for i in Inscricao.objects.select_related('aluno').filter(turma = inscricao.turma.id):
-                if i.aprovada:
-                    alunos.append(i.aluno)
+    # Pegar alunos da Turma
+    alunos = []
+    for i in Inscricao.objects.select_related('aluno').filter(turma = turma.id):
+        if i.aprovada:
+            alunos.append(i.aluno)
             
-            # Pegar Informações da Turma
-            turma = inscricao.turma
-            
-            # Pegar Informações do Professor
-            professor = Professor.objects.get(turma=turma.id)
+    # Pegar Informações do Professor
+    professor = Professor.objects.get(turma=turma.id)
 
-            return render(request, 'pages/alunoinfo.html', {'turma': turma, 'alunos': alunos, 'professor': professor})
-        else:
-            messages.error(request, 'Você não tem permissão para acessar essa página!')
-            return redirect('/')
+    return render(request, 'pages/turmainfo.html', {'turma': turma, 'alunos': alunos, 'professor': professor})
 
-    except KeyError:
-        messages.error(request, 'Você precisa estar logado!')
-        return redirect('/')
 
-def alunonotas(request, id):
+def notas(request, id):
     inscricao = Inscricao.objects.all().filter(pk=id)[0]
 
     if request.session['aluno_id'] == inscricao.aluno.id:
@@ -323,3 +321,16 @@ def alunonotas(request, id):
         messages.error(request, 'Você não tem permissão para acessar essa página!')
         return redirect('/')
 
+
+def matricula(request):
+    if request.method == 'POST':
+        for value in request.POST:
+            if value not in ['csrfmiddlewaretoken', 'turma_id']:
+                insc = Inscricao.objects.get(pk=value)
+                insc.aprovada = True
+                insc.save()         
+
+        return redirect('/professor')
+
+def docs(request, docname):
+    pass
