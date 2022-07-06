@@ -47,3 +47,8 @@ class Inscricao(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     aprovada = models.BooleanField(default=False)
     documento = models.FileField(upload_to=caminho_documento)
+
+class Nota(models.Model):
+    valor = models.IntegerField(default=6)
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)

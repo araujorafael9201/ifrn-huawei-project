@@ -24,7 +24,8 @@
                                 <tr>
                                     <td>{{insc.aluno.nome}}</td>
                                     <td>
-                                        <a href="/docs/{{insc.documento}}" download target="_blank">Clique Aqui</a>
+                                         <!--Não funciona o doc :(-->
+                                        <a href="/docs/{{insc.documento}}" target="_blank">Clique Aqui</a>
                                     </td>
                                     <td>
                                         <input type="checkbox" name="{{insc.id}}">
@@ -45,22 +46,34 @@
                     Alunos
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <tr>
-                            <th>Nome</th>
-                            <th>Notas</th>
-                            <th>Faltas</th>
-                        </tr>
-                        {% for insc in aprovados %}
+                    <form action="/notas/" method="post">
+                        <table class="table">
                             <tr>
-                                <td>{{insc.aluno.nome}}</td>
-                                <td>
-                                    <a href="/notas/{{insc.id}}">Ver Notas</a>
-                                </td>
-                                <td>qtd. de faltas</td>
+                                <th>Nome</th>
+                                <th>Nota</th>
+                                <th>Faltas</th>
                             </tr>
-                        {% endfor %}
-                    </table>
+                                {% csrf_token %}
+                            {% for insc in aprovados %}
+                                <tr>
+                                    <td>{{insc.inscricao.aluno.nome}}</td>
+                                    {% if insc.nota %}
+                                        <td>{{insc.nota.valor}}</td>
+                                    {% else %}
+                                    <td>
+                                        <input type="number" name="{{insc.inscricao.aluno.id}}" min=0 max=100>
+                                        </td>
+                                    {% endif %}
+
+                                    <td>qtd. de faltas</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        {% if notas_faltando %}
+                            <input type="hidden" name="idprof" value="{{professor.id}}">
+                            <input class="btn btn-success" type="submit" value="Cadastrar Notas">
+                        {% endif %}
+                    </form>
                 </div>
             </div>
         </div>

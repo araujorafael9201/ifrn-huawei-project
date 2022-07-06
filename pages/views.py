@@ -1,12 +1,14 @@
 from http.client import HTTPResponse
+from lib2to3.pytree import convert
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.validators import validate_email
 from .validador.valida_cpf import validar_cpf
 from django.conf import settings
+from pdf2image import convert_from_path, convert_from_bytes
 
 
-from .models import Aluno, Inscricao, Turma, Professor
+from .models import Aluno, Inscricao, Turma, Professor, Nota
 
 # EVENTOS
 
@@ -261,7 +263,7 @@ def professor_logar(request):
         senha = request.POST['pwd']
 
         try:
-            professor = Professor.objects.all().filter(email=email, senha=senha)[0]
+            professor = Professor.objects.filter(email=email, senha=senha)[0]
             request.session['prof_id'] = professor.id
             return redirect('/professor')
         except:
@@ -277,13 +279,20 @@ def professor(request):
 
         aprovados, pendentes = [], []
 
+        notas_faltando = False
         for i in inscricoes:
             if i.aprovada:
-                aprovados.append(i)
+                n = Nota.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
+                if n:
+                    aluno_final = {'inscricao': i, 'nota': n[0]}
+                    aprovados.append(aluno_final)
+                else:
+                    notas_faltando = True
+                    aprovados.append({'inscricao': i, 'nota': None})
             else:
                 pendentes.append(i)
 
-        return render(request, 'pages/professor.html', {'aprovados': aprovados, 'pendentes': pendentes, 'turma': turma, 'professor': prof})
+        return render(request, 'pages/professor.html', {'aprovados': aprovados, 'pendentes': pendentes, 'turma': turma, 'professor': prof, 'notas': notas, 'notas_faltando': notas_faltando})
     except KeyError:
         messages.error(request, 'Por favor, Faça Login!')
         return redirect('/proflogin')
@@ -291,8 +300,17 @@ def professor(request):
 def aluno(request):
     inscricoes = Inscricao.objects.all().filter(aluno=request.session['aluno_id'])
 
+    info = []
+
+    for i in inscricoes:
+        nota = Nota.objects.filter(aluno=request.session['aluno_id'], turma = i.turma)
+        if nota:
+            info.append({'inscricao': i, 'nota': nota[0]})
+        else:
+            info.append({'inscricao': i})
+
     try:
-        return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id'], 'inscricoes': inscricoes})
+        return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id'], 'info': info})
     except KeyError:
         messages.error(request, 'Por favor, Faça Login!')
         return redirect('/login')
@@ -312,15 +330,6 @@ def turmainfo(request, id):
     return render(request, 'pages/turmainfo.html', {'turma': turma, 'alunos': alunos, 'professor': professor})
 
 
-def notas(request, id):
-    inscricao = Inscricao.objects.all().filter(pk=id)[0]
-
-    if request.session['aluno_id'] == inscricao.aluno.id:
-        return render(request, 'pages/alunonotas.html', {'id_turma': inscricao.turma})
-    else:
-        messages.error(request, 'Você não tem permissão para acessar essa página!')
-        return redirect('/')
-
 
 def matricula(request):
     if request.method == 'POST':
@@ -332,5 +341,20 @@ def matricula(request):
 
         return redirect('/professor')
 
+def notas(request):
+    if request.method=='POST':
+        turma = Professor.objects.select_related('turma').get(pk=request.POST['idprof']).turma
+        alunos = [a for a in request.POST if a not in ['csrfmiddlewaretoken', 'idprof']]
+
+        for aluno in alunos:
+            if request.POST[aluno] != '':
+                al = Aluno.objects.get(pk=aluno)
+                nota = Nota(valor=request.POST[aluno], aluno=al, turma=turma)
+                nota.save()
+
+        messages.success(request, 'Notas Adicionadas com Sucesso!')
+        return redirect('professor')
+
 def docs(request, docname):
-    pass
+    # sei fazer n :(
+    return

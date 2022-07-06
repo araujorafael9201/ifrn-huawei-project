@@ -9,31 +9,42 @@
 <div class="container">
     <h1 class="mt-2">Minhas Turmas</h1>
     <div class="row mt-2">
-        {% for inscricao in inscricoes %}
+        {% for turma in info %}
             <div class="col-md-4">
                 <div class="card">
-                    {% if inscricao.turma.nome_do_curso == 'Cloud Service' %}
+                    {% if turma.inscricao.turma.nome_do_curso == 'Cloud Service' %}
                         <img src="{% static 'images/cloud-service-card.png' %}" alt="" class="card-img-top">
-                    {% elif inscricao.turma.nome_do_curso == 'Inteligência Artificial' %}
+                    {% elif turma.inscricao.turma.nome_do_curso == 'Inteligência Artificial' %}
                         <img src="{% static 'images/ai-card.png' %}" alt="" class="card-img-top">
-                    {% elif inscricao.turma.nome_do_curso == 'Datacom'%}
+                    {% elif turma.inscricao.turma.nome_do_curso == 'Datacom'%}
                         <img src="{% static 'images/datacom-card.png' %}" alt="" class="card-img-top">
-                    {% else%}
+                    {% else %}
                         <img src="{% static 'images/5g-card.png' %}" alt="" class="card-img-top">
                     {% endif %}
                         <div class="card-body">
-                        <h5 class="card-title">{{ inscricao.turma.nome_do_curso }}</h5>
-                        {% if inscricao.aprovada %}
-                            <a class="btn btn-primary" href="/turmainfo/{{inscricao.turma.id}}">Informações</a>
-                            <a class="btn btn-primary" href="/notas/{{inscricao.id}}">Notas</a>
-                        {% else %}
-                            <h6 class="card-subtitle mb-2 text-muted">Inscrição em Análise...</h6>
-                            <form action="/desinscrever/" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="inscricao" value="{{inscricao.id}}">
-                                <input type="submit" class="btn btn-danger" value="Cancelar Inscrição"/>
-                            </form>
-                        {% endif %}
+                        <h5 class="card-title">{{ turma.inscricao.turma.nome_do_curso }}</h5>
+                        <div class="d-flex flex-direction-row justify-content-center align-items-center mt-2">
+                            {% if turma.inscricao.aprovada %}
+                                <div class="w-100 d-flex justify-content-left">
+                                    <a class="btn btn-primary" href="/turmainfo/{{turma.inscricao.turma.id}}">Informações</a>
+                                </div>
+                                <div class="w-100 d-flex justify-content-left align-items-center flex-direction-row">
+                                    {% if turma.nota %}
+                                    <p class="mb-0"><strong>Nota: </strong>{{turma.nota.valor}}</p>
+                                    {% else %}
+                                    <p class="text-muted mb-0">Nota Final não cadastrada</p>
+        
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <h6 class="card-subtitle mb-2 text-muted">Inscrição em Análise...</h6>
+                                <form action="/desinscrever/" class="mt-3" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="inscricao" value="{{turma.inscricao.id}}">
+                                    <input type="submit" class="btn btn-danger" value="Cancelar Inscrição"/>
+                                </form>
+                                {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
