@@ -18,7 +18,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
           
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: space-between;">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Início</a>
@@ -79,16 +79,18 @@
                         <a class="nav-link active" aria-current="page" href="/contato">Contato</a>
                     </li>
                 </ul>
-                {% if 'aluno_id' in request.session.keys %}
-                    <a href="/aluno" class="btn btn-lg btn-outline-success" style="margin-right: 0.5rem;">Área do Aluno</a>
-                    <a href="/deslogar" class="btn btn-lg btn-outline-danger">Sair</a>
-                {% elif 'prof_id' in request.session.keys %}
-                    <a href="/professor" class="btn btn-lg btn-outline-success" style="margin-right: 0.5rem;">Área do Professor</a>
-                    <a href="/deslogar" class="btn btn-lg btn-outline-danger">Sair</a>
-                {% else %}
-                    <a href='/login' class="btn btn-lg btn-outline-success" style="width: 6rem; margin-right: 0.5rem;">Entrar</a>
-                    <a href='/cadastro' class="btn btn-lg btn-outline-success" style="width: 9rem;">Cadastre-se</a>
-                {% endif %}
+                <div class="d-block">
+                    {% if 'aluno_id' in request.session.keys %}
+                        <a href="/aluno" class="btn btn-lg btn-outline-success" style="margin-right: 0.5rem;">Área do Aluno</a>
+                        <a href="/deslogar" class="btn btn-lg btn-outline-danger">Sair</a>
+                    {% elif 'prof_id' in request.session.keys %}
+                        <a href="/professor" class="btn btn-lg btn-outline-success" style="margin-right: 0.5rem;">Área do Professor</a>
+                        <a href="/deslogar" class="btn btn-lg btn-outline-danger">Sair</a>
+                    {% else %}
+                        <a href='/login' class="btn btn-lg btn-outline-success" style="width: 6rem; margin-right: 0.5rem;">Entrar</a>
+                        <a href='/cadastro' class="btn btn-lg btn-outline-success" style="width: 9rem;">Cadastre-se</a>
+                    {% endif %}
+                </div>
 
             </div>
         </div>
