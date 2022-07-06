@@ -22,7 +22,7 @@
                         <img src="{% static 'images/5g-card.png' %}" alt="" class="card-img-top">
                     {% endif %}
                         <div class="card-body">
-                        <h5 class="card-title">{{ inscricao.turma.nome_do_curso }}</h5>
+                        <h5 class="card-title mb-3">{{ inscricao.turma.nome_do_curso }}</h5>
                         {% if inscricao.aprovada %}
                             <a class="btn btn-primary" href="/turmainfo/{{inscricao.turma.id}}">Informações</a>
                             <a class="btn btn-primary" href="/notas/{{inscricao.id}}">Notas</a>

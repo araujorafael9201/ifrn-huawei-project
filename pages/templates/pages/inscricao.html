@@ -8,33 +8,35 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
 {% endblock 'estilos' %}
 {% block 'conteudo' %}
-    <div class="container">
-        <h1 class="page-header">Inscrição</h1>
-        <form action="/inscrever/" method="post" enctype='multipart/form-data'>
-          {% csrf_token %}
-          <div class="card mb-4">
-            <div class="card-header">
-              Informações da Inscrição
-            </div>
-            <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col d-flex flex-column justify-content-center align-items-between">
-                    <label for="curso">Curso</label>
-                    <select class='form-control col align-items-center' name="curso" id="curso">
-                      {% for curso in cursos %}
-                        <option value="{{curso.id}}">{{curso.nome_do_curso}}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="arquivo_frente">Comprovação de conhecimento(s)*</label>
-                    <span class="ds-label">Anexe aqui um documento que comprove seu conhecimento na área.</span>
-                    <input type="file" name="comprovante-conhecimento" id="comprovante-conhecimento" accept="image/*">
-                  </div>
-                </div>
-                <input class="btn btn-success" type="submit" value="Inscrever-se">
-            </div>
-          </div>
-        </form>
-    </div>
+  <div class="container mt-3">
+		<h1 class="page-header">Inscrição</h1>
+		<form action="/inscrever/" method="post" enctype='multipart/form-data'>
+			{% csrf_token %}
+			<div class="card mb-4">
+				<div class="card-header">
+					Informações da Inscrição
+				</div>
+				<div class="card-body">
+					<div class="form-row">
+						<div class="form-group col flex-column justify-content-center align-items-between">
+							<label for="curso">Curso</label>
+							<select class='form-control col align-items-center' name="curso" id="curso">
+								{% for curso in cursos %}
+									<option value="{{curso.id}}">{{curso.nome_do_curso}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+					<div class="form-group d-block">
+						<label for="arquivo_frente">Comprovação de conhecimento(s)*</label>
+						<span class="ds-label d-block">Anexe aqui um documento que comprove seu conhecimento na área.</span>
+						<input type="file" name="comprovante-conhecimento" id="comprovante-conhecimento" accept="image/*">
+					</div>
+					</div>
+					<input class="btn btn-success" type="submit" value="Inscrever-se">
+				</div>
+			</div>
+		</form>
+  </div>
 {% endblock 'conteudo' %}
