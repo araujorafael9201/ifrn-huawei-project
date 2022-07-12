@@ -5,71 +5,65 @@ from django.contrib import messages
 from django.core.validators import validate_email
 from .validador.valida_cpf import validar_cpf
 from django.conf import settings
-from pdf2image import convert_from_path, convert_from_bytes
 
 
 from .models import Aluno, Inscricao, Turma, Professor, Nota
-
-# EVENTOS
-
-
-def ict_job_fair_brasil(request):
-    return render(request, 'pages/ict-job-fair-brasil.html')
-
-
-def ict_competition_brasil(request):
-    return render(request, 'pages/ict-competition-brasil.html')
-
-
-def seeds_for_the_future(request):
-    return render(request, 'pages/seeds-for-the-future.html')
 
 
 def index(request):
     return render(request, 'pages/index.html')
 
+def contato(request):
+    return render(request, 'pages/contact.html')
+
+def certificacao(request):
+    return render(request, 'pages/certification.html')
+
+def instrutores(request):
+    return render(request, 'pages/instructors.html')
+
+def laboratorios(request):
+    return render(request, 'pages/laboratories.html')
+
+
 
 def sobre_ict_academy(request):
-    return render(request, 'pages/sobre_ict_academy.html')
-
+    return render(request, 'pages/sobre/ict-academy.html')
 
 def sobre_huawei(request):
-    return render(request, 'pages/sobre_huawei.html')
+    return render(request, 'pages/sobre/huawei.html')
+
 
 
 def cloud_service(request):
-    return render(request, 'pages/cloud_service.html')
-
+    return render(request, 'pages/cursos/cloud-service.html')
 
 def inteligencia_artificial(request):
-    return render(request, 'pages/inteligencia_artificial.html')
-
+    return render(request, 'pages/cursos/artificial-intelligence.html')
 
 def datacom(request):
-    return render(request, 'pages/datacom.html')
-
+    return render(request, 'pages/cursos/datacom.html')
 
 def cincog(request):
-    return render(request, 'pages/5g.html')
-
-
-def instrutores(request):
-    return render(request, 'pages/instrutores.html')
-
-
-def certificacao(request):
-    return render(request, 'pages/certificacao.html')
-
-
-def contato(request):
-    return render(request, 'pages/contato.html')
-
-
-def laboratorios(request):
-    return render(request, 'pages/laboratorios.html')
+    return render(request, 'pages/cursos/5g-networks.html')
 
 def hands_on(request):
     return render(request, 'pages/hands-on.html')
+
+
+
+def ict_job_fair_brasil(request):
+    return render(request, 'pages/eventos/ict-job-fair-brasil.html')
+
+
+def ict_competition_brasil(request):
+    return render(request, 'pages/eventos/ict-competition-brasil.html')
+
+
+def seeds_for_the_future(request):
+    return render(request, 'pages/eventos/seeds-for-the-future.html')
+
+
 
 
 ##

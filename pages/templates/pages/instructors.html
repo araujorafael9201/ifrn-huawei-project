@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Instrutores | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+    <section class="my-5 mx-5">
+        <h2 class="text-center">Instrutores</h2>
+        <div class="coordinators-div text-center">
+            <div class="text-start div-instru">
+                <div class="coordinators-div-img mb-3 text-center">
+                    <img src="{% static 'img/coordenadores/rodrigo-4.jpg' %}" alt="Foto do coordenador">
+                </div>
+                <h2 class="fs-4">Prof. Rodrigo Tertulino</h2>
+                <hr class="invis">
+                <h3 class="fs-5">Coordenador do ICT Academy e Instrutor</h3>
+                <p>
+                    Certificado:<br>
+                    HCIA-Cloud Service<br>
+                    HCIA-Routing & Switching<br>
+                    HCAI-Huawei Certified Academy Instructor
+                </p>
+                <a class="link-certification" href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4252463Z4" target="_blank">Link lattes</a>
+            </div>
+            <div class="text-start div-instru">
+                <div class="coordinators-div-img mb-3 text-center">
+                    <img src="{% static 'img/coordenadores/jefferson.jpg' %}" alt="Foto do vice-coordenador">
+                </div>
+                <h2 class="fs-4">Prof. Jefferson Silva</h2>
+                <hr class="invis">
+                <h3 class="fs-5">Vice-coordenador do ICT Academy e Instrutor</h3>
+                <p>
+                    Certificado:<br>
+                    HCIA-Cloud Service<br>
+                    HCIA-Routing & Switching<br>
+                    HCAI-Huawei Certified Academy Instructor
+                </p>
+                <a class="link-certification" href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4815787U3" target="_blank">Link lattes</a>
+            </div>
+        </div>
+    </section>
+{% endblock 'conteudo' %}

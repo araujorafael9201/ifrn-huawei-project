@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Certificação | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+    <section class="my-5 section-certification">
+        <h2 class="text-center">Certificação</h2>
+        <div class="mt-5">
+            <div class="text-center">
+                <img src="{% static 'img/person-vue.jpg' %}" alt="Banner Pearson Vue">
+            </div>
+            <div class="texts-certification mt-4">
+                <p>
+                    A Pearson VUE é o serviço de teste eletrônico da empresa Pearson, que ajuda na qualificação para o mercado de trabalho através da avaliação e certificação dos conhecimentos e das habilidades em uma determinada área. A Pearson Vue, empresa detentora do sistema para aplicação das provas, já autorizou o funcionamento do campus Mossoró como centro de certificação apto a aplicar às provas de forma presencial desde 2018, após análise e atendimento de todos os critérios exigidos pela mesma.
+                    <span class="linha">
+                        Agende sua prova através do site da 
+                        <a href="https://home.pearsonvue.com/" target="_blank" class="link-certification">Pearson</a>.
+                    </span>
+                    <span class="linha">
+                        Agende sua prova de certificação Huawei através da plataforma 
+                        <a href="https://e.huawei.com/en/talent/#/pearson-VUE-appointment" target="_blank" class="link-certification">Talent</a>.
+                    </span>
+                </p>
+                <p class="info-certification">* Esse formato de aplicação de prova é somente para provas presenciais em que o aluno necessitará de pagar pela prova.</p>
+            </div>
+        <div>
+    </section>
+{% endblock 'conteudo' %}

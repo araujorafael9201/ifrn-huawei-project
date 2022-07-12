@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}ICT Competition Brasil | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+<section class="my-5 section-certification">
+    <h2 class="text-center">ICT Competition Brasil</h2>
+    <div class="mt-5">
+        <div class="text-center">
+            <img src="{% static 'img/events/competition-brasil.jpg' %}" alt="Banner Huawei ICT Competition Brasil" width="640px">
+        </div>
+        <div class="texts-certification mt-4">
+            <p>
+                O Huawei ICT Competition é um evento competitivo de intercâmbio de talentos de TIC desenvolvido pela Huawei para estudantes em todo o mundo. Por meio dessa competição, a Huawei tem como objetivo fornecer aos alunos uma plataforma para estudar e trocar ideias, aprimorando assim seus conhecimentos de TIC e habilidades práticas. Este concurso também visa estimular o pensamento criativo dos alunos em relação ao uso de novas tecnologias e plataformas. Este ano, estamos lançando a 6ª Competição de ICT da Huawei globalmente. Os alunos irão competir na Etapa Nacional, depois na Etapa Regional e, finalmente, competir com alunos de todo o mundo na Etapa Global. Os alunos do ICT IFRN serão encorajados a participar do ICP competition que normalmente acontece no fim de cada ano.
+                <br>
+                Mais informações em <a href="https://e.huawei.com/en/talent/#/ict/contest?compId=85131961"  class="link-certification">ICT-Competetion</a>.
+                <br>
+                <br>
+                <span class="d-block linha-2">
+                    Fonte:
+                    <a href="https://www.huawei.com/br/" target="_blank" class="link-certification">Huawei</a>.
+                </span>
+            </p>
+            <p class="info-certification">* Somente alunos matriculados em curso técnico, em graduação ou em mestrados das instituições de ensino qualificadas como Huawei ICT Academy podem se inscrever;</p>
+            <p class="info-certification">* Alunos devem ter login associado a Huawei ICT Academy.</p>
+        </div>
+    <div>
+</section>
+{% endblock 'conteudo' %}

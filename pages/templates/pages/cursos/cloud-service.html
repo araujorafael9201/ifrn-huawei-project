@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Curso de Cloud Service | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+<section class="mb-5">
+    <div class="py-5 curso-title">
+        <h2 class="text-center">Cloud Service</h2>
+    </div>
+    <div class="secao-cursos mt-5">
+      <!-- Informações do curso -->
+      <!-- COURSE PRESENTATION -->
+      <div class="d-flex">
+        <div class="me-4">
+            <img src="{% static 'img/cursos/cloud-service.png' %}" alt="oto do Redes 5G" width="500" height="300">
+        </div>
+
+        <div class="">
+            <h3 class="fs-4">Huawei ICT Academy HCIA - Cloud Service</h3>
+            <div class="d-flex info-cursos mb-3">
+                <h5 class="me-3 insc-finalizada">Inscrições Finalizadas</h4>
+                <h5 class="me-3 turma-vaga">TURMA: 000</h5>
+                <h5 class="turma-vaga">VAGAS: 000</h5>
+            </div>
+            <p style="text-align: justify;">
+              As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. Nesse sentido, a computação em nuvem consiste em utilizar uma rede de servidores remotos na internet, com a função de operar, armazenar e processar dados. Evitando o uso de uma infraestrutura física. De acordo com pesquisa liderada pela Deloitte, as PMEs (Pequenas Empresas) utilizam em média uma série de serviços que são aproximadamente 26% mais rápidos e aproximadamente 26% mais rápidos do que aqueles que não usam, e são 21% mais rentáveis. Uma das principais vantagens do uso da computação em nuvem é que não há necessidade de ter máquinas superpotentes para suas tarefas ou ter uma grande infraestrutura necessária para um datacenter. Outro benefício é a flexibilidade geográfica e mobilidade que permite, pois todos os arquivos, dados e tarefas podem ser acessados de qualquer lugar do mundo. Além da economia de custos com instalações físicas e manutenções.
+            </p>
+            <p class="info-certification">* Verique as datas de inscrição</p>
+            <button type="button" class="btn btn-danger" disabled>FINALIZADO</button>
+        </div>
+    </div>
+      
+      <!-- Informações extras-->
+      <div class="course-extra-info">
+        <div class="course-extra-info-titles">
+          <h4 class="titles me-5 act-ive" id="title-01">Descrição</h4>
+          <h4 class="titles me-5" id="title-02">Informações adicionais</h4>
+          <h4 class="titles" id="title-03">Resultados</h4>
+        </div>
+
+        <div class="section-01"></div>
+
+        <div class="section-02"></div>
+
+        <div class="section-03"></div>
+      </div>
+
+      <!-- Seção de Professores e Bolsistas -->
+      <div class="prof-sections">
+        <h3 class="fs-4">Professores e Bolsistas</h3>
+        <hr class="invis">
+        <div class="card" aria-hidden="true">
+          <div class="card-body">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-7"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-6"></span>
+              <span class="placeholder col-8"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<script src=" {% static 'javascripts/courses.js' %}"></script>
+{% endblock 'conteudo' %}

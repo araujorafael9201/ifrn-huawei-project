@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Laboratórios | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+    <section class="my-5 mx-5">
+        <h2 class="text-center">Laboratórios de Arquitetura de Redes e Sistemas Operacionais (LARSO)</h2>
+        <div class="conteudo-lab mt-4">
+            <h2 class="fs-4">Resumo</h2>
+            <p class="texts-certification">
+                O laboratório LARSO é um laboratório voltado para pesquisa e aulas prática de sistemas operacionais e redes de computadores. Hoje o laboratório está equipado com 31(trinta e uma) máquinas, sendo 1(uma) destinada ao professor e os demais aos alunos. Os micros estão interligados ao servidor, através de cabeamento de fibra optica Monomodo. O laboratório atualmente conta com datashow, máquina para fusão de fibra optica, ferramentas para aulas e práticas de cabeamento estrutura, roteadores e switchs L2 e L3, racks, path panel, routers, infraestrutura de cabeamento e interconexão, assim como materiais necessários em qualquer sala como: mesas, quadros, cadeiras e bancadas.
+            </p>
+
+            <h2 class="fs-4">Objetivos</h2>
+            <p class="texts-certification">
+                No ensino de redes de computadores a prática de laboratório é um aspecto fundamental para consolidar a teoria à prática visto em sala de aula, sendo essencial para formação do discente. O laboratório de redes do campus Mossoró terá como intuito de fornecer meios para que os discentes possam praticar situações reais. Situações essas que, os mesmos enfrentarão após concluírem seus cursos, de tal forma que estarão aptos a manusear e operar redes de computadores.
+            </p>
+            <div class="ms-5">
+                <h3 class="fs-5">Rede Física</h3>
+                <ul>
+                    <li>Canais digitais;</li>
+                    <li>Erros e detecção de erros;</li>
+                    <li>Entender pelo menos um protocolo de acesso ao meio (ex. CSMA);</li>
+                    <li>Redes sem fio (wireless LANs);</li>
+                    <li>Limites de Shannon e Nyquist;</li>
+                    <li>Práticas de cabeamento e fusão de Fibra Óptica.</li>
+                </ul>
+                <h3 class="fs-5">Conceitos</h3>
+                <ul>
+                    <li>Comutação de circuitos X Comutação de pacotes;</li>
+                    <li>Enquadramento e encapsulamento;</li>
+                    <li>Interconexão de rede;</li>
+                    <li>Movendo pacotes atráves de múltiplas redes (roteamento e inter-rede);</li>
+                    <li>Endereçamento e encaminhamento.</li>
+                </ul>
+                <h3 class="fs-5">Protocolos</h3>
+                <ul>
+                    <li>O que é um protocolo e como especificá-lo;</li>
+                    <li>Protocolos de janelas deslizantes para transferência de dados confiável (incluindo TCP);</li>
+                    <li>Controle de congestionamento;</li>
+                    <li>Algoritmos de roteamento: Rip, RipNG, OSPF, EIGPR e BGP;</li>
+                    <li>Roteamento estático;</li>
+                    <li>Sumarização de redes;</li>
+                    <li>Ipv4 e Ipv6.</li>
+                </ul>
+                <h3 class="fs-5">Discussões sobre</h3>
+                <ul>
+                    <li>Programação de aplicativos cliente/servidor;</li>
+                    <li>Programação de soquetes;</li>
+                    <li>Gerência e configuração remota de dispositivos;</li>
+                    <li>Protocolos de aplicação usados no momento e como eles funcionam.</li>
+                </ul>
+                <h3 class="fs-5">Outros temas</h3>
+                <ul>
+                    <li>Segurança como realidade do dia a dia;</li>
+                    <li>Criptografia como solução (Criptografia simétrica/assimétrica);</li>
+                    <li>Elementos de performance (atraso de propagação e transmição);</li>
+                    <li>Redes SDN e NDN, Openflow;</li>
+                    <li>Troubleshooting.</li>
+                </ul>
+            </div>
+
+            <h2 class="fs-4">Características gerais</h2>
+            <p class="texts-certification">
+                O laboratório apresenta as seguintes características:
+            </p>
+            <div class="ms-5">
+                <ul>
+                    <li>
+                        Topologia física da rede: Tipo ESTRELA, em função da mesma permitir uma maior flexibilidade quanto à expansão da rede e também por não comprometer o funcionamento da rede caso um nó apresente problema.
+                    </li>
+                    <li>
+                        Distribuição geográfica: em função dos laboratórios estarem dispostos na mesma escola, a rede é do tipo LAN (Local Area Network).
+                    </li>
+                    <li>
+                        Tecnologia: Padrão de tecnologia o padrão Gigabit Ethernet entre as máquinas e os paths panels, assim como os switches(cabeamento horizontal).
+                    </li>
+                    <li>
+                        Entre os racks a conexão é através de fibra óptica do tipo monomodo.
+                    </li>
+                    <li>
+                        Meio de comunicação: Cabo de par trançado (UTP) Categoria 6A.
+                    </li>
+                    <li>
+                        Velocidade da rede: 1000 Mbps.
+                    </li>
+                    <li>
+                        Protocolo: Utilizamos o TCP/IP, em função de ser protocolo que permite a conexão à internet.
+                    </li>
+                    <li>
+                        Cada PC possui (02) dois pontos de redes disponíveis em sua área de trabalho.
+                    </li>
+                    <li>
+                        Todos os pontos e cabos redes estão identificados com etiquetas conforme norma EIA/TIA 606.
+                    </li>
+                </ul>
+            </div>
+
+            <h2 class="fs-4">Características gerais</h2>
+            <p class="texts-certification">
+                Foram definidas as seguintes políticas de segurança:
+            </p>
+            <div class="ms-5">
+                <ul>
+                    <li>
+                        Será disponibilizada no servidor uma pasta com capacidade de 300 MB, para que os alunos armazenem os seus trabalhos, para uma posterior cópia em pen drive;
+                    </li>
+                    <li>
+                        No laboratório de redes apenas os professores da matéria/disciplina terão acesso a criação de novos usuários e de instalação de aplicativos tanto no servidor como nas estações;
+                    </li>
+                    <li>
+                        Todos os usuários precisam estar autenticados para poderem usar à internet (Conforme Marco Civil da Internet, Lei n° 12.965, de 23 de abril 2014).
+                    </li>
+                </ul>
+            </div>
+
+            <!-- IMAGENS -->
+            <h2 class="fs-3 mb-4">Imagens</h2>
+            <div class="text-center">
+                <figure>
+                    <img src="{% static 'img/lab/panoramica-lab.jpg' %}" alt="Labóratorio de redes">
+                    <figcaption class="mb-4">Laboratório de redes</figcaption>
+                </figure>
+                <figure>
+                    <img src="{% static 'img/lab/maquina-fusao-1.jpg' %}" alt="Máquina de fusão" class="mt-4">
+                    <figcaption class="mb-4">Máquina de fusão</figcaption>
+                </figure>
+                <div class="d-flex imgs-lab pt-4">
+                    <div class="card-img">
+                        <figure>
+                            <img src="{% static 'img/lab/maquina-fusao-2.jpg' %}" alt="Máquina de fusão">
+                            <figcaption>Máquina de fusão</figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-img">
+                        <figure>
+                            <img src="{% static 'img/lab/maquina-fusao-3.jpg' %}" alt="Máquina de fusão">
+                            <figcaption>Máquina de fusão</figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-img">
+                        <figure>
+                            <img src="{% static 'img/lab/armario-telecomunicacoes-1.jpg' %}" alt="Armário de telecomunicações">
+                            <figcaption>Armário de telecomunicações - cabeamento vertical</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="d-flex imgs-lab">
+                    <div class="card-img">
+                        <figure>
+                            <img src="{% static 'img/lab/armario-telecomunicacoes-2.jpg' %}" alt="Armário de telecomunicações">
+                            <figcaption>Armário de telecomunicações - cabeamento vertical</figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-img">
+                        <figure>
+                            <img src="{% static 'img/lab/rack-principal.jpg' %}" alt="Rack principal">
+                            <figcaption>Rack principal</figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-img"></div>
+                </div>
+            </div>
+            <!-- END -->
+
+            <h2 class="fs-3 mt-4 mb-2">Projetos e pesquisas desenvolvidas</h2>
+            <h3 class="fs-4">Publicações em revistas</h3>
+            <h4 class="fs-5 color-icons bg-success bg-gradient p-2 bg-opacity-25 h4-01 mt-3">Uso do Cisco Packet Tracer como ferramenta no ensino de Redes de Computadores no IFRN – Campus Mossoró</h4>
+            <div class="projects-content">
+                <h5>ScientiaTec</h5>
+                <h5>2019-11 | Artigo de revista (<em>Journal</em>)</h5>
+
+                <div class="project-links">
+                    <a href="https://periodicos.ifrs.edu.br/index.php/ScientiaTec/article/view/3081" class="me-5">DOI</a>
+                    <a href="https://portal.issn.org/resource/ISSN/2318-9584">Parte da ISSN</a>
+                </div>
+                <h6>Contribuidores</h6>
+                <div class="projects-content">
+                    <p>Rodrigo Ronner Tertulino da Silva (<em>author</em>)</p>
+                    <p>Celina Leite de Oliveira (<em>author</em>)</p>
+                    <p>Claudio Peixoto Da Silva (<em>author</em>)</p>
+                    <p>Beatriz Costa Couto (<em>author</em>)</p>
+                </div>
+            </div>
+            
+            <h4 class="fs-5 color-icons bg-success p-2 bg-opacity-25 mt-5">Desenvolvimento seguro de aplicações web</h4>
+            <div class="projects-content">
+                <h5>RECIMA21 - Revista Científica Multidisciplinar - ISSN 2675-6218</h5>
+                <h5>2021-04-29 | Artigo de revista (<em>Journal</em>)</h5>
+                <div class="project-links">
+                    <a href="https://recima21.com.br/index.php/recima21/article/view/156">DOI</a>
+                </div>
+                <h6>Contribuidores</h6>
+                <div class="projects-content">
+                    <p>Rodrigo Ronner Tertulino da Silva (<em>author</em>)</p>
+                    <p>Rommel Lima (<em>author</em>)</p>
+                    <p>Cicilia Leite (<em>author</em>)</p>
+                </div>
+            </div>
+            
+            <h4 class="fs-5 color-icons bg-success p-2 bg-opacity-25 mt-5">Investigação de segurança no Moodle</h4>
+            <div class="projects-content">
+                <h5>RENOTE</h5>
+                <h5>2015-02 | Artigo de revista (<em>Journal</em>)</h5>
+                <div class="project-links">
+                    <a href="https://seer.ufrgs.br/renote/article/view/53501" class="me-5">DOI</a>
+                    <a href="https://portal.issn.org/resource/ISSN/1679-1916">Parte da ISSN</a>
+                </div>
+                <h6>Contribuidores</h6>
+                <div class="projects-content">
+                    <p>Rodrigo Ronner Tertulino da Silva (<em>author</em>)</p>
+                    <p>Rommel Wladimir de Lima (<em>author</em>)</p>
+                    <p>Cicilia Raquel Maia Leite (<em>author</em>)</p>
+                </div>
+            </div>
+            
+            <h3 class="fs-4 mt-5">Publicações em eventos</h3>
+            <ol>
+                <li>
+                    SILVA, R. R. T.; SOARES, F. ; SILVEIRA, S. M. . Promovendo capacitação profissional através do centro de certificação no IFRN - Campus Mossoró. In: Exposição Científica, Tecnológica e Cultural (EXPOTEC), 2018, Mossoró. Promovendo capacitação profissional através do centro de certificação no IFRN - Campus Mossoró, 2018.
+                    <div class="text-center mb-5 mt-2">
+                        <img src="{% static 'img/lab/expotec.jpg' %}" alt="Rack principal">
+                    </div>
+                </li>
+                <li>
+                    SILVA, R. R. T.; CORINGA, R. E. G. ; BARRA, R. V. L. . Implementação do zabbix server como gerenciador de rede em laboratório acadêmico. In: Semana de Ciência, Tecnologia e Extensão do Instituto Federal do Rio Grande do Norte (Secitex), 2018, Natal. Implementação do zabbix server como gerenciador de rede em laboratório acadêmico, 2018.
+                    <div class="text-center mb-5 mt-2">
+                        <img src="{% static 'img/lab/congic.jpg' %}" alt="Rack principal">
+                    </div>
+                </li>
+                <li>
+                    SILVA, R. R. T.; PEDRO, V. C. S. ; COSTA, L. C. ; MOTA, J. F. S. . PROMOVENDO CAPACITAÇÃO PROFISSIONAL ATRAVÉS DO CENTRO DE CERTIFICAÇÃO NO IFRN. CAMPUS MOSSORÓ. 2020. (Apresentação de Trabalho/Outra).
+                    <div class="text-center mb-5 mt-2">
+                        <img src="{% static 'img/lab/mocitec.jpg' %}" alt="Rack principal">
+                    </div>
+                </li>
+                <li>
+                    MOSTRATEC. PROMOVENDO CAPACITAÇÃO PROFISSIONAL ATRAVÉS DO CENTRO DE CERTIFICAÇÃO NO IFRN. CAMPUS MOSSORÓ. 2020. (Feira).
+                    <div class="mx-4 mt-3">
+                        <h4 class="fs-5">A Mostratec</h4>
+                        <p class="text-ident">
+                            A Mostratec é uma feira de ciência e tecnologia realizada anualmente pela Fundação Liberato, em Novo Hamburgo/RS, que se destina à apresentação de projetos de pesquisa em diversas áreas do conhecimento humano, realizados por jovens cientistas do ensino médio e da educação profissional de nível técnico de todo o Brasil e do exterior.
+                        </p>
+                        
+                        <h4 class="fs-5">Objetivos da Mostratec</h4>
+                        <ol class="list-alf">
+                            <li>
+                                Estimular estudantes na atividade de iniciação científica e tecnológica de forma acelerar o processo de expansão e renovação no quadro de pesquisadores;
+                            </li>
+                            <li>
+                                Conduzir à sistematização e à institucionalização da pesquisa no ensino médio e profissional de nível técnico;
+                            </li>
+                            <li>
+                                Estimular a imaginação, o prazer e a curiosidade através da pesquisa científica e tecnológica;
+                            </li>
+                            <li>
+                                Promover a integração entre instituições de ensino, pesquisa e meio empresarial, possibilitando o desenvolvimento, a aplicação e a divulgação de novas tecnologias;
+                            </li>
+                            <li>
+                                Possibilitar aos expositores e professores a integração com colegas de outras instituições de ensino de modo a ampliar suas relações e possibilitar o contato com outras culturas;
+                            </li>
+                            <li>
+                                Proporcionar o intercâmbio e a participação de alunos e professores em feiras afiliadas (nacionais e internacionais).
+                            </li>
+                        </ol>
+                        <div class="mt-4 text-center">
+                            <figure>
+                                <img src="{% static 'img/lab/mostratec.jpg' %}" alt="Alunos participantes da Mostratec 2020">
+                                <figcaption class="mt-2">
+                                    <a href="https://portal.ifrn.edu.br/campus/mossoro/noticias/alunos-as-do-campus-mossoro-tem-projeto-aprovado-na-mostratec-2020" class="link-certification">Alunos do Campus Mossoró tem projeto aprovado na MOSTRATEC 2020</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            
+            
+        </div> <!-- end conteudo lab -->
+    </section>
+{% endblock 'conteudo' %}

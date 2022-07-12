@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Curso de Datacom | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+<section class="mb-5">
+    <div class="py-5 curso-title">
+        <h2 class="text-center">Datacom</h2>
+    </div>
+    <div class="secao-cursos mt-5">
+      <!-- Informações do curso -->
+      <!-- COURSE PRESENTATION -->
+      <div class="d-flex">
+        <div class="me-4">
+            <img src="{% static 'img/cursos/datacom.png' %}" alt="Banner do Datacom" width="500" height="300">
+        </div>
+
+        <div class="">
+            <h3 class="fs-4">Huawei ICT Academy HCIA - Datacom</h3>
+            <div class="d-flex info-cursos mb-3">
+                <h5 class="me-3 insc-finalizada">Inscrições Finalizadas</h4>
+                <h5 class="me-3 turma-vaga">TURMA: 000</h5>
+                <h5 class="turma-vaga">VAGAS: 000</h5>
+            </div>
+            <p style="text-align: justify;">
+              Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco deste curso é apresentar os fundamentos das redes de dados, métodos básicos de conexão de redes populares e configurações de roteadores e switches Huawei, através do simulador eNSP. Além do mais, este curso tem o intuito de preparar o aluno para realização da prova de certificação Huawei.
+            </p>
+            <p class="info-certification">* Verique as datas de inscrição</p>
+            <button type="button" class="btn btn-danger" disabled>FINALIZADO</button>
+        </div>
+    </div>
+      
+      <!-- Informações extras-->
+      <div class="course-extra-info">
+        <div class="course-extra-info-titles">
+          <h4 class="titles me-5 act-ive" id="title-01">Descrição</h4>
+          <h4 class="titles me-5" id="title-02">Informações adicionais</h4>
+          <h4 class="titles" id="title-03">Resultados</h4>
+        </div>
+
+        <div class="section-01"></div>
+
+        <div class="section-02"></div>
+
+        <div class="section-03"></div>
+      </div>
+
+      <!-- Seção de Professores e Bolsistas -->
+      <div class="prof-sections">
+        <h3 class="fs-4">Professores e Bolsistas</h3>
+        <hr class="invis">
+        <div class="card" aria-hidden="true">
+          <div class="card-body">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-7"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-6"></span>
+              <span class="placeholder col-8"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<script src=" {% static 'javascripts/courses.js' %}"></script>
+{% endblock 'conteudo' %}

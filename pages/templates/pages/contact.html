@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Contato | Huawei - IFRN{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+    <section class="my-5 mx-5">
+        <h2 class="text-center">Contato</h2>
+        <div class="d-flex contacts-section">
+            <div class="card-contact text-center py-4">
+                <i class="color-icons fa-solid fa-map-location-dot fa-2x"></i>
+                <h3>Endereco</h3>
+                <p>
+                    Rua Raimundo Firmino de Oliveira, 400 - 
+                    Conj. Ulrick Graff - Mossoró-RN CEP: 59.628-330 - 
+                    (84) 3422-2696 (R2696)
+                </p>
+            </div>
+
+            <div class="card-contact text-center py-4">
+                <i class="color-icons fa-solid fa-envelope fa-2x"></i>
+                <h3>E-mail</h3>
+                <a href="mailto:hain@ifrn.edu.br" class="link">haina@ifrn.edu.br</a>
+            </div>
+
+            <div class="card-contact text-center py-4">
+                <i class="color-icons fa-brands fa-telegram fa-2x"></i>
+                <h3>Telegram</h3>
+                <a href="https://t.me/ictifrn" class="link" target="_blank">t.me/ictifrn</a>
+            </div>
+
+            <div class="card-contact text-center py-4">
+                <i class="color-icons fa-brands fa-instagram fa-2x"></i>
+                <h3>Instagram</h3>
+                <a  href="https://instagram.com/haina.ifrn/" class="link" target="_blank">instagram.com/haina.ifrn/</a>
+            </div>
+        </div>
+        <div class="instituto-section d-flex mx-5 mt-3">
+            <div>
+                <img src="{% static 'img/instituto.png' %}" alt="IFRN Campus Mossoró" width="500">
+            </div>
+            <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31786.604259252614!2d-37.31846!3d-5.211441!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3a84b79a6922ff79!2sInstituto%20Federal%20do%20Rio%20Grande%20do%20Norte!5e0!3m2!1spt-BR!2sbr!4v1655482561957!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+{% endblock 'conteudo' %}

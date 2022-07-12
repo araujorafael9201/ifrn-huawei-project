@@ -1,320 +1,289 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block 'titulo' %}Huawei - IFRN{% endblock 'titulo' %}
-{% block 'estilos' %}
-    <link rel="stylesheet" href="{% static 'css/home3.css' %}">
-{% endblock 'estilos' %}
 
 {% block 'conteudo' %}
-    <main>
-        <!-- INTRO -->
-        <div class="intro-section">
-            <div class="intro-video">
-                <video id="background-video" autoplay loop muted>
-                    <source src="{% static 'videos/background-home-video.mp4' %}" type="video/mp4">
-                    <source src="{% static 'videos/background-home-video.ogv' %}" type="video/ogg">
-                    <source src="{% static 'videos/background-home-video.webm' %}" type="video/webm">
-                    <source src="{% static 'videos/background-home-video.m4v' %}" type="video/mp4">
+            <!-- Background video -->
+            <div class="video-background-holder">
+                <div class="video-background-overlay"></div>
+                <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                    <source src="{% static 'videos/background.webm' %}" type="video/mp4">
                 </video>
-                <div class="content">
-                    <div class="intro-picture">
-                        <img src="{% static 'images/huawei-ict-logo-2.png' %}" alt="Logo da Huawei Academy">
+                <div class="video-background-content container h-100">
+                    <div class="d-flex h-100 text-center align-items-center">
+                        <div class="w-100 text-white">
+                            <h1 class="display-4">
+                                <img src="{% static 'img/huawei-ict-logo-2.png' %}" alt="Logo da Huawei Academy">
+                            </h1>
+                            <p class="lead mb-0">
+                                O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Huawei, multinacional chinesa de tecnologia, oferece cursos de certificação para o setor de Tecnologia da Informação e da Comunicação (TIC).
+                            </p>
+                            <a class=" btn-bg-video btn btn-success mt-5" href="{% url 'ict-academy' %}" role="button">Saiba mais</a>
+                            <a class=" btn-bg-video btn btn-success mt-5" href="#cursos" role="button">Cursos</a>
+                        </div>
                     </div>
-                    <p>
-                        O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Huawei, multinacional chinesa de tecnologia, oferece cursos de certificação para o setor de Tecnologia da Informação e da Comunicação (TIC).
-                    </p>
-                    <button style="border-radius: 7px;">
-                        <a href="/sobre_ict_academy" rel="external" target="_blank">Saiba Mais</a>
+                </div>
+            </div>
+            <!-- End -->
+
+            <!-- About project -->
+            <section class="px-auto my-4 py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 hidden-sm hidden-xs">
+                            <div class="project-picture"><br>
+                                <img src="{% static 'img/huawei-ict-logo-red-2.png' %}" alt="" class="img-responsive wow slideInLeft">
+                            </div> <!-- end picture -->
+                        </div> <!-- end col -->
+                        <div class="col-md-8">
+                            <h2>O Projeto</h2>
+                            <p>O IFRN tornou-se ICT Academy desde 2020 em parceria com a Huawei. O objetivo da parceria é solucionar um dos principais desafios do setor: o déficit de mão de obra qualificada. A parceria visa a capacitação dos alunos do IFRN e público externo.</p>
+                            <p>O exame de certificação da Huawei é um meio importante para testar as conquistas de aprendizado dos alunos, além de muito importante para melhorar a qualidade do desenvolvimento de talentos através da Huawei ICT Academy.</p>
+                            <p>Sendo assim, nosso principal objetivo com o projeto é oferecer treinamento on-line e presencial em tecnologias como <strong>Redes 5G, Inteligência Artificial, Cloud Service e Datacom.</strong></p>
+
+                            <hr class="invis">
+
+                            <h2>Ofertamos</h2>
+                            <ul>
+                                <li>Aulas online gratuítas</li>
+                                <li>Instrutores certificados</li>
+                                <li>Materiais oficiais da Huawei</li>
+                                <li>Aulas remotas</li>
+                                <li>Voucher para prova final</li>
+                                <li>Simulados e muito mais...</li>
+                            </ul>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+                </div> <!-- end container -->
+            </section>
+            <!-- End -->
+
+            <!-- Carousel section -->
+            <a name="cursos"></a>
+            <div class="carousel-section">
+                <div class="text-center">
+                    <h2>Cursos e Inscrições</h2>
+                    <p id="courses-outside-p">Conheça mais dos cursos oferecidos, professores ministrantes, bolsistas e o cronograma das aulas e datas de inscrições.</p>
+                </div>
+
+                <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active mb-3">
+                            <div class="section-cards d-flex">
+                                <div class="card card-responsive">
+                                    <img src="{% static 'img/cursos/cloud-service.png' %}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cloud Service</h5>
+                                        <p class="card-text">
+                                            As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. 
+                                            Nesse sentido, a computação...
+                                        </p>
+                                        <hr class="invis">
+                                        <div class="row-card d-flex">
+                                            <div class="icons">
+                                                <i class="fa-regular fa-clock color-icons"></i>
+                                                <span class="me-1">40H</span>
+                                                <i class="fa-solid fa-calendar-days color-icons"></i>
+                                                <span>Em breve</span>
+                                            </div>
+                                            <a href="{% url 'cloud-service' %}" class="btn btn-success">Saiba Mais</a>
+                                        </div> <!-- end card row -->
+                                    </div> <!-- end card body -->
+                                </div> <!-- end card -->
+                                
+                                <div class="card card-responsive">
+                                    <img src="{% static 'img/cursos/ai.png' %}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Inteligência Artificial</h5>
+                                        <p class="card-text">
+                                            A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar...
+                                        </p>
+                                        <hr class="invis">
+                                        <div class="row-card d-flex">
+                                            <div class="icons">
+                                                <i class="fa-regular fa-clock color-icons"></i>
+                                                <span class="me-1">45H</span>
+                                                <i class="fa-solid fa-calendar-days color-icons"></i>
+                                                <span>Em breve</span>
+                                            </div>
+                                            <a href="{% url 'artificial-intelligence' %}" class="btn btn-success">Saiba Mais</a>
+                                        </div> <!-- end card row -->
+                                    </div> <!-- end card body -->
+                                </div> <!-- end card -->
+    
+                                <div class="card card-responsive">
+                                    <img src="{% static 'img/cursos/datacom.png' %}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Datacom</h5>
+                                        <p class="card-text">
+                                            Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco...
+                                        </p>
+                                        <hr class="invis">
+                                        <div class="row-card d-flex">
+                                            <div class="icons">
+                                                <i class="fa-regular fa-clock color-icons"></i>
+                                                <span class="me-1">70H</span>
+                                                <i class="fa-solid fa-calendar-days color-icons"></i>
+                                                <span>Em breve</span>
+                                            </div>
+                                            <a href="{% url 'datacom' %}" class="btn btn-success">Saiba Mais</a>
+                                        </div> <!-- end card row -->
+                                    </div> <!-- end card body -->
+                                </div> <!-- end card -->
+                            </div> <!-- end section cards -->
+                        </div> <!-- end carousel item -->
+    
+                        <div class="carousel-item mb-3">
+                            <div class="section-cards d-flex">
+                                <div class="card card-responsive">
+                                    <img src="{% static 'img/cursos/5g.png' %}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Redes 5G</h5>
+                                        <p class="card-text">
+                                            A 5G, que hoje está em vias de ser implantada no Brasil, é a culminação de um longo...
+                                        </p>
+                                        <hr class="invis">
+                                        <div class="row-card d-flex">
+                                            <div class="icons">
+                                                <i class="fa-regular fa-clock color-icons"></i>
+                                                <span class="me-1">40H</span>
+                                                <i class="fa-solid fa-calendar-days color-icons"></i>
+                                                <span>Em breve</span>
+                                            </div>
+                                            <a href="{% url '5g-networks' %}" class="btn btn-success">Saiba Mais</a>
+                                        </div> <!-- end card row -->
+                                    </div> <!-- end card body -->
+                                </div> <!-- end card -->
+                                <div class="card card-responsive" style="opacity: 0;"></div> <!-- end card -->
+                                <div class="card card-responsive" style="opacity: 0;"></div> <!-- end card -->
+                            </div> <!-- end section cards -->
+                        </div> <!-- end carousel item -->
+                    </div> <!-- end section carousel items -->
+                    <button class="carousel-control-prev" style="width: 8%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
                     </button>
-                    <div class="span">
-                        <p><i class="fas fa-chevron-down"></i> Explore <i class="fas fa-chevron-down"></i></p>
-                    </div>
+                    <button class="carousel-control-next" style="width: 8%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
                 </div>
-            </div>
-        </div>
-        <!-- ABOUT THE PROJECT -->
-        <section class="project">
-            <div class="project-picture">
-                <img src="{% static 'images/huawei-ict-logo-red-2.png' %}" alt="Logo Huawei ICT Academy">
-            </div>
-            <div style="text-align: justify;" class="project-text">
-                <h1>O Projeto</h1>
-                <p>O IFRN tornou-se ICT Academy desde 2020 em parceria com a Huawei. O objetivo da parceria é solucionar um dos principais desafios do setor: o déficit de mão de obra qualificada. A parceria visa a capacitação dos alunos do IFRN e público externo.</p>
-                <p>O exame de certificação da Huawei é um meio importante para testar as conquistas de aprendizado dos alunos, além de muito importante para melhorar a qualidade do desenvolvimento de talentos através da Huawei ICT Academy.</p>
-                <p>Sendo assim, nosso principal objetivo com o projeto é oferecer treinamento on-line e presencial em tecnologias como Redes <strong>5G, IA, Cloud Service e Routing & Switching.</strong> </p>
-                <a href="/sobre_ict_academy">Saiba mais...</a>
-                <hr class="invis">
-                <div class="goals-lists">
-                    <h2><strong>O que ofertamos:</strong></h2>
-                    <ul>
-                        <li>• Aulas Gratuitas</li>
-                        <li>• Instrutores Certificados</li>
-                        <li>• Material Oficial Huawei</li>
-                        <li>• Aulas Remotas</li>
-                        <li>• Voucher para prova final</li>
-                        <li>• Simulados de prova</li>
-                    </ul><!-- end check -->
-                </div>
-                <!-- end col-lg-4 -->
-                <hr class="invis">
-                <!-- BUTTOM -->
-            </div>
-        </section>
-        <!-- COURSES SECTION -->
-        <section class="courses-section">
-            <h1>Cursos e Inscrições</h1>
-            <p id="courses-outside-p">Conheça mais dos cursos oferecidos, professores ministrantes, bolsistas e o cronograma das aulas e datas de inscrições.</p>
-            <div class="outside-container">
-                <div class="swiper mySwiper courses-container">
-                    <div class="swiper-wrapper container-content">
-                        <div class="swiper-slide card">
-                            <div class="card-content">
-                                <div class="image">
-                                    <a href="/cloud_service">
-                                    <img id="cs-img" src="{% static 'images/cloud-service-card.png' %}" alt="Cloud Service">
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <a href="/cloud_service" style="color: #000; text-decoration: none;">
-                                        <h6>Cloud Service</h6>
-                                    </a>
-                                    <p>As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. Nesse sentido, a computação...</p>
-                                </div>
-                                <div class="extra-content">
-                                    <div class="icons">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <span>40H</span>
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                        <span>Em breve</span>
-                                    </div>
-                                    <a href="/cloud_service"><button>Saiba Mais</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <div class="card-content">
-                                <div class="image">
-                                    <a href="/inteligencia_artificial">
-                                    <img src="{% static 'images/ai-card.png' %}" alt="Inteligência Artificial" id="ai-img">
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <a href="/inteligencia_artificial" style="color: #000; text-decoration: none;">
-                                        <h6>Inteligência Artificial</h6>
-                                    </a>
-                                    <p>A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar...</p>
-                                </div>
-                                <div class="extra-content">
-                                    <div class="icons">
-                                        <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                        <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                    </div>
-                                    <a href="/inteligencia_artificial"><button>Saiba Mais</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <div class="card-content">
-                                <div class="image">
-                                    <a href="/datacom">
-                                    <img src="{% static 'images/datacom-card.png' %}" alt="Datacom" id="datacom-img">
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <a href="/datacom" style="color: #000; text-decoration: none;">
-                                        <h6>Datacom</h6>
-                                    </a>
-                                    <p>Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco...</p>
-                                </div>
-                                <div class="extra-content">
-                                    <div class="icons">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <span>70H</span>
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                        <span>Em breve</span>
-                                    </div>
-                                    <a href="/datacom"><button>Saiba Mais</button></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide card">
-                            <div class="card-content">
-                                <div class="image">
-                                    <a href="/5g">
-                                    <img src="{% static 'images/5g-card.png' %}" alt="5G" id="5g-img">
-                                    </a>
-                                </div>
-                                <div class="text">
-                                    <a href="/5g" style="color: #000; text-decoration: none;">
-                                        <h6>5G</h6>
-                                    </a>
-                                    <p>A 5G, que hoje está em vias de ser implantada no Brasil, é a culminação de um longo...</p>
-                                </div>
-                                <div class="extra-content">
-                                    <div class="icons">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <span>40H</span>
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                        <span>Em breve</span>
-                                    </div>
-                                    <a href="/5g">
-                                    <button>Saiba Mais</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-            
-            <div class="alternate-cards">
-                <div class="two-cards-up">
-                    <div class="card one">
-                        <div class="card-content">
-                            <div class="image">
-                                <a href="/cloud_service">
-                                <img id="cs-img" src="{% static 'images/cloud-service-card.png' %}" alt="Cloud Service">
-                                </a>
-                            </div>
-                            <div class="text">
-                                <a href="/cloud_service" style="color: #000; text-decoration: none;">
-                                    <h6>Cloud Service</h6>
-                                </a>
-                                <p>As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. Nesse sentido, a computação...</p>
-                            </div>
-                            <div class="extra-content">
-                                <div class="icons">
-                                    <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                    <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                </div>
-                                <a href="/cloud_service"><button>Saiba Mais</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card two">
-                        <div class="card-content">
-                            <div class="image">
-                                <a href="/inteligencia_artificial">
-                                <img src="{% static 'images/ai-card.png' %}" alt="Inteligência Artificial" id="ai-img">
-                                </a>
-                            </div>
-                            <div class="text">
-                                <a href="/inteligencia_artificial" style="color: #000; text-decoration: none;">
-                                    <h6>Inteligência Artificial</h6>
-                                </a>
-                                <p>A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar...</p>
-                            </div>
-                            <div class="extra-content">
-                                <div class="icons">
-                                    <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                    <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                </div>
-                                <a href="/inteligencia_artificial"><button>Saiba Mais</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="two-cards-down">
-                    <div class="card three">
-                        <div class="card-content">
-                            <div class="image">
-                                <a href="/datacom"><img src="{% static 'images/datacom-card.png' %}" alt="Datacom" id="datacom-img"></a>
-                            </div>
-                            <div class="text">
-                                <a href="/datacom" style="color: #000; text-decoration: none;">
-                                    <h6>Datacom</h6>
-                                </a>
-                                <p>Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco...</p>
-                            </div>
-                            <div class="extra-content">
-                                <div class="icons">
-                                    <i class="fa-regular fa-clock"></i> <span>70H</span>
-                                    <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                </div>
-                                <a href="/datacom"><button>Saiba Mais</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card four">
-                        <div class="card-content">
-                            <div class="image">
-                                <a href="/5g"><img src="{% static 'images/5g-card.png' %}" alt="5G" id="5g-img"></a>
-                            </div>
-                            <div class="text">
-                                <a href="/5g" style="color: #000; text-decoration: none;">
-                                    <h6>5G</h6>
-                                </a>
-                                <p>A 5G, que hoje está em vias de ser implantada no Brasil, é a culminação de um longo...</p>
-                            </div>
-                            <div class="extra-content">
-                                <div class="icons">
-                                    <i class="fa-regular fa-clock"></i> <span>40H</span>
-                                    <i class="fa-solid fa-calendar-days"></i> <span>Em breve</span>
-                                </div>
-                                <a href="/5g"><button>Saiba Mais</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- COORDENATION SECTION -->
-        <section class="coordenation-section">
-            <h1>Coordenação</h1>
-            <div class="quadrado">
-                <div class="coordinators-div" style="text-align: center;">
-                    <div class="coordinators-div-img mb-3">
-                        <img src="{% static 'images/rodrigo-4.jpg' %}" alt="Foto do coordenador">
-                    </div>
-                    <h2>Coordenador Geral</h2>
-                    <h3>Rodrigo Tertulino</h3>
-                </div>
-                <div class="coordinators-div" style="text-align: center;">
-                    <div class="coordinators-div-img mb-3">
-                        <img src="{% static 'images/jefferson.jpg' %}" alt="Foto do vice-coordenador">
-                    </div>
-                    <h2>Vice-coordenador</h2>
-                    <h3>Jefferson Silva</h3>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-part-one">
-            <div class="footer-part-one-picture">
-                <img src="{% static 'images/23anos-2.png' %}" alt="Comeração de 23 anos da Huawei no Brasil">
-            </div>
-        </div>
-        <div class="footer-part-two">
-            <img src="{% static 'images/logo-ifrn-branco-3.png' %}" alt="Logo do IFRN">
-            <img src="{% static 'images/logo-huawei-2.png' %}" alt="Logo da Huawei">
-        </div>
-    </footer>
 
 
-      <!-- SWIPER JS -->
-      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+                <!-- Carousel section responsive -->
+                <div class="card-section">
+                    <div>
+                        <div class="card card-responsive">
+                            <img src="{% static 'img/cursos/cloud-service.png' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Cloud Service</h5>
+                                <p class="card-text">
+                                    As tecnologias e serviços de nuvem em todo o mundo tornaram-se uma tendência. 
+                                    Nesse sentido, a computação...
+                                </p>
+                                <hr class="invis">
+                                <div class="row-card d-flex">
+                                    <div class="icons">
+                                        <i class="fa-regular fa-clock color-icons"></i>
+                                        <span class="me-1">40H</span>
+                                        <i class="fa-solid fa-calendar-days color-icons"></i>
+                                        <span>Em breve</span>
+                                    </div>
+                                    <a href="{% url 'cloud-service' %}" class="btn btn-success">Saiba Mais</a>
+                                </div> <!-- end card row -->
+                            </div> <!-- end card body -->
+                        </div> <!-- end card -->
+                        
+                        <div class="card card-responsive">
+                            <img src="{% static 'img/cursos/ai.png' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Inteligência Artificial</h5>
+                                <p class="card-text">
+                                    A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar...
+                                </p>
+                                <hr class="invis">
+                                <div class="row-card d-flex">
+                                    <div class="icons">
+                                        <i class="fa-regular fa-clock color-icons"></i>
+                                        <span class="me-1">45H</span>
+                                        <i class="fa-solid fa-calendar-days color-icons"></i>
+                                        <span>Em breve</span>
+                                    </div>
+                                    <a href="{% url 'artificial-intelligence' %}" class="btn btn-success">Saiba Mais</a>
+                                </div> <!-- end card row -->
+                            </div> <!-- end card body -->
+                        </div> <!-- end card -->
+                    </div>
 
-      <!-- INITIALIZE SWIPER -->
-      <script>
-          var swiper = new Swiper(".mySwiper", {
-              slidesPerView: 3,
-              spaceBetween: 30,
-              slidesPerGroup: 3,
-              loop: true,
-              loopFillGroupWithBlank: true,
-              pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-              },
-              navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-              },
-          });
-      </script>
+                    <div>
+                        <div class="card card-responsive">
+                            <img src="{% static 'img/cursos/datacom.png' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Datacom</h5>
+                                <p class="card-text">
+                                    Obtenha as habilidades e conhecimentos necessários para a configuração e manutenção das redes de dados. O foco...
+                                </p>
+                                <hr class="invis">
+                                <div class="row-card d-flex">
+                                    <div class="icons">
+                                        <i class="fa-regular fa-clock color-icons"></i>
+                                        <span class="me-1">70H</span>
+                                        <i class="fa-solid fa-calendar-days color-icons"></i>
+                                        <span>Em breve</span>
+                                    </div>
+                                    <a href="{% url 'datacom' %}" class="btn btn-success">Saiba Mais</a>
+                                </div> <!-- end card row -->
+                            </div> <!-- end card body -->
+                        </div> <!-- end card -->
+        
+                        <div class="card card-responsive">
+                            <img src="{% static 'img/cursos/5g.png' %}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Redes 5G</h5>
+                                <p class="card-text">
+                                    A 5G, que hoje está em vias de ser implantada no Brasil, é a culminação de um longo...
+                                </p>
+                                <hr class="invis">
+                                <div class="row-card d-flex">
+                                    <div class="icons">
+                                        <i class="fa-regular fa-clock color-icons"></i>
+                                        <span class="me-1">40H</span>
+                                        <i class="fa-solid fa-calendar-days color-icons"></i>
+                                        <span>Em breve</span>
+                                    </div>
+                                    <a href="{% url '5g-networks' %}" class="btn btn-success">Saiba Mais</a>
+                                </div> <!-- end card row -->
+                            </div> <!-- end card body -->
+                        </div> <!-- end card -->
+                    </div>
+                </div>
+            </div>
+            <!-- End --> 
+
+            <!-- Cordenacao section -->
+            <section class="coordenation-section">
+                <h2 class="text-center">Coordenação</h2>
+                <div class="coordinators-div text-center">
+                    <div class="coordinators">
+                        <div class="coordinators-div-img mb-3">
+                            <img src="{% static 'img/coordenadores/rodrigo-4.jpg' %}" alt="Foto do coordenador">
+                        </div>
+                        <h3 class="fs-4">Coordenador Geral</h2>
+                        <h4 class="fs-5">Rodrigo Tertulino</h3>
+                    </div>
+                    <div class="coordinators">
+                        <div class="coordinators-div-img mb-3">
+                            <img src="{% static 'img/coordenadores/jefferson.jpg' %}" alt="Foto do vice-coordenador">
+                        </div>
+                        <h3 class="fs-4">Vice-coordenador</h2>
+                        <h4 class="fs-5">Jefferson Silva</h3>
+                    </div>
+                </div>
+            </section>
+            <!-- end -->
+
 {% endblock 'conteudo' %}

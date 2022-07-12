@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'ifrn_huawei.wsgi.application'
 DATABASES = {  
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'mysql',
+        'USER': 'root',
+        'PASSWORD': '123456789',
+        'HOST': '127.0.0.1',
         'PORT': '3306'
     }
 }
