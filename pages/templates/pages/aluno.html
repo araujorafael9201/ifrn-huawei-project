@@ -13,13 +13,13 @@
             <div class="col-md-4">
                 <div class="card">
                     {% if turma.inscricao.turma.nome_do_curso == 'Cloud Service' %}
-                        <img src="{% static 'images/cloud-service-card.png' %}" alt="" class="card-img-top">
+                        <img src="{% static 'img/cursos/cloud-service.png' %}" alt="" class="card-img-top">
                     {% elif turma.inscricao.turma.nome_do_curso == 'Inteligência Artificial' %}
-                        <img src="{% static 'images/ai-card.png' %}" alt="" class="card-img-top">
+                        <img src="{% static 'img/cursos/ai.png' %}" alt="" class="card-img-top">
                     {% elif turma.inscricao.turma.nome_do_curso == 'Datacom'%}
-                        <img src="{% static 'images/datacom-card.png' %}" alt="" class="card-img-top">
+                        <img src="{% static 'img/cursos/datacom.png' %}" alt="" class="card-img-top">
                     {% else %}
-                        <img src="{% static 'images/5g-card.png' %}" alt="" class="card-img-top">
+                        <img src="{% static 'img/cursos/5g.png' %}" alt="" class="card-img-top">
                     {% endif %}
                         <div class="card-body">
                         <h5 class="card-title">{{ turma.inscricao.turma.nome_do_curso }}</h5>

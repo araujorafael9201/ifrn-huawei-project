@@ -352,3 +352,6 @@ def notas(request):
 def docs(request, docname):
     # sei fazer n :(
     return
+
+def suporte(request):
+    return render(request, 'pages/suporte.html')

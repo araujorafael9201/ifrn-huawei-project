@@ -16,10 +16,15 @@
     </head>
 
     <body>
+        
         <header>
             {% include 'parciais/_nav.html' %}
         </header>
         
+        <div style="margin: 0 10%;">
+            {% include 'parciais/_messages.html' %}
+        </div>
+
         <main>
             {% block 'conteudo' %}{% endblock 'conteudo' %}
         </main>
