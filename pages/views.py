@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.validators import validate_email
 from .validador.valida_cpf import validar_cpf
-from django.conf import settings
+from django.contrib.auth.hashers import make_password, check_password
 
 
 from .models import Aluno, Inscricao, Turma, Professor, Nota
@@ -117,6 +117,9 @@ def cadastrar(request):
         celular = request.POST['celular']
         senha = request.POST['senha']
 
+        # SENHA
+        senha = make_password(senha)
+
         if int(genero) == 1:
             genero = 'M'
         else:
@@ -221,9 +224,12 @@ def logar(request):
         senha = request.POST['pwd']
 
         try:
-            aluno = Aluno.objects.all().filter(email=email, senha=senha)[0]
-            request.session['aluno_id'] = aluno.id
-            return redirect('/')
+            aluno = Aluno.objects.all().filter(email=email)[0]
+            if check_password(senha, aluno.senha):
+                request.session['aluno_id'] = aluno.id
+                return redirect('/')
+            else:
+                raise Exception
         except:
             messages.error(request, 'Email ou senha inválidos.')
             return redirect('/login')

@@ -20,7 +20,6 @@ class Aluno(models.Model):
     email = models.EmailField(default='desconhecido@email.com')
     celular = models.CharField(max_length=11)
 
-    # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
 
     def __str__(self):
