@@ -5,21 +5,3 @@ html, body {
 .card {
     margin-top: 10px;
 }
-
-/* .sidebar {
-    position: absolute;
-    width: 15%;
-    height: 80%;
-    top: 20%;
-    left: -15%;
-    background-color: grey;
-    transition: 0.3s;
-    padding: 10px;
-    border-radius: 2px;
-    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.39);
-}
-
-.content {   
-    height: 100vh;
-    background-color: lightgray;
-} */

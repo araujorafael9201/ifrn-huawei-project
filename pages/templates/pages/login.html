@@ -9,7 +9,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 {% block 'conteudo' %}
 <div class="container-fluid h-100 d-flex align-items-center justify-content-center" style="margin: 5% 0;">
     <div class="flex-column d-flex justify-content-center align-items-center">
-      <img src="{% static '/images/huawei-ict-logo-red.png' %}" class="img-fluid mb-2" width="250" height="250" alt="">
+      <img src="{% static '/img/huawei-ict-logo-red-2.png' %}" class="img-fluid mb-2" width="250" height="250" alt="">
 
       <form action="/logar/" method='POST' class=>
         {% csrf_token %}
@@ -25,7 +25,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="">
-              <img src="{% static '/images/key.svg' %}" alt="">
+              <img src="{% static '/img/icons/key.svg' %}" alt="">
             </span>
           </div>
           <input type="password" class="form-control" id="pwd" name='pwd' placeholder="Senha">

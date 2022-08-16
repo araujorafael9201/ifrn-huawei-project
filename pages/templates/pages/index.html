@@ -66,11 +66,7 @@
                     <p id="courses-outside-p">Conheça mais dos cursos oferecidos, professores ministrantes, bolsistas e o cronograma das aulas e datas de inscrições.</p>
                 </div>
 
-                <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="true">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    </div>
+                <div id="carouselCursos" class="carousel carousel-dark slide">
                     <div class="carousel-inner">
                         <div class="carousel-item active mb-3">
                             <div class="section-cards d-flex">
@@ -163,14 +159,22 @@
                             </div> <!-- end section cards -->
                         </div> <!-- end carousel item -->
                     </div> <!-- end section carousel items -->
-                    <button class="carousel-control-prev" style="width: 8%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <a class="carousel-control-prev" href="#carouselCursos" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselCursos" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                      </a>
+                    <!-- <button class="carousel-control-prev" style="width: 8%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Anterior</span>
                     </button>
                     <button class="carousel-control-next" style="width: 8%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Próximo</span>
-                    </button>
+                    </button> -->
                 </div>
 
 
