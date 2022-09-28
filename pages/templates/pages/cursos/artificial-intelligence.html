@@ -1,69 +1,154 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block 'estilos' %}
+<link rel="stylesheet" href="{% static 'css/cursos.css' %}">
+{% endblock 'estilos' %}
 {% block 'titulo' %}Curso de Inteligência Artificial | Huawei - IFRN{% endblock 'titulo' %}
 
 {% block 'conteudo' %}
-<section class="mb-5">
-    <div class="py-5 curso-title">
-        <h2 class="text-center">Inteligência Artificial</h2>
-    </div>
-    <div class="secao-cursos mt-5">
-      <!-- Informações do curso -->
-      <div class="d-flex">
-        <div class="me-4">
-            <img src="{% static 'img/cursos/ai.png' %}" alt="Banner de Inteligência Artificial" width="500" height="300">
-        </div>
-
-        <div class="">
-            <h3 class="fs-4">Huawei ICT Academy HCIA - Inteligência Artificial</h3>
-            <div class="d-flex info-cursos mb-3">
-                <h5 class="me-3 insc-finalizada">Inscrições Finalizadas</h4>
-                <h5 class="me-3 turma-vaga">TURMA: 000</h5>
-                <h5 class="turma-vaga">VAGAS: 000</h5>
-            </div>
-            <p style="text-align: justify;">
-              A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar algoritmos de aprendizagem profunda (Deep Learning) e dominar as tecnologias de produtos relacionadas à IA da Huawei.
-            </p>
-            <p class="info-certification">* Verique as datas de inscrição</p>
-            <button type="button" class="btn btn-danger" disabled>FINALIZADO</button>
-        </div>
-    </div>
-      
-      <!-- Informações extras-->
-      <div class="course-extra-info">
-        <div class="course-extra-info-titles">
-          <h4 class="titles me-5 act-ive" id="title-01">Descrição</h4>
-          <h4 class="titles me-5" id="title-02">Informações adicionais</h4>
-          <h4 class="titles" id="title-03">Resultados</h4>
-        </div>
-
-        <div class="section-01"></div>
-
-        <div class="section-02"></div>
-
-        <div class="section-03"></div>
-      </div>
-
-      <!-- Seção de Professores e Bolsistas -->
-      <div class="prof-sections">
-        <h3 class="fs-4">Professores e Bolsistas</h3>
-        <hr class="invis">
-        <div class="card" aria-hidden="true">
-          <div class="card-body">
-            <h5 class="card-title placeholder-glow">
-              <span class="placeholder col-6"></span>
-            </h5>
-            <p class="card-text placeholder-glow">
-              <span class="placeholder col-7"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-6"></span>
-              <span class="placeholder col-8"></span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+<section class="page-title">
+  <h1>Inteligência Artificial</h1>
 </section>
-<script src=" {% static 'javascript/courses.js' %}"></script>
+
+<section class="course">
+  <!-- COURSE PRESENTATION -->
+  <div class="course-presentation">
+    <div class="course-photo">
+      <img src="{% static 'img/cursos/ai.png' %}" alt="Foto do Inteligência Artificial">
+    </div>
+
+    <div align="justify" class="course-desc">
+      <h3>Huawei ICT Academy HCIA - Inteligência Artificial</h3>
+      <ul class="course-sub-infos">
+        <h4 class="margin-needed" id="subscritions-status">Em breve*</h4>
+        <h5 class="margin-needed">TURMA: 000-000</h5>
+        <h5>VAGAS: 000</h5>
+      </ul>
+      <p>A certificação HCIA-IA destina-se a profissionais que precisam dominar as tecnologias de IA, aprender e usar
+        algoritmos de aprendizagem profunda (Deep Learning) e dominar as tecnologias de produtos relacionadas à IA da
+        Huawei.</p>
+      <h6>*Verificar datas de inscrição</h6>
+      <a role="link" aria-disabled="true" class="disabled-link"><button>INSCREVA-SE</button></a>
+      <a role="link" aria-disabled="true" class="disabled-link"><button>EDITAL</button></a>
+      <a role="link" aria-disabled="true" href="{% url 'suporte' %}"><button>CURSOS COMPLEMENTARES</button></a>
+    </div>
+  </div>
+
+  <!-- EXTRA INFOS -->
+  <div align="justify" class="course-extra-info">
+    <div class="course-extra-info-titles">
+      <h4 class="titles margin act-ive" id="title-01">O que você vai aprender no curso</h4>
+      <h4 class="titles margin" id="title-02">O HCIA-5 G exame cobre</h4>
+      <h4 class="titles margin" id="title-03">Informação adicional</h4>
+      <h4 class="titles margin" id="title-04">Resultados</h4>
+    </div>
+
+    <div align="justify" class="section-01">
+      <p>As tecnologias de IA de ponta e tendências de desenvolvimento, a estratégia de IA de todos os cenários de pilha
+        completa, os algoritmos e práticas de desenvolvimento relacionadas ao aprendizado de máquina tradicional,
+        aprendizagem profunda (Deep Learning) e estruturas de desenvolvimento.</p>
+    </div>
+
+    <div align="justify" class="section-02">
+      <p>Engenheiros que precisam dominar as tecnologias de IA, aprender e usar algoritmos de aprendizagem profunda
+        (Deep Learning) e dominar as tecnologias de produtos relacionadas à IA da Huawei.</p>
+
+      <ul>
+        <li>AI Overview</li>
+        <li>Machine Learning Overview</li>
+        <li>Deep Learning Overview</li>
+        <li>Mainstream Development Frameworks for AI</li>
+        <li>Huawei AI Development Framework MindSpore</li>
+        <li>Huawei AI Development Framework MindSpore</li>
+        <li>Huawei Open AI Platform for Smart Devices</li>
+        <li>HUAWEI CLOUD Enterprise Intelligence Application Platform</li>
+        <li>Comprehensive AI Experiment</li>
+      </ul>
+
+      <a href="pdfs/hcia-ai-v3.0-exam-outline.pdf" target="download" download="HCIA-AI V3.0 Exam Outline.pdf">Download:
+        HCIA-AI V3.0 Exam Outline.pdf</a>
+
+      <h5 class="titles-inside-course-extra-info">O que são Vouchers:</h5>
+      <p class="titles-inside-course-extra-info-p">Os alunos que se destacarem no curso terão direito a vouchers para
+        realização das provas de certificação com a HUAWEI. Em média, essa prova de certificação custa entre $200,00
+        (duzentos dólares). Com o credenciamento do IFRN como ICT Academy, o curso de capacitação será gratuito a
+        estudantes e profissionais no estado do Rio Grande do Norte tendo, como requisito mínimo, o nível médio completo
+        e participação do treinamento através do ICT Academy - IFRN.</p>
+    </div>
+
+    <div align="justify" class="section-03">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="darkness"><strong>Modalidade</strong></td>
+            <td class="lightness">100% Online</td>
+          </tr>
+          <tr>
+            <td class="darkness"><strong>Carga Horária</strong></td>
+            <td class="lightness">40hs</td>
+          </tr>
+          <tr>
+            <td class="darkness"><strong>Turno</strong></td>
+            <td class="lightness">Noturno</td>
+          </tr>
+          <tr>
+            <td class="darkness"><strong>Horários</strong></td>
+            <td class="lightness">Web conferencia (via Microsoft Teams) das 20:00 às 22:00 (presença online obrigatória)
+            </td>
+          </tr>
+          <tr>
+            <td class="darkness"><strong>Pré-Requisitos</strong></td>
+            <td class="lightness">Inglês básico para leitura e Conhecimento prévio em programação (não obrigatório)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>*Todos os instrutores possuem certificação HCIA e HCAI conforme pode ser consultado no <a
+          href="instrutores">link</a>.</p>
+    </div>
+
+    <div align="justify" class="section-04">
+      <div class="results-div">
+        <a role="link" aria-disabled="true" class="btn btn-primary">
+            Lista de
+            Resultados
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructors">
+    <h4 class="presenting-professors">Professores e Bolsistas</h4>
+    <hr>
+    <p id="no-one-here">Este curso ainda não tem instrutores definidos</p>
+    <!--<ul class="professors">
+                        <li class="professor">
+                            <img src="#" alt="">
+                            <h5 class="professor-name">Nome do professor</h5>
+                            <h6 class="professor-info">Descrição do professor</h6>
+                        </li>
+                        <li class="professor">
+                            <img src="#" alt="">
+                            <h5 class="professor-name">Nome do professor</h5>
+                            <h6 class="professor-info">Descrição do professor</h6>
+                        </li>
+                        <li class="professor">
+                            <img src="#" alt="">
+                            <h5 class="professor-name">Nome do professor</h5>
+                            <h6 class="professor-info">Descrição do professor</h6>
+                        </li>
+                        <li class="professor">
+                            <img src="#" alt="">
+                            <h5 class="professor-name">Nome do professor</h5>
+                            <h6 class="professor-info">Descrição do professor</h6>
+                        </li>
+                        <li class="professor">
+                            <img src="#" alt="">
+                            <h5 class="professor-name">Nome do professor</h5>
+                            <h6 class="professor-info">Descrição do professor</h6>
+                        </li>
+                    </ul>-->
+</section>
+
+<script src="{% static 'javascript/courses.js' %}"></script>
 {% endblock 'conteudo' %}
