@@ -6,7 +6,7 @@
 <div class="container">
     <h1 class="mt-2">{{professor.nome}} - {{turma.nome_do_curso}}</h1>
     <div class="row mt-2">
-        <div class="col">
+        <div class="col mb-3">
             <div class="card">
                 <div class="card-header">
                     Inscrições Pendentes
@@ -21,19 +21,19 @@
                                 <th>Aprovado</th>
                             </tr>
                             {% for insc in pendentes %}
-                                <tr>
-                                    <td>{{insc.aluno.nome}}</td>
-                                    <td>
-                                         <!--Não funciona o doc :(-->
-                                        <a href="/docs/{{insc.documento}}" target="_blank">Clique Aqui</a>
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="{{insc.id}}">
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{insc.aluno.nome}}</td>
+                                <td>
+                                    <!--Não funciona o doc :(-->
+                                    <a href="/docs/{{insc.documento}}" target="_blank">Clique Aqui</a>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="{{insc.id}}">
+                                </td>
+                            </tr>
                             {% endfor %}
                         </table>
-                        
+
                         <input type="hidden" name="turma_id" value="{{turma.id}}">
                         <input class="btn btn-success" type="submit" value="Confirmar">
                     </form>
@@ -53,26 +53,69 @@
                                 <th>Nota</th>
                                 <th>Faltas</th>
                             </tr>
-                                {% csrf_token %}
+                            {% csrf_token %}
                             {% for insc in aprovados %}
-                                <tr>
-                                    <td>{{insc.inscricao.aluno.nome}}</td>
-                                    {% if insc.nota %}
-                                        <td>{{insc.nota.valor}}</td>
-                                    {% else %}
-                                    <td>
-                                        <input type="number" name="{{insc.inscricao.aluno.id}}" min=0 max=100>
-                                        </td>
-                                    {% endif %}
+                            <tr>
+                                <td>{{insc.inscricao.aluno.nome}}</td>
+                                {% if insc.nota %}
+                                <td>{{insc.nota.valor}}</td>
+                                {% else %}
+                                <td>
+                                    <input type="number" name="{{insc.inscricao.aluno.id}}" min=0 max=100>
+                                </td>
+                                {% endif %}
 
-                                    <td>qtd. de faltas</td>
-                                </tr>
+                                <td>
+                                    {{insc.faltas}}
+                                </td>
+                            </tr>
                             {% endfor %}
                         </table>
                         {% if notas_faltando %}
-                            <input type="hidden" name="idprof" value="{{professor.id}}">
-                            <input class="btn btn-success" type="submit" value="Cadastrar Notas">
+                        <input type="hidden" name="idprof" value="{{professor.id}}">
+                        <input class="btn btn-success" type="submit" value="Cadastrar Notas">
                         {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2 mb-3">
+        <div class="col">
+
+            <div class="card">
+                <div class="card-header">Cadastrar Aula</div>
+
+                <div class="card-body">
+                    <form action="/aula/" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-4">
+                                <input type="text" name="description" placeholder="Descrição da Aula">
+                                <input type="datetime-local" name="date" placeholder="Data">
+                                <input type="hidden" name="turma" value="{{turma.id}}">
+                            </div>
+                            <div class="col-4">
+                                <ul>
+                                    {% for insc in aprovados %}
+                                    <table>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Faltou</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{insc.inscricao.aluno.nome}}</td>
+                                            <td><input type="checkbox" name="{{insc.inscricao.aluno.id}}"></td>
+                                        </tr>
+                                    </table>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-4">
+                                <input type="submit" value="Cadastrar Aula">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

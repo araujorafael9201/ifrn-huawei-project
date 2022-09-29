@@ -41,5 +41,6 @@ urlpatterns = [
     path('aluno/', views.aluno, name='alunoinfo'),
     path('turmainfo/<int:id>', views.turmainfo, name='turmainfo'),
     path('notas/', views.notas, name='notas'),
-    path('matricula/', views.matricula, name='matrícula')
+    path('matricula/', views.matricula, name='matrícula'),
+    path('aula/', views.aula, name='aula')
 ]

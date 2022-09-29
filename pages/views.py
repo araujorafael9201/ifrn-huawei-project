@@ -7,7 +7,7 @@ from .validador.valida_cpf import validar_cpf
 from django.contrib.auth.hashers import make_password, check_password
 
 
-from .models import Aluno, Inscricao, Turma, Professor, Nota
+from .models import Aluno, Inscricao, Turma, Professor, Nota, Falta, Aula
 
 
 def index(request):
@@ -84,10 +84,16 @@ def inscrever(request):
 
         aluno = Aluno.objects.get(pk=request.session['aluno_id'])
 
-        inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
-        inscricao.save()
+        insc_check = Inscricao.objects.get(turma=curso, aluno=aluno)
 
-        messages.success(request, 'Inscrição realizada com sucesso!')
+        if not insc_check:
+            inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
+            inscricao.save()
+
+            messages.success(request, 'Inscrição realizada com sucesso!')
+        else:
+            messages.error(request, 'Você já realizou sua inscrição nesse curso!')
+
         return redirect('index')
 
 def desinscrever(request):
@@ -283,12 +289,23 @@ def professor(request):
         for i in inscricoes:
             if i.aprovada:
                 n = Nota.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
+                faltas = Falta.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
                 if n:
-                    aluno_final = {'inscricao': i, 'nota': n[0]}
-                    aprovados.append(aluno_final)
+                    if faltas:
+                        aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': faltas[0].quantidade}
+                        aprovados.append(aluno_final)
+                    else:
+                        aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': 0}
+                        aprovados.append(aluno_final)
+
                 else:
-                    notas_faltando = True
-                    aprovados.append({'inscricao': i, 'nota': None})
+                    if faltas:
+                        notas_faltando = True
+                        aprovados.append({'inscricao': i, 'nota': None, 'faltas': faltas[0].quantidade})
+                    else:
+                        notas_faltando = True
+                        aprovados.append({'inscricao': i, 'nota': None, 'faltas': 0})
+
             else:
                 pendentes.append(i)
 
@@ -303,11 +320,19 @@ def aluno(request):
     info = []
 
     for i in inscricoes:
-        nota = Nota.objects.filter(aluno=request.session['aluno_id'], turma = i.turma)
+        nota = Nota.objects.filter(aluno=request.session['aluno_id'], turma=i.turma).first()
+        faltas = Falta.objects.filter(aluno=request.session['aluno_id'], turma=i.turma).first()
         if nota:
-            info.append({'inscricao': i, 'nota': nota[0]})
+            if faltas:
+                info.append({'inscricao': i, 'nota': nota, 'faltas': faltas.quantidade})
+            else:
+                info.append({'inscricao': i, 'nota': nota})
+                
         else:
-            info.append({'inscricao': i})
+            if faltas:
+                info.append({'inscricao': i, 'faltas': faltas.quantidade})
+            else:
+                info.append({'inscricao': i})
 
     try:
         return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id'], 'info': info})
@@ -354,6 +379,39 @@ def notas(request):
 
         messages.success(request, 'Notas Adicionadas com Sucesso!')
         return redirect('professor')
+
+def aula(request):
+    if request.method=='POST':
+
+        try:
+        # Cadastrar aula
+            turma = Turma.objects.get(id=request.POST['turma'])
+            aula = Aula(turma=turma, data=request.POST['date'], desc=request.POST['description'])
+
+            aula.save()
+        # Cadastrar faltas
+            faltas = []
+            for i in request.POST:
+                if i not in ['csrfmiddlewaretoken', 'turma', 'date', 'description']:
+                    faltas.append(i)
+
+
+            for f in faltas:
+                aluno = Aluno.objects.get(id=f)
+                try:
+                    falta = Falta.objects.get(aluno=aluno, turma=turma)
+                    falta.quantidade += 1
+                    falta.save()
+                except:
+                    falta = Falta(aluno=aluno, turma=turma, quantidade=1)
+                    falta.save()
+
+        except ValueError:
+            messages.error(request, 'Houve um erro ao cadastrar a aula.')
+        
+        
+        return redirect('professor')
+
 
 def docs(request, docname):
     # sei fazer n :(

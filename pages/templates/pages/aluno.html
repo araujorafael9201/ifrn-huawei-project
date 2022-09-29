@@ -10,44 +10,51 @@
     <h1 class="mt-2">Minhas Turmas</h1>
     <div class="row mt-2">
         {% for turma in info %}
-            <div class="col-md-4">
-                <div class="card">
-                    {% if turma.inscricao.turma.nome_do_curso == 'Cloud Service' %}
-                        <img src="{% static 'img/cursos/cloud-service.png' %}" alt="" class="card-img-top">
-                    {% elif turma.inscricao.turma.nome_do_curso == 'Inteligência Artificial' %}
-                        <img src="{% static 'img/cursos/ai.png' %}" alt="" class="card-img-top">
-                    {% elif turma.inscricao.turma.nome_do_curso == 'Datacom'%}
-                        <img src="{% static 'img/cursos/datacom.png' %}" alt="" class="card-img-top">
-                    {% else %}
-                        <img src="{% static 'img/cursos/5g.png' %}" alt="" class="card-img-top">
-                    {% endif %}
-                        <div class="card-body">
-                        <h5 class="card-title">{{ turma.inscricao.turma.nome_do_curso }}</h5>
-                        <div class="d-flex flex-direction-row justify-content-center align-items-center mt-2">
-                            {% if turma.inscricao.aprovada %}
-                                <div class="w-100 d-flex justify-content-left">
-                                    <a class="btn btn-primary" href="/turmainfo/{{turma.inscricao.turma.id}}">Informações</a>
-                                </div>
-                                <div class="w-100 d-flex justify-content-left align-items-center flex-direction-row">
-                                    {% if turma.nota %}
-                                    <p class="mb-0"><strong>Nota: </strong>{{turma.nota.valor}}</p>
-                                    {% else %}
-                                    <p class="text-muted mb-0">Nota Final não cadastrada</p>
-        
-                                    {% endif %}
-                                </div>
-                            {% else %}
-                                <h6 class="card-subtitle mb-2 text-muted">Inscrição em Análise...</h6>
-                                <form action="/desinscrever/" class="mt-3" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="inscricao" value="{{turma.inscricao.id}}">
-                                    <input type="submit" class="btn btn-danger" value="Cancelar Inscrição"/>
-                                </form>
-                                {% endif %}
+        <div class="col-md-4">
+            <div class="card">
+                {% if turma.inscricao.turma.nome_do_curso == 'Cloud Service' %}
+                <img src="{% static 'img/cursos/cloud-service.png' %}" alt="" class="card-img-top">
+                {% elif turma.inscricao.turma.nome_do_curso == 'Inteligência Artificial' %}
+                <img src="{% static 'img/cursos/ai.png' %}" alt="" class="card-img-top">
+                {% elif turma.inscricao.turma.nome_do_curso == 'Datacom'%}
+                <img src="{% static 'img/cursos/datacom.png' %}" alt="" class="card-img-top">
+                {% else %}
+                <img src="{% static 'img/cursos/5g.png' %}" alt="" class="card-img-top">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ turma.inscricao.turma.nome_do_curso }}</h5>
+                    <div class="d-flex flex-direction-row justify-content-around align-items-center mt-2">
+                        {% if turma.inscricao.aprovada %}
+                        <div class="w-100 d-flex justify-content-left">
+                            <a class="btn btn-primary" href="/turmainfo/{{turma.inscricao.turma.id}}">Informações</a>
                         </div>
+                        <div class="w-100 d-flex justify-content-center align-items-center flex-column">
+                            {% if turma.nota %}
+                            <p class="mb-0"><strong>Nota: </strong>{{turma.nota.valor}}</p>
+                            {% else %}
+                            <p class="text-muted mb-0">Nota Final não cadastrada</p>
+                            {% endif %}
+
+                            {% if turma.faltas %}
+                            <p class="mb-0"><strong>Faltas: </strong>{{turma.faltas}}</p>
+                            {% else %}
+                            <p class="mb-0"><strong>Faltas: </strong>0</p>
+                            {% endif %}
+
+                            
+                        </div>
+                        {% else %}
+                        <h6 class="text-muted mb-0">Inscrição em Análise...</h6>
+                        <form action="/desinscrever/" class="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="inscricao" value="{{turma.inscricao.id}}">
+                            <input type="submit" class="btn btn-danger" value="Cancelar Inscrição" />
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>

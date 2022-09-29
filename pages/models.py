@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 import os
 
@@ -30,7 +31,6 @@ class Professor(models.Model):
     email = models.EmailField()
     turma = models.ForeignKey(Turma, on_delete=models.SET_NULL, null=True)
 
-    # Senha ainda está como texto simples
     senha = models.CharField(max_length=255)
     
     def __str__(self):
@@ -51,3 +51,14 @@ class Nota(models.Model):
     valor = models.IntegerField(default=6)
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+
+class Falta(models.Model):
+    quantidade = models.IntegerField(default=0)
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+
+class Aula(models.Model):
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
+    data = models.DateTimeField()
+    desc = models.TextField(max_length=255)
+    
