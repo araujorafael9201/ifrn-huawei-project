@@ -84,7 +84,7 @@ def inscrever(request):
 
         aluno = Aluno.objects.get(pk=request.session['aluno_id'])
 
-        insc_check = Inscricao.objects.get(turma=curso, aluno=aluno)
+        insc_check = Inscricao.objects.all().filter(turma=curso, aluno=aluno)
 
         if not insc_check:
             inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
@@ -278,41 +278,54 @@ def professor_logar(request):
 
 def professor(request):
     try:
-        prof = Professor.objects.select_related('turma').get(pk=request.session['prof_id'])
-        turma = prof.turma
+        prof = Professor.objects.get(pk=request.session['prof_id'])
+        turmas = Turma.objects.all().filter(professor=prof)
 
-        inscricoes = Inscricao.objects.select_related('aluno').all().filter(turma=turma)
+        print(turmas)
+        return render(request, 'pages/profinicio.html', {'turmas':turmas})
 
-        aprovados, pendentes = [], []
-
-        notas_faltando = False
-        for i in inscricoes:
-            if i.aprovada:
-                n = Nota.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
-                faltas = Falta.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
-                if n:
-                    if faltas:
-                        aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': faltas[0].quantidade}
-                        aprovados.append(aluno_final)
-                    else:
-                        aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': 0}
-                        aprovados.append(aluno_final)
-
-                else:
-                    if faltas:
-                        notas_faltando = True
-                        aprovados.append({'inscricao': i, 'nota': None, 'faltas': faltas[0].quantidade})
-                    else:
-                        notas_faltando = True
-                        aprovados.append({'inscricao': i, 'nota': None, 'faltas': 0})
-
-            else:
-                pendentes.append(i)
-
-        return render(request, 'pages/professor.html', {'aprovados': aprovados, 'pendentes': pendentes, 'turma': turma, 'professor': prof, 'notas': notas, 'notas_faltando': notas_faltando})
     except KeyError:
         messages.error(request, 'Por favor, Faça Login!')
         return redirect('/proflogin')
+
+def professorturma(request, turmaid):
+        inscricoes = Inscricao.objects.select_related('aluno').all().filter(turma=turmaid)
+        turma = Turma.objects.select_related('professor').get(id=turmaid)
+        prof = Professor.objects.get(pk=request.session['prof_id'])
+
+        if turma.professor.id != request.session['prof_id']:
+            messages.error(request, 'Você não tem permissão para acessar esta página!')
+            return render(request, 'pages/index.html')
+
+        else:
+
+            aprovados, pendentes = [], []
+
+            notas_faltando = False
+            for i in inscricoes:
+                if i.aprovada:
+                    n = Nota.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
+                    faltas = Falta.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
+                    if n:
+                        if faltas:
+                            aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': faltas[0].quantidade}
+                            aprovados.append(aluno_final)
+                        else:
+                            aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': 0}
+                            aprovados.append(aluno_final)
+
+                    else:
+                        if faltas:
+                            notas_faltando = True
+                            aprovados.append({'inscricao': i, 'nota': None, 'faltas': faltas[0].quantidade})
+                        else:
+                            notas_faltando = True
+                            aprovados.append({'inscricao': i, 'nota': None, 'faltas': 0})
+
+                else:
+                    pendentes.append(i)
+
+            return render(request, 'pages/professor.html', {'aprovados': aprovados, 'pendentes': pendentes, 'turma': turma, 'professor': prof, 'notas': notas, 'notas_faltando': notas_faltando})
 
 def aluno(request):
     inscricoes = Inscricao.objects.all().filter(aluno=request.session['aluno_id'])
@@ -364,11 +377,11 @@ def matricula(request):
                 insc.aprovada = True
                 insc.save()         
 
-        return redirect('/professor')
+        return redirect(f'/professor/{request.POST["turma_id"]}')
 
-def notas(request):
+def notas(request, turmaid):
     if request.method=='POST':
-        turma = Professor.objects.select_related('turma').get(pk=request.POST['idprof']).turma
+        turma = Turma.objects.get(id=turmaid)
         alunos = [a for a in request.POST if a not in ['csrfmiddlewaretoken', 'idprof']]
 
         for aluno in alunos:
@@ -378,7 +391,7 @@ def notas(request):
                 nota.save()
 
         messages.success(request, 'Notas Adicionadas com Sucesso!')
-        return redirect('professor')
+        return redirect(f'/professor/{turmaid}')
 
 def aula(request):
     if request.method=='POST':
@@ -410,7 +423,7 @@ def aula(request):
             messages.error(request, 'Houve um erro ao cadastrar a aula.')
         
         
-        return redirect('professor')
+        return redirect(f'/professor/{request.POST["turma"]}')
 
 
 def docs(request, docname):

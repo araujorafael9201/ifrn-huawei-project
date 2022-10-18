@@ -1,12 +1,6 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
 import os
 
-class Turma(models.Model):
-    nome_do_curso = models.CharField(max_length=255, default='Curso')
-    
-    def __str__(self):
-        return self.nome_do_curso
 
 class Aluno(models.Model):
     cpf = models.CharField(max_length=14)
@@ -29,13 +23,20 @@ class Aluno(models.Model):
 class Professor(models.Model):
     nome = models.CharField(max_length=255)
     email = models.EmailField()
-    turma = models.ForeignKey(Turma, on_delete=models.SET_NULL, null=True)
+    # turma = models.ForeignKey(Turma, on_delete=models.SET_NULL, null=True)
 
     senha = models.CharField(max_length=255)
     
     def __str__(self):
         return self.nome
 
+
+class Turma(models.Model):
+    nome_do_curso = models.CharField(max_length=255, default='Curso')
+    professor = models.ForeignKey(Professor, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.nome_do_curso
 
 def caminho_documento(instance, filename):
     nome, extensao = os.path.splitext(filename)

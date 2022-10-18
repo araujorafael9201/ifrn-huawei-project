@@ -35,12 +35,13 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logar/', views.logar, name='logar'),
     path('deslogar/', views.deslogar, name='deslogar'),
+    path('professor/<int:turmaid>/', views.professorturma, name='professorturma'),
     path('professor/', views.professor, name='professor'),
     path('proflogin/', views.professor_login, name='proflogin'),
     path('proflogar/', views.professor_logar, name='proflogar'),
     path('aluno/', views.aluno, name='alunoinfo'),
-    path('turmainfo/<int:id>', views.turmainfo, name='turmainfo'),
-    path('notas/', views.notas, name='notas'),
+    path('turmainfo/<int:id>/', views.turmainfo, name='turmainfo'),
+    path('notas/<int:turmaid>/', views.notas, name='notas'),
     path('matricula/', views.matricula, name='matrícula'),
     path('aula/', views.aula, name='aula')
 ]

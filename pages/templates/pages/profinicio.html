@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'titulo' %}Página do Professor - IFRN Huawei{% endblock 'titulo' %}
+
+{% block 'conteudo' %}
+<div class="container">
+    <div class="row"> 
+        {% for t in turmas %}
+        <div class="card col-sm-4 mt-3 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ t.nome_do_curso }}
+                </h5>
+                <a href="/professor/{{t.id}}">Acessar Turma</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock 'conteudo' %}
