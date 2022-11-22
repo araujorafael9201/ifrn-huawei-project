@@ -3,19 +3,10 @@ import os
 
 
 class Aluno(models.Model):
-    cpf = models.CharField(max_length=14)
+    username = models.CharField(max_length=255, default="")
     nome = models.CharField(max_length=255)
-    genero = models.CharField(max_length=9)
-    formacao = models.CharField(max_length=255)
-    nascimento = models.DateField()
-    aluno_ifrn = models.BooleanField()
-    servidor_ifrn = models.BooleanField()
-    instituicao_de_ensino = models.CharField(max_length=255, default=' ')
-
-    email = models.EmailField(default='desconhecido@email.com')
-    celular = models.CharField(max_length=11)
-
-    senha = models.CharField(max_length=255)
+    sobrenome = models.CharField(max_length=255, default="")
+    data_inscricao = models.DateField(null=True)
 
     def __str__(self):
         return self.nome
@@ -45,8 +36,6 @@ def caminho_documento(instance, filename):
 class Inscricao(models.Model):
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
-    aprovada = models.BooleanField(default=False)
-    documento = models.FileField(upload_to=caminho_documento)
 
 class Nota(models.Model):
     valor = models.IntegerField(default=6)

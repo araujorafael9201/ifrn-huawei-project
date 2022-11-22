@@ -5,45 +5,17 @@
 {% block 'conteudo' %}
 <div class="container">
     <h1 class="mt-2">{{professor.nome}} - {{turma.nome_do_curso}}</h1>
-    <div class="row mt-2">
-        <div class="col mb-3">
-            <div class="card">
-                <div class="card-header">
-                    Inscrições Pendentes
-                </div>
-                <div class="card-body">
-                    <form action="/matricula/" method="POST">
-                        {% csrf_token %}
-                        <table class="table">
-                            <tr>
-                                <th>Nome</th>
-                                <th>Comprovante de Conhecimento</th>
-                                <th>Aprovado</th>
-                            </tr>
-                            {% for insc in pendentes %}
-                            <tr>
-                                <td>{{insc.aluno.nome}}</td>
-                                <td>
-                                    <!--Não funciona o doc :(-->
-                                    <a href="/docs/{{insc.documento}}" target="_blank">Clique Aqui</a>
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="{{insc.id}}">
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-
-                        <input type="hidden" name="turma_id" value="{{turma.id}}">
-                        <input class="btn btn-success" type="submit" value="Confirmar">
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="row mb-2">
         <div class="col">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     Alunos
+                    <form action="/addalunos/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="doc">
+                        <input type="hidden" value="{{turma.id}}" name="turma">
+                        <input type="submit" value="Adicionar Alunos" class="btn btn-primary">
+                    </form>
                 </div>
                 <div class="card-body">
                     <form action="/notas/{{turma.id}}/" method="post">
@@ -54,7 +26,7 @@
                                 <th>Faltas</th>
                             </tr>
                             {% csrf_token %}
-                            {% for insc in aprovados %}
+                            {% for insc in inscricoes %}
                             <tr>
                                 <td>{{insc.inscricao.aluno.nome}}</td>
                                 {% if insc.nota %}
@@ -79,46 +51,44 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-2 mb-3">
         <div class="col">
 
-            <div class="card">
-                <div class="card-header">Cadastrar Aula</div>
+                <div class="card">
+                    <div class="card-header">Cadastrar Aula</div>
 
-                <div class="card-body">
-                    <form action="/aula/" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-4">
-                                <input type="text" name="description" placeholder="Descrição da Aula">
-                                <input type="datetime-local" name="date" placeholder="Data">
-                                <input type="hidden" name="turma" value="{{turma.id}}">
-                            </div>
-                            <div class="col-4">
-                                <ul>
-                                    {% for insc in aprovados %}
-                                    <table>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Faltou</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{{insc.inscricao.aluno.nome}}</td>
-                                            <td><input type="checkbox" name="{{insc.inscricao.aluno.id}}"></td>
-                                        </tr>
-                                    </table>
+                    <div class="card-body">
+                        <form action="/aula/" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-4">
+                                    <input type="text" name="description" placeholder="Descrição da Aula">
+                                    <input type="datetime-local" name="date" placeholder="Data">
+                                    <input type="hidden" name="turma" value="{{turma.id}}">
+                                </div>
+                                <div class="col-4">
+                                    <ul>
+                                        {% for insc in inscricoes %}
+                                        <table>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Faltou</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{insc.inscricao.aluno.nome}}</td>
+                                                <td><input type="checkbox" name="{{insc.inscricao.aluno.id}}"></td>
+                                            </tr>
+                                        </table>
 
-                                    {% endfor %}
-                                </ul>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="col-4">
+                                    <input type="submit" value="Cadastrar Aula">
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <input type="submit" value="Cadastrar Aula">
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

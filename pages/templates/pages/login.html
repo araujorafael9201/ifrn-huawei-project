@@ -11,28 +11,16 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
     <div class="flex-column d-flex justify-content-center align-items-center">
       <img src="{% static '/img/huawei-ict-logo-red-2.png' %}" class="img-fluid mb-2" width="250" height="250" alt="">
 
-      <form action="/logar/" method='POST' class=>
+      <form action="/aluno/" method='POST'>
         {% csrf_token %}
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="">
-              @
+              Nome de Usuário
             </span>
           </div>
-          <input type="text" class="form-control" id="email" name='email' placeholder="E-mail">
+          <input type="text" class="form-control" id="username" name='username' placeholder="Digite Aqui...">
         </div>
-        
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="">
-              <img src="{% static '/img/icons/key.svg' %}" alt="">
-            </span>
-          </div>
-          <input type="password" class="form-control" id="pwd" name='pwd' placeholder="Senha">
-        </div>
-
-        <a href="/cadastro">Cadastrar-se</a>
-        <!-- <a class="recuperar" href="">Esqueceu a senha?</a> -->
         <input type="submit" class="btn btn-success float-right">
       </form>
       

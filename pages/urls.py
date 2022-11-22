@@ -27,13 +27,13 @@ urlpatterns = [
 
 
     # NAO CLASSIFICADOS
-    path('inscricao/', views.inscricao, name='inscricao'),
-    path('inscrever/', views.inscrever, name='inscrever'),
-    path('desinscrever/', views.desinscrever, name='desinscrever'),
-    path('cadastro/', views.cadastro, name='cadastro'),
-    path('cadastrar/', views.cadastrar, name='cadastrar'),
-    path('login/', views.login, name='login'),
-    path('logar/', views.logar, name='logar'),
+    # path('inscricao/', views.inscricao, name='inscricao'),
+    # path('inscrever/', views.inscrever, name='inscrever'),
+    # path('desinscrever/', views.desinscrever, name='desinscrever'),
+    # path('cadastro/', views.cadastro, name='cadastro'),
+    # path('cadastrar/', views.cadastrar, name='cadastrar'),
+    # path('login/', views.login, name='login'),
+    # path('logar/', views.logar, name='logar'),
     path('deslogar/', views.deslogar, name='deslogar'),
     path('professor/<int:turmaid>/', views.professorturma, name='professorturma'),
     path('professor/', views.professor, name='professor'),
@@ -42,6 +42,7 @@ urlpatterns = [
     path('aluno/', views.aluno, name='alunoinfo'),
     path('turmainfo/<int:id>/', views.turmainfo, name='turmainfo'),
     path('notas/<int:turmaid>/', views.notas, name='notas'),
-    path('matricula/', views.matricula, name='matrícula'),
-    path('aula/', views.aula, name='aula')
+    # path('matricula/', views.matricula, name='matrícula'),
+    path('aula/', views.aula, name='aula'),
+    path('addalunos/', views.addalunos, name="addalunos")
 ]

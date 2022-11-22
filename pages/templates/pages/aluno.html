@@ -12,6 +12,7 @@
         {% for turma in info %}
         <div class="col-md-4">
             <div class="card">
+                <!--Precisa ajustar as fotos-->
                 {% if turma.inscricao.turma.nome_do_curso == 'Cloud Service' %}
                 <img src="{% static 'img/cursos/cloud-service.png' %}" alt="" class="card-img-top">
                 {% elif turma.inscricao.turma.nome_do_curso == 'Inteligência Artificial' %}
@@ -24,7 +25,6 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ turma.inscricao.turma.nome_do_curso }}</h5>
                     <div class="d-flex flex-direction-row justify-content-around align-items-center mt-2">
-                        {% if turma.inscricao.aprovada %}
                         <div class="w-100 d-flex justify-content-left">
                             <a class="btn btn-primary" href="/turmainfo/{{turma.inscricao.turma.id}}">Informações</a>
                         </div>
@@ -43,14 +43,6 @@
 
                             
                         </div>
-                        {% else %}
-                        <h6 class="text-muted mb-0">Inscrição em Análise...</h6>
-                        <form action="/desinscrever/" class="" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="inscricao" value="{{turma.inscricao.id}}">
-                            <input type="submit" class="btn btn-danger" value="Cancelar Inscrição" />
-                        </form>
-                        {% endif %}
                     </div>
                 </div>
             </div>

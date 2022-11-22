@@ -29,7 +29,7 @@
             <div class="card-body">
                     {% for aluno in alunos %}
                         <p>
-                            {{aluno.nome}}
+                            <strong>{{aluno.username}}</strong> - {{aluno.nome}} {{aluno.sobrenome}}
                         </p>
                     {% endfor %}
             </div>

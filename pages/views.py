@@ -5,7 +5,11 @@ from django.contrib import messages
 from django.core.validators import validate_email
 from .validador.valida_cpf import validar_cpf
 from django.contrib.auth.hashers import make_password, check_password
-
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+import os
+import pandas
+from datetime import date
 
 from .models import Aluno, Inscricao, Turma, Professor, Nota, Falta, Aula
 
@@ -67,185 +71,77 @@ def seeds_for_the_future(request):
 
 
 ##
-def inscricao(request):
-    try:
-        cursos = Turma.objects.all()
+# def inscricao(request):
+#     try:
+#         cursos = Turma.objects.all()
 
-        return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id'], 'cursos': cursos})
-    except KeyError:
-        messages.error(request, 'Para se inscrever, você deve está logado.')
-        return redirect('/login')
-
-
-def inscrever(request):
-    if request.method == 'POST':
-        curso = Turma.objects.get(pk=request.POST['curso'])
-        documento = request.FILES['comprovante-conhecimento']
-
-        aluno = Aluno.objects.get(pk=request.session['aluno_id'])
-
-        insc_check = Inscricao.objects.all().filter(turma=curso, aluno=aluno)
-
-        if not insc_check:
-            inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
-            inscricao.save()
-
-            messages.success(request, 'Inscrição realizada com sucesso!')
-        else:
-            messages.error(request, 'Você já realizou sua inscrição nesse curso!')
-
-        return redirect('index')
-
-def desinscrever(request):
-    if request.method == 'POST':
-        inscricao = Inscricao.objects.get(pk=request.POST['inscricao'])
-
-        inscricao.delete()
-        messages.success(request, 'Inscrição Cancelada com Sucesso!')
-        return redirect('/aluno')
-
-def cadastro(request):
-    return render(request, 'pages/cadastro.html')
+#         return render(request, 'pages/inscricao.html', {'aluno_id': request.session['aluno_id'], 'cursos': cursos})
+#     except KeyError:
+#         messages.error(request, 'Para se inscrever, você deve está logado.')
+#         return redirect('/login')
 
 
-def cadastrar(request):
-    if request.method == 'POST':
-        nome = request.POST['nome']
-        cpf = request.POST['cpf']
-        email = request.POST['email']
-        genero = request.POST['genero']
-        formacao = request.POST['formacao']
-        nascimento = request.POST['nascimento']
-        aluno_ifrn = request.POST['aluno-ifrn']
-        servidor_ifrn = request.POST['servidor-ifrn']
-        instituicao_de_ensino = request.POST['instituicao-de-ensino']
-        email = request.POST['email']
-        celular = request.POST['celular']
-        senha = request.POST['senha']
+# def inscrever(request):
+#     if request.method == 'POST':
+#         curso = Turma.objects.get(pk=request.POST['curso'])
+#         documento = request.FILES['comprovante-conhecimento']
 
-        # SENHA
-        senha = make_password(senha)
+#         aluno = Aluno.objects.get(pk=request.session['aluno_id'])
 
-        if int(genero) == 1:
-            genero = 'M'
-        else:
-            genero = 'F'
+#         insc_check = Inscricao.objects.all().filter(turma=curso, aluno=aluno)
 
-        formacoes = ['Fundamental I Incompleto', 'Fundamental I Completo', 'Fundamental II Incompleto', 'Fundamental II Completo',
-                     'Ensino Médio Incompleto', 'Ensino Médio Completo', 'Ensino Superior Incompleto', 'Ensino Superior Completo', 'Pós-Graduação']
-        formacao = formacoes[int(formacao) - 1]
+#         if not insc_check:
+#             inscricao = Inscricao(turma=curso, documento=documento, aluno=aluno)
+#             inscricao.save()
 
-        if int(aluno_ifrn) == 1:
-            aluno_ifrn = False
-        else:
-            aluno_ifrn = True
+#             messages.success(request, 'Inscrição realizada com sucesso!')
+#         else:
+#             messages.error(request, 'Você já realizou sua inscrição nesse curso!')
 
-        if int(servidor_ifrn) == 1:
-            servidor_ifrn = False
-        else:
-            servidor_ifrn = True
+#         return redirect('index')
 
-        #
-        # EXEÇÕES: CAMPOS NÃO PREENCHIDOS
-        #
-        if not nome or not nascimento or not email or not celular or not senha:
-            messages.error(request, 'Você deve preencher todos os campos.')
-            return render(request, 'pages/cadastro.html')
+# def desinscrever(request):
+#     if request.method == 'POST':
+#         inscricao = Inscricao.objects.get(pk=request.POST['inscricao'])
 
-        if aluno_ifrn == False and servidor_ifrn == False:
-            if not instituicao_de_ensino:
-                messages.error(request, 'Você deve preencher todos os campos.')
-                return render(request, 'pages/cadastro.html')
+#         inscricao.delete()
+#         messages.success(request, 'Inscrição Cancelada com Sucesso!')
+#         return redirect('/aluno')
 
-        try:
-            validate_email(email)
-        except:
-            messages.error(request, 'E-mail inválido.')
-            return render(request, 'pages/cadastro.html')
-
-        #
-        # EXEÇÕES: JÁ CADASTRADO NO SISTEMA
-        #
-
-        if Aluno.objects.filter(cpf=cpf).exists():
-            messages.error(request, 'CPF já cadastrado.')
-            return render(request, 'pages/cadastro.html')
-
-        if Aluno.objects.filter(email=email).exists():
-            messages.error(request, 'E-mail já cadastrado.')
-            return render(request, 'pages/cadastro.html')
-
-        if Aluno.objects.filter(celular=celular).exists():
-            messages.error(request, 'Número de celular já cadastrado.')
-            return render(request, 'pages/cadastro.html')
-
-        #
-        # EXEÇÕES: TAMANHO DAS ENTRADAS
-        #
-        if len(senha) < 8:
-            messages.error(
-                request, 'A senha deve conter pelo menos 8 caracteres.')
-            return render(request, 'pages/cadastro.html')
-
-        if len(celular) > 11:
-            messages.error(request, 'Número de celular inválido.')
-            return render(request, 'pages/cadastro.html')
-
-        nasc = nascimento.split('-')
-        ano_nasci = int(nasc[0])
-
-        if ano_nasci > 2022 or ano_nasci < 1950:
-            messages.error(request, 'Data de nascimento inválida.')
-            return render(request, 'pages/cadastro.html')
-
-        vl_cpf = validar_cpf(cpf)
-        if not vl_cpf:
-            messages.error(request, 'CPF inválido.')
-            return render(request, 'pages/cadastro.html')
-
-        messages.success(request, 'Cadastrado com sucesso!')
-
-        aluno = Aluno(cpf=cpf, nome=nome, genero=genero, formacao=formacao, nascimento=nascimento, aluno_ifrn=aluno_ifrn,
-                      servidor_ifrn=servidor_ifrn, instituicao_de_ensino=instituicao_de_ensino, email=email, celular=celular, senha=senha)
-
-        aluno.save()
-
-        return redirect('login')
-
-def login(request):
-    if 'prof_id' in request.session:
-        messages.warning(request, 'Você não pode fazer login como Aluno e Professor Simultaneamente!')
-        return redirect('/')
-
-    elif 'aluno_id' in request.session:
-        messages.warning(request, 'Você já está logado!')
-        return redirect('/')
-    else:
-        return render(request, 'pages/login.html')
+# def cadastro(request):
+#     return render(request, 'pages/cadastro.html')
 
 
-def logar(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        senha = request.POST['pwd']
+# def login(request):
+#     if 'prof_id' in request.session:
+#         messages.warning(request, 'Você não pode fazer login como Aluno e Professor Simultaneamente!')
+#         return redirect('/')
 
-        try:
-            aluno = Aluno.objects.all().filter(email=email)[0]
-            if check_password(senha, aluno.senha):
-                request.session['aluno_id'] = aluno.id
-                return redirect('/')
-            else:
-                raise Exception
-        except:
-            messages.error(request, 'Email ou senha inválidos.')
-            return redirect('/login')
+#     elif 'aluno_id' in request.session:
+#         messages.warning(request, 'Você já está logado!')
+#         return redirect('/')
+#     else:
+#         return render(request, 'pages/login.html')
+
+
+# def logar(request):
+#     if request.method == 'POST':
+#         email = request.POST['email']
+#         senha = request.POST['pwd']
+
+#         try:
+#             aluno = Aluno.objects.all().filter(email=email)[0]
+#             if check_password(senha, aluno.senha):
+#                 request.session['aluno_id'] = aluno.id
+#                 return redirect('/')
+#             else:
+#                 raise Exception
+#         except:
+#             messages.error(request, 'Email ou senha inválidos.')
+#             return redirect('/login')
 
 
 def deslogar(request):
-    try:
-        del request.session['aluno_id']
-        return redirect('/')
-    except:
         try:
             del request.session['prof_id']
             return redirect('/')
@@ -254,10 +150,7 @@ def deslogar(request):
             return redirect('/')
 
 def professor_login(request):
-    if 'aluno_id' in request.session:
-        messages.warning(request, 'Você não pode fazer login como Aluno e Professor Simultaneamente!')
-        return redirect('/')
-    elif 'prof_id' in request.session:
+    if 'prof_id' in request.session:
         messages.warning(request, 'Você já está logado!')
         return redirect('/professor')
     else:
@@ -281,7 +174,6 @@ def professor(request):
         prof = Professor.objects.get(pk=request.session['prof_id'])
         turmas = Turma.objects.all().filter(professor=prof)
 
-        print(turmas)
         return render(request, 'pages/profinicio.html', {'turmas':turmas})
 
     except KeyError:
@@ -292,66 +184,64 @@ def professorturma(request, turmaid):
         inscricoes = Inscricao.objects.select_related('aluno').all().filter(turma=turmaid)
         turma = Turma.objects.select_related('professor').get(id=turmaid)
         prof = Professor.objects.get(pk=request.session['prof_id'])
+        insc = []
 
         if turma.professor.id != request.session['prof_id']:
             messages.error(request, 'Você não tem permissão para acessar esta página!')
             return render(request, 'pages/index.html')
 
+
         else:
-
-            aprovados, pendentes = [], []
-
             notas_faltando = False
             for i in inscricoes:
-                if i.aprovada:
                     n = Nota.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
                     faltas = Falta.objects.filter(aluno=i.aluno.id, turma=i.turma.id)
                     if n:
                         if faltas:
                             aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': faltas[0].quantidade}
-                            aprovados.append(aluno_final)
+                            insc.append(aluno_final)
                         else:
                             aluno_final = {'inscricao': i, 'nota': n[0], 'faltas': 0}
-                            aprovados.append(aluno_final)
+                            insc.append(aluno_final)
 
                     else:
                         if faltas:
                             notas_faltando = True
-                            aprovados.append({'inscricao': i, 'nota': None, 'faltas': faltas[0].quantidade})
+                            insc.append({'inscricao': i, 'nota': None, 'faltas': faltas[0].quantidade})
                         else:
                             notas_faltando = True
-                            aprovados.append({'inscricao': i, 'nota': None, 'faltas': 0})
-
-                else:
-                    pendentes.append(i)
-
-            return render(request, 'pages/professor.html', {'aprovados': aprovados, 'pendentes': pendentes, 'turma': turma, 'professor': prof, 'notas': notas, 'notas_faltando': notas_faltando})
+                            insc.append({'inscricao': i, 'nota': None, 'faltas': 0})
+            return render(request, 'pages/professor.html', {'inscricoes': insc,'turma': turma, 'professor': prof, 'notas': notas, 'notas_faltando': notas_faltando})
 
 def aluno(request):
-    inscricoes = Inscricao.objects.all().filter(aluno=request.session['aluno_id'])
+    if request.method == 'POST':
+        try:
+            aluno = Aluno.objects.get(username=request.POST['username'])
+            inscricoes = Inscricao.objects.all().filter(aluno=aluno.id)
 
-    info = []
+            info = []
 
-    for i in inscricoes:
-        nota = Nota.objects.filter(aluno=request.session['aluno_id'], turma=i.turma).first()
-        faltas = Falta.objects.filter(aluno=request.session['aluno_id'], turma=i.turma).first()
-        if nota:
-            if faltas:
-                info.append({'inscricao': i, 'nota': nota, 'faltas': faltas.quantidade})
-            else:
-                info.append({'inscricao': i, 'nota': nota})
-                
-        else:
-            if faltas:
-                info.append({'inscricao': i, 'faltas': faltas.quantidade})
-            else:
-                info.append({'inscricao': i})
+            for i in inscricoes:
+                nota = Nota.objects.filter(aluno=aluno.id, turma=i.turma).first()
+                faltas = Falta.objects.filter(aluno=aluno.id, turma=i.turma).first()
+                if nota:
+                    if faltas:
+                        info.append({'inscricao': i, 'nota': nota, 'faltas': faltas.quantidade})
+                    else:
+                        info.append({'inscricao': i, 'nota': nota})
+                        
+                else:
+                    if faltas:
+                        info.append({'inscricao': i, 'faltas': faltas.quantidade})
+                    else:
+                        info.append({'inscricao': i})
 
-    try:
-        return render(request, 'pages/aluno.html', {'aluno_id': request.session['aluno_id'], 'info': info})
-    except KeyError:
-        messages.error(request, 'Por favor, Faça Login!')
-        return redirect('/login')
+            return render(request, 'pages/aluno.html', {'aluno_id': aluno.id, 'info': info})
+        except:
+            messages.error(request, 'Aluno não encontrado!')
+            return redirect('/aluno')
+    else:
+        return render(request, 'pages/login.html')
 
 def turmainfo(request, id):
     turma = Turma.objects.get(pk=id)
@@ -359,25 +249,12 @@ def turmainfo(request, id):
     # Pegar alunos da Turma
     alunos = []
     for i in Inscricao.objects.select_related('aluno').filter(turma = turma.id):
-        if i.aprovada:
-            alunos.append(i.aluno)
+        alunos.append(i.aluno)
             
     # Pegar Informações do Professor
     professor = Professor.objects.get(turma=turma.id)
 
     return render(request, 'pages/turmainfo.html', {'turma': turma, 'alunos': alunos, 'professor': professor})
-
-
-
-def matricula(request):
-    if request.method == 'POST':
-        for value in request.POST:
-            if value not in ['csrfmiddlewaretoken', 'turma_id']:
-                insc = Inscricao.objects.get(pk=value)
-                insc.aprovada = True
-                insc.save()         
-
-        return redirect(f'/professor/{request.POST["turma_id"]}')
 
 def notas(request, turmaid):
     if request.method=='POST':
@@ -395,7 +272,6 @@ def notas(request, turmaid):
 
 def aula(request):
     if request.method=='POST':
-
         try:
         # Cadastrar aula
             turma = Turma.objects.get(id=request.POST['turma'])
@@ -426,9 +302,43 @@ def aula(request):
         return redirect(f'/professor/{request.POST["turma"]}')
 
 
-def docs(request, docname):
-    # sei fazer n :(
-    return
+# def docs(request, docname):
+#     # sei fazer n :(
+#     return
 
 def suporte(request):
     return render(request, 'pages/suporte.html')
+
+
+def addalunos(request):
+    if request.method == 'POST':
+        doc = request.FILES['doc']
+        turma_id = request.POST['turma']
+        path = default_storage.save(f'uploads/alunos/{doc.name}', ContentFile(doc.read()))
+
+        pd = pandas.read_excel(f'{os.getcwd()}/uploads/alunos/{doc.name}')
+
+        for c in pd.iloc():
+            username = c['User Account']
+
+            if c['Registration Method'] != 'Teacher Manual enrollment':
+                try:
+                    aluno = Aluno.objects.get(username=username)
+                except:
+                    nome = c['First Name']
+                    sobrenome = c['Last Name']
+                    data_r = c['Registration Time']
+                    ano, mes, dia = data_r[:10].split('-')
+
+                    aluno = Aluno(username=username, nome=nome, sobrenome=sobrenome, data_inscricao=date(int(ano), int(mes), int(dia)))
+                    aluno.save()
+
+                try:
+                    insc = Inscricao.objects.get(turma=turma_id, aluno=aluno.id)
+                except:
+                    turma = Turma.objects.get(id=turma_id)
+                    insc = Inscricao(aluno=aluno, turma=turma)
+                    insc.save()
+
+        
+        return redirect('/professor')
