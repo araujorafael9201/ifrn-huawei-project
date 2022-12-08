@@ -287,13 +287,9 @@ def aula(request):
 
             for f in faltas:
                 aluno = Aluno.objects.get(id=f)
-                try:
-                    falta = Falta.objects.get(aluno=aluno, turma=turma)
-                    falta.quantidade += 1
-                    falta.save()
-                except:
-                    falta = Falta(aluno=aluno, turma=turma, quantidade=1)
-                    falta.save()
+                falta = Falta.objects.get(aluno=aluno.id, turma=turma)
+                falta.quantidade += 1
+                falta.save()
 
         except ValueError:
             messages.error(request, 'Houve um erro ao cadastrar a aula.')
@@ -301,10 +297,6 @@ def aula(request):
         
         return redirect(f'/professor/{request.POST["turma"]}')
 
-
-# def docs(request, docname):
-#     # sei fazer n :(
-#     return
 
 def suporte(request):
     return render(request, 'pages/suporte.html')
@@ -339,6 +331,9 @@ def addalunos(request):
                     turma = Turma.objects.get(id=turma_id)
                     insc = Inscricao(aluno=aluno, turma=turma)
                     insc.save()
+
+                    faltas = Falta(turma_id = turma_id, aluno_id = aluno.id)
+                    faltas.save()
 
         
         return redirect('/professor')

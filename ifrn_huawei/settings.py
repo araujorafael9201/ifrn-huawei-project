@@ -135,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_EXPIRE_SECONDS = 30 * 60 # 30 minutos
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
-SESSION_TIMEOUT_REDIRECT = 'login/'
+SESSION_TIMEOUT_REDIRECT = 'proflogin/'
 
 # Mensagens
 from django.contrib.messages import constants
