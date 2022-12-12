@@ -1,3 +1,7 @@
+body{
+    overflow: hidden;
+}
+
 .modal-aprimorado {
     display: block; 
     background: rgba(0, 0, 0, .1);
