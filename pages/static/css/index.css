@@ -1,0 +1,19 @@
+.modal-aprimorado {
+    display: block; 
+    background: rgba(0, 0, 0, .1);
+}
+
+.dialog-aprimorado {
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#img-modal {
+    margin: 0 auto;
+    max-width: 29rem;
+    display: block;
+}

@@ -2,7 +2,31 @@
 {% load static %}
 {% block 'titulo' %}Huawei - IFRN{% endblock 'titulo' %}
 
+{% block 'estilos' %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock 'estilos' %}
+
 {% block 'conteudo' %}
+            <div class="modal modal-aprimorado" tabindex="-1" id="modal">
+                <div class="modal-dialog dialog-aprimorado">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">EDITAL ABERTO</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close1"></button>
+                        </div>
+                        <div class="modal-body">
+                            <a href="https://huawei.ifrn.edu.br/pdfs/edital.pdf">
+                                <img src="{% static 'img/edital-aberto.jpg' %}" alt="" id="img-modal">
+                            </a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close2">Fechar</button>
+                            <a href="https://huawei.ifrn.edu.br/pdfs/edital.pdf" type="button" class="btn btn-success">Edital</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Background video -->
             <div class="video-background-holder">
                 <div class="video-background-overlay"></div>
@@ -289,5 +313,13 @@
                 </div>
             </section>
             <!-- end -->
+
+            <script type="text/javascript">
+                var btn1 = document.querySelector("#close1");
+                var btn2 = document.querySelector("#close2");
+
+                btn1.addEventListener("click", function() {document.querySelector("#modal").style.display = "none";});
+                btn2.addEventListener("click", function() {document.querySelector("#modal").style.display = "none";});
+            </script>
 
 {% endblock 'conteudo' %}
